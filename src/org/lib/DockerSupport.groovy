@@ -1,7 +1,7 @@
 package org.lib
 
 class DockerSupport implements Serializable {
-	private final script
+	// private final script
 	// Map config
 	// def scripta
 
