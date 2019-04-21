@@ -4,7 +4,7 @@ class DockerSupport implements Serializable {
 	private final script
 	Map config
 
-	static DockerSupport(script, config = [:]) {
+	DockerSupport(script, config = [:]) {
 		this.script = script
 		this.config = config
 	}
@@ -14,3 +14,5 @@ class DockerSupport implements Serializable {
 		script.println this.script.getClass()
 	}
 }
+
+def docker
