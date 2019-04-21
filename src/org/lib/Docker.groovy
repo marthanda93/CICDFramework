@@ -1,10 +1,10 @@
 package org.lib
 
-class Docker implements Serializable {
-	WorkflowScript script
+class DockerSupport implements Serializable {
+	private final script
 	Map config
 
-	Docker(script, config = [:]) {
+	DockerSupport(script, config = [:]) {
 		this.script = script
 		this.config = config
 	}
