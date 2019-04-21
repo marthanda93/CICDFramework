@@ -2,13 +2,14 @@ package org.lib
 
 class Docker implements Serializable {
 
-	Docker(WorkflowScript script, Map config = [:]) {
+	Docker(def script, Map config = [:]) {
 		this.script = script
 		this.config = config
 	}
 
 	void one() {
 		this.script.sh "echo 'Anand Here'"
+		this.script.println this.script.getClass()
 	}
 
 	void build() {
