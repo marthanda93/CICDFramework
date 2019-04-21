@@ -2,8 +2,9 @@ package org.lib
 
 class Docker implements Serializable {
 	def script
+	Map config
 
-	Docker(script, Map config = [:]) {
+	Docker(script, config = [:]) {
 		this.script = script
 		this.config = config
 	}
