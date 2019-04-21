@@ -1,7 +1,7 @@
 package org.lib
 
 class Docker implements Serializable {
-	def script
+	WorkflowScript script
 	Map config
 
 	Docker(script, config = [:]) {
