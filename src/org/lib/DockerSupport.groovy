@@ -16,6 +16,6 @@ class DockerSupport implements Serializable {
 	}
 
   static def mvna(script, args) {
-    script.sh "${script.tool 'Maven'}/bin/mvn -s ${script.env.HOME}/jenkins.xml -o ${args}"
+    script.sh "echo 'Static Method'"
   }
 }
