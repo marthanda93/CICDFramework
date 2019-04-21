@@ -10,8 +10,8 @@ class DockerSupport implements Serializable {
 	}
 
 	void one() {
-		this.script.sh "echo 'Anand Here'"
-		this.script.println this.script.getClass()
+		script.sh "echo 'Anand Here'"
+		script.println this.script.getClass()
 	}
 
 	void build() {
