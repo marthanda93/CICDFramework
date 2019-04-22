@@ -1,6 +1,6 @@
 package org.generic
 
-interface shellRegistry {
+trait shellRegistry {
 	Map config
     def bashShell(String command)
 }
