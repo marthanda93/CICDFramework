@@ -2,7 +2,7 @@ package org.commons
 
 import org.generic.common
 
-class shellExecutor implements Serializable, shellRegistry {
+class shellExecutor implements Serializable, common.shellRegistry {
 	shellExecutor(stepExecutor, config = [:]) {
 		this.stepExecutor = stepExecutor
 		this.config = config
