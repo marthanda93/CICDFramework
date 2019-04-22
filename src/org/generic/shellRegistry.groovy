@@ -1,5 +1,5 @@
 package org.generic
 
 interface shellRegistry {
-    String command
+    String bashShell(String command)
 }

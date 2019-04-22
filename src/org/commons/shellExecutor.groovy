@@ -11,13 +11,12 @@ class shellExecutor implements Serializable, shellRegistry {
 		this.config = config
 	}
 
-	String bashShell(command) {
+	@Override
+	String bashShell(String command) {
 		try {
 			stepExecutor.sh(script: "${command}", returnStdout: true)
 		} catch(e) {
-			stepExecutor.println "getMessage\n${e.getMessage()}"
-			stepExecutor.println "printStackTrace \n${e.printStackTrace()}"
-			stepExecutor.error "ERROR:bashShell: Failed with \n${e.message}}"
+			stepExecutor.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
 	}
 }
