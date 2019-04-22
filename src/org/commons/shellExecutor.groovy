@@ -24,4 +24,9 @@ class shellExecutor implements Serializable, shellRegistry {
 	String propertyMissing(String name) {
 		"Caught missing property: $name"
 	}
+
+	@Override
+	static String $static_methodMissing(String name, Object args) {
+		"Missing static method name is $name"
+	}
 }
