@@ -7,7 +7,7 @@ class ShellExecutor implements Serializable, IShellRegistry, MissingObject {
 	private final stepExecutor
 	Map config
 
-	shellExecutor(stepExecutor, config = [:]) {
+	ShellExecutor(stepExecutor, config = [:]) {
 		this.stepExecutor = stepExecutor
 		this.config = config
 	}
