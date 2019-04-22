@@ -1,6 +1,6 @@
 package org.generic
 
-interface shellRegistry {
+abstract shellRegistry {
 	Map config
     String command
 }
