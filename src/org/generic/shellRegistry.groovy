@@ -1,10 +1,7 @@
 package org.generic
 
-interface scriptRegistry {
-	public stepExecutor
-	Map config
-}
 
-interface shellRegistry extends scriptRegistry {
+trait shellRegistry {
+	Map config
     String command
 }
