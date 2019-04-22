@@ -27,6 +27,11 @@ class shellExecutor implements Serializable, shellRegistry {
 
 	@Override
 	String methodMissing(String name, def args) {
-		"Missing static method name is $name"
+		stepExecutor.println """
+			Possible solutions: 
+			String bashShell(String command)
+		"""
+
+		"Missing method name is $name"
 	}
 }
