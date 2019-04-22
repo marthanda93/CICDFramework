@@ -27,6 +27,7 @@ class shellExecutor implements Serializable, shellRegistry {
 
 	@Override
 	String $static_methodMissing(String name, Object args) {
-		"Missing static method name is $name"
+		stepExecutor.println "wwwwwwwww----------w------"
+		return "Missing static method name is $name"
 	}
 }
