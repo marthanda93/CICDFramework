@@ -1,7 +1,7 @@
 package org.generic
 
 interface scriptRegistry {
-	private final stepExecutor
+	public static final stepExecutor
 	Map config
 }
 
