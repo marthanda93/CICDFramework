@@ -32,6 +32,6 @@ class shellExecutor implements Serializable, shellRegistry {
 			String bashShell(String command)
 		"""
 
-		"Missing method name is $name"
+		stepExecutor.error "Missing method name is $name"
 	}
 }
