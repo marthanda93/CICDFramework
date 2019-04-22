@@ -1,6 +1,10 @@
 package org.generic
 
-trait shellRegistry {
+trait scriptRegistry {
+	public stepExecutor
 	Map config
-    def bashShell(String command)
+}
+
+trait shellRegistry extends scriptRegistry {
+    String command
 }
