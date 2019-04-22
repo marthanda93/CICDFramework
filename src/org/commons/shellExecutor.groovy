@@ -20,6 +20,7 @@ class shellExecutor implements Serializable, shellRegistry {
 		}
 	}
 
+	@Override
 	String propertyMissing(String name) {
 		"Caught missing property: $name"
 	}
