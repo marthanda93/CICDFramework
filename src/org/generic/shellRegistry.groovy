@@ -5,6 +5,6 @@ interface scriptRegistry {
 	Map config
 }
 
-interface shellRegistry implements scriptRegistry {
+interface shellRegistry extends scriptRegistry {
 	String command
 }
