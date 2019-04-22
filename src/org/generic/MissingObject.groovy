@@ -1,6 +1,6 @@
 package org.generic
 
-class MissingObject implements IShellRegistry {
+class MissingObject extends IShellRegistry {
 
 	@Override
 	String propertyMissing(String name) {
