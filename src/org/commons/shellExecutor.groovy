@@ -1,6 +1,6 @@
 package org.commons
 
-import org.generic.commons
+import org.generic.common
 
 class shellExecutor implements Serializable, shellRegistry {
 	shellExecutor(stepExecutor, config = [:]) {
