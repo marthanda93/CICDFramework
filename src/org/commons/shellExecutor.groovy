@@ -1,8 +1,9 @@
 package org.commons
 
 import org.generic.IShellRegistry
+import org.generic.MissingObject
 
-class shellExecutor implements Serializable, IShellRegistry {
+class ShellExecutor implements Serializable, IShellRegistry, MissingObject {
 	private final stepExecutor
 	Map config
 
@@ -36,20 +37,5 @@ class shellExecutor implements Serializable, IShellRegistry {
 		} catch(e) {
 			stepExecutor.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
-	}
-
-	@Override
-	String propertyMissing(String name) {
-		"Caught missing property: $name"
-	}
-
-	@Override
-	String methodMissing(String name, Object args) {
-		stepExecutor.println """
-			Possible solutions: 
-			String bashShell(String command)
-		"""
-
-		stepExecutor.error "Missing method name is $name"
 	}
 }
