@@ -1,7 +1,6 @@
 package org.generic
 
-
-trait shellRegistry {
+interface shellRegistry {
 	Map config
     String command
 }
