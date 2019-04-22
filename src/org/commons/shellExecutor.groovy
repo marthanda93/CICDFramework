@@ -19,4 +19,8 @@ class shellExecutor implements Serializable, shellRegistry {
 			stepExecutor.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
 	}
+
+	String propertyMissing(String name) {
+		"Caught missing property: $name"
+	}
 }
