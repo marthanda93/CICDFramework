@@ -1,10 +1,10 @@
 package org.generic
 
-trait scriptRegistry {
+interface scriptRegistry {
 	private final stepExecutor
 	Map config
 }
 
-trait shellRegistry implements scriptRegistry {
+interface shellRegistry implements scriptRegistry {
 	String command
 }
