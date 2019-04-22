@@ -12,6 +12,6 @@ class shellExecutor implements Serializable, shellRegistry {
 	}
 
 	def bashShell(command) {
-		stepExecutor.sh(script: "${command}", returnStdout: true, returnStatus: true)
+		stepExecutor.sh(script: "${command}", returnStdout: true)
 	}
 }
