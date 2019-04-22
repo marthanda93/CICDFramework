@@ -44,7 +44,7 @@ class shellExecutor implements Serializable, IShellRegistry {
 	}
 
 	@Override
-	String methodMissing(String name, def args) {
+	String methodMissing(String name, Object args) {
 		stepExecutor.println """
 			Possible solutions: 
 			String bashShell(String command)
