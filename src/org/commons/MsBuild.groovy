@@ -3,9 +3,6 @@ package org.commons
 import org.generic.IStepExecutor
 import org.stepRegistry.ContextRegistry
 
-/**
- * Example class (without proper implementation) for using the MsBuild tool for building .NET projects.
- */
 class MsBuild implements Serializable {
     private String _solutionPath
 

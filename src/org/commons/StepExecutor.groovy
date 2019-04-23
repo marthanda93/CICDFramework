@@ -1,4 +1,4 @@
-package org.generic
+package org.commons
 
 class StepExecutor implements IStepExecutor {
     private _steps

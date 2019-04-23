@@ -1,6 +1,4 @@
-package org.stepRegistry
-
-import org.generic.IStepExecutor
+package org.generic
 
 interface IContext {
     IStepExecutor getStepExecutor()

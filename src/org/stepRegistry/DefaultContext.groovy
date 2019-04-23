@@ -1,7 +1,7 @@
 package org.stepRegistry
 
 import org.generic.IStepExecutor
-import org.generic.StepExecutor
+import org.commons.StepExecutor
 
 class DefaultContext implements IContext, Serializable {
     private _steps

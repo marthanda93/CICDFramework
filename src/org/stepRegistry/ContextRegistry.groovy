@@ -1,5 +1,7 @@
 package org.stepRegistry
 
+import org.generic.IContext
+
 class ContextRegistry implements Serializable {
     private static IContext _context
 
