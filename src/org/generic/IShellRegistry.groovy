@@ -5,6 +5,6 @@ interface IShellRegistry {
     String batchScript(String command)
     String powerShellScript(String command)
 
-    String propertyMissing(String name)
-    String methodMissing(String name, Object args)
+    // String propertyMissing(String name)
+    // String methodMissing(String name, Object args)
 }
