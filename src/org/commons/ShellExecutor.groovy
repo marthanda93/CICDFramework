@@ -11,6 +11,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 
 	ShellExecutor(config = [:]) {
 		this._steps = ContextRegistry.getContext().getShellExecutor()
+		_steps.println "---------------//2"
 		this.config = config
 	}
 

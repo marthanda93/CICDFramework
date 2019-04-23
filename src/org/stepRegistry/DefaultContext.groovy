@@ -22,6 +22,7 @@ class DefaultContext implements IContext, Serializable {
 
     @Override
     IShellRegistry getShellExecutor() {
+        _steps.println "---------------//3"
         return new ShellExecutor(this._steps)
     }
 
