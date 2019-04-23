@@ -1,7 +1,10 @@
 package org.stepRegistry
 
 import org.generic.IStepExecutor
+import org.generic.IShellRegistry
+
 import org.generic.IContext
+
 import org.commons.StepExecutor
 
 class DefaultContext implements IContext, Serializable {
@@ -12,7 +15,13 @@ class DefaultContext implements IContext, Serializable {
     }
 
     @Override
-    IStepExecutor getStepExecutor() {
+    IStepExecutor getSExecutor() {
         return new StepExecutor(this._steps)
     }
+
+    @Override
+    IShellRegistry getStepExecutor() {
+        return new ShellExecutor(this._steps)
+    }
+
 }

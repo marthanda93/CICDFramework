@@ -4,38 +4,38 @@ import org.generic.IShellRegistry
 //import org.generic.MissingObject
 
 class ShellExecutor implements Serializable, IShellRegistry.One {
-	private final stepExe
+	private _steps
 	Map config
 
-	ShellExecutor(stepExe, config = [:]) {
-		this.stepExe = stepExe
+	ShellExecutor(_steps, config = [:]) {
+		this._steps = _steps
 		this.config = config
 	}
 
 	@Override
 	String bashShell(String command) {
 		try {
-			stepExe.sh(script: "${command}", returnStdout: true)
+			_steps.sh(script: "${command}", returnStdout: true)
 		} catch(e) {
-			stepExe.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
 	}
 
 	@Override
 	String batchScript(String command) {
 		try {
-			stepExe.bat(script: "${command}", returnStdout: true)
+			_steps.bat(script: "${command}", returnStdout: true)
 		} catch(e) {
-			stepExe.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
 	}
 
 	@Override
 	String powerShellScript(String command) {
 		try {
-			stepExe.powershell(script: "${command}", returnStdout: true)
+			_steps.powershell(script: "${command}", returnStdout: true)
 		} catch(e) {
-			stepExe.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
 	}
 }

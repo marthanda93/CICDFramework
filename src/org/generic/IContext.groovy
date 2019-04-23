@@ -1,5 +1,6 @@
 package org.generic
 
 interface IContext {
-    IStepExecutor getStepExecutor()
+    IShellRegistry getStepExecutor()
+    IStepExecutor getSExecutor()
 }
