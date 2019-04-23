@@ -16,12 +16,12 @@ class DefaultContext implements IContext, Serializable {
     }
 
     @Override
-    IHttpExecutor getSExecutor() {
+    IHttpExecutor getHttpExecutor() {
         return new HttpExecutor(this._steps)
     }
 
     @Override
-    IShellRegistry getStepExecutor() {
+    IShellRegistry getShellExecutor() {
         return new ShellExecutor(this._steps)
     }
 
