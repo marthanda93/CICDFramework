@@ -1,9 +1,9 @@
 package org.commons
 
-import org.generic.IShellRegistry.One
+import org.generic.IShellRegistry
 //import org.generic.MissingObject
 
-class ShellExecutor implements Serializable, One {
+class ShellExecutor implements Serializable, IShellRegistry {
 	private final stepExe
 	Map config
 
@@ -13,7 +13,7 @@ class ShellExecutor implements Serializable, One {
 	}
 
 	@Override
-	String bashShell(String command) {
+	String One.bashShell(String command) {
 		try {
 			stepExe.sh(script: "${command}", returnStdout: true)
 		} catch(e) {
@@ -22,7 +22,7 @@ class ShellExecutor implements Serializable, One {
 	}
 
 	@Override
-	String batchScript(String command) {
+	String One.batchScript(String command) {
 		try {
 			stepExe.bat(script: "${command}", returnStdout: true)
 		} catch(e) {
@@ -31,7 +31,7 @@ class ShellExecutor implements Serializable, One {
 	}
 
 	@Override
-	String powerShellScript(String command) {
+	String One.powerShellScript(String command) {
 		try {
 			stepExe.powershell(script: "${command}", returnStdout: true)
 		} catch(e) {
