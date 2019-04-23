@@ -6,6 +6,7 @@ import org.generic.IShellRegistry
 import org.generic.IContext
 
 import org.commons.StepExecutor
+import org.commons.ShellExecutor
 
 class DefaultContext implements IContext, Serializable {
     private _steps
