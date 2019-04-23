@@ -8,3 +8,7 @@ interface IShellRegistry {
     // String propertyMissing(String name)
     // String methodMissing(String name, Object args)
 }
+
+interface IAnand {
+	Int app()
+}
