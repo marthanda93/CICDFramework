@@ -13,6 +13,6 @@ class MsBuild implements Serializable {
     void build() {
         IShellRegistry steps = ContextRegistry.getContext().getShellExecutor()
 
-        steps.bashShellA("echo \"building ${this._solutionPath}...\"")
+        steps.bashShell("echo \"building ${this._solutionPath}...\"")
     }
 }
