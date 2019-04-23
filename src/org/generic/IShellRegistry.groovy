@@ -10,5 +10,5 @@ interface IShellRegistry {
 }
 
 interface IAnand {
-	Int app()
+	Map app()
 }
