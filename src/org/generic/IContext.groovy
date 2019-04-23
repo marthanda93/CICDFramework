@@ -1,6 +1,6 @@
 package org.generic
 
 interface IContext {
-    IHttpExecutor getHttpExecutor()
+    IHttpRegistry getHttpExecutor()
     IShellRegistry getShellExecutor()
 }
