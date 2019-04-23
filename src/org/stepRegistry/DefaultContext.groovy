@@ -1,6 +1,6 @@
 package org.stepRegistry
 
-import org.generic.IHttpExecutor
+import org.generic.IHttpRegistry
 import org.generic.IShellRegistry
 
 import org.generic.IContext
@@ -16,7 +16,7 @@ class DefaultContext implements IContext, Serializable {
     }
 
     @Override
-    IHttpExecutor getHttpExecutor() {
+    IHttpRegistry getHttpExecutor() {
         return new HttpExecutor(this._steps)
     }
 
