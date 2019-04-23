@@ -1,6 +1,6 @@
 package org.generic
 
-interface IStepExecutor {
+interface IHttpExecutor {
     int sh(String command)
     void error(String message)
 }

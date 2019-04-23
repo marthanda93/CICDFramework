@@ -1,11 +1,11 @@
 package org.commons
 
-import org.generic.IStepExecutor
+import org.generic.IHttpExecutor
 
-class StepExecutor implements IStepExecutor {
+class HttpExecutor implements IHttpExecutor {
     private _steps
 
-    StepExecutor(steps) {
+    HttpExecutor(steps) {
         this._steps = steps
     }
 
