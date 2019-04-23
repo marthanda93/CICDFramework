@@ -1,6 +1,6 @@
 package org.commons
 
-import org.generic.IShellRegistry
+import org.generic.IAnand
 
 class AppTest implements Serializable, IAnand {
 	private final stepExe
