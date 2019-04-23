@@ -1,8 +1,8 @@
 package org.commons
 
-import org.generic.IHttpExecutor
+import org.generic.IHttpRegistry
 
-class HttpExecutor implements IHttpExecutor {
+class HttpExecutor implements IHttpRegistry {
     private _steps
 
     HttpExecutor(steps) {
