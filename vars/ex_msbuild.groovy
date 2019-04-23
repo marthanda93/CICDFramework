@@ -1,4 +1,4 @@
-import org.commons.MsBuild
+import org.utilities.MsBuild
 import org.stepRegistry.ContextRegistry
 
 def call(String solutionPath) {
