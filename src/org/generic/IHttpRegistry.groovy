@@ -1,6 +1,6 @@
 package org.generic
 
-interface IHttpExecutor {
+interface IHttpRegistry {
     int sh(String command)
     void error(String message)
 }
