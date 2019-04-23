@@ -1,8 +1,8 @@
 package org.commons
 
-import org.generic.*
+import org.generic.IShellRegistry
 
-class AppTest implements Serializable, IShellRegistry.IAnand {
+class AppTest implements Serializable, IShellRegistry.Two {
 	private final stepExe
 	Map config
 
