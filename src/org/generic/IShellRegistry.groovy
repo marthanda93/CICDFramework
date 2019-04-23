@@ -1,13 +1,13 @@
 package org.generic
 
 interface IShellRegistry {
-	protected interface One {
+	public interface One {
 	    String bashShell(String command)
 	    String batchScript(String command)
 	    String powerShellScript(String command)
 	}
 
-	protected interface Two {
+	public interface Two {
 		Map app()
 	}
 
