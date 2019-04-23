@@ -1,6 +1,6 @@
 package org.commons
 
-import org.generic.IStepExecutor
+import org.generic.IShellRegistry
 import org.stepRegistry.ContextRegistry
 
 class MsBuild implements Serializable {
