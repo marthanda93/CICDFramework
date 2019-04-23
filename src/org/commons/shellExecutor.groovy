@@ -3,7 +3,7 @@ package org.commons
 import org.generic.IShellRegistry
 import org.generic.MissingObject
 
-class ShellExecutor implements Serializable IShellRegistry MissingObject {
+class ShellExecutor implements Serializable, IShellRegistry, MissingObject {
 	private final stepExe
 	Map config
 
