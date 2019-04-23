@@ -1,7 +1,7 @@
 package org.commons
 
 import org.generic.IShellRegistry
-import org.generic.MissingObject
+//import org.generic.MissingObject
 
 class ShellExecutor implements Serializable, IShellRegistry, MissingObject {
 	private final stepExe
