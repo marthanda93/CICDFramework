@@ -1,9 +1,9 @@
 package org.commons
 
 import org.generic.IShellRegistry
-//import org.generic.MissingObject
+import org.generic.IMissingObject
 
-class ShellExecutor implements IShellRegistry, Serializable {
+class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	private _steps
 	Map config
 
@@ -37,5 +37,22 @@ class ShellExecutor implements IShellRegistry, Serializable {
 		} catch(e) {
 			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
+	}
+
+	@Override
+	String propertyMissing(String name) {
+		"Caught missing property: $name"
+	}
+
+	@Override
+	String methodMissing(String name, Object args) {
+		_steps.println """
+			Possible solutions: 
+			String bashShell(String command)
+			String batchScript(String command)
+			String powerShellScript(String command)
+		"""
+
+		_steps.error "Missing method name is $name"
 	}
 }
