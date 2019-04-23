@@ -9,7 +9,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	private _steps
 	Map config
 
-	ShellExecutor(_steps, config = [:]) {
+	ShellExecutor(config = [:]) {
 		this._steps = ContextRegistry.getContext().getShellExecutor()
 		this.config = config
 	}
