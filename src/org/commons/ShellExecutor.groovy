@@ -3,15 +3,12 @@ package org.commons
 import org.generic.IShellRegistry
 import org.generic.IMissingObject
 
-import org.stepRegistry.ContextRegistry
-
 class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	private _steps
 	Map config
 
-	ShellExecutor(config = [:]) {
-		this._steps = ContextRegistry.getContext().getShellExecutor()
-		_steps.println "---------------//2"
+	ShellExecutor(_steps, config = [:]) {
+		this._steps = _steps
 		this.config = config
 	}
 
