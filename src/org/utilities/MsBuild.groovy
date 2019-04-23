@@ -5,13 +5,14 @@ import org.stepRegistry.ContextRegistry
 
 class MsBuild implements Serializable {
     private String _solutionPath
+    IShellRegistry steps
 
     MsBuild(String solutionPath) {
         _solutionPath = solutionPath
     }
 
     void build() {
-        IShellRegistry this.steps = ContextRegistry.getContext().getShellExecutor()
+        this.steps = ContextRegistry.getContext().getShellExecutor()
 
         steps.bashShell("echo \"building ${this._solutionPath}...\"")
     }
