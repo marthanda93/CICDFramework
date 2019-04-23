@@ -1,9 +1,9 @@
 package org.commons
 
-import org.generic.IShellRegistry
+import org.generic.IShellRegistry.One
 //import org.generic.MissingObject
 
-class ShellExecutor implements Serializable, IShellRegistry.One {
+class ShellExecutor implements Serializable, One {
 	private final stepExe
 	Map config
 
