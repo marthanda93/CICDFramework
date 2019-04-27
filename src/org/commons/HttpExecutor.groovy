@@ -33,7 +33,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
             ]
         */
-        def a = ttpDsl("GET", payload)
+        def a = httpDsl("GET", payload)
         _steps.println a.status.toInteger()
         _steps.println "-----//aa"
 
