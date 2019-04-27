@@ -36,14 +36,14 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         _steps.println "--------//ll"
         _steps.println CommonValidation.stringValidation(payload.auth)
 
-        // _steps.println httpDsl.with {
-        //     httpMethod = "GET"
-        //     payload = payload
-        // }
+        _steps.println httpDsl.with {
+            httpMethod = "GET"
+            payload = payload
+        }
 
-        try {
-            if(payload.auth)
-            _steps.wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "clientToken", var: 'PASSWORD']]]) {
+        // try {
+        //     if(payload.auth)
+        //     _steps.wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "clientToken", var: 'PASSWORD']]]) {
         //         response = _steps.httpRequest(
         //             acceptType: globalPipelineSetting.httpVars.acceptType,
         //             contentType: globalPipelineSetting.httpVars.contentType,
