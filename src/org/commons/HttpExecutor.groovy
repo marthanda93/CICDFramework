@@ -1,6 +1,7 @@
 package org.commons
 
 import org.generic.IHttpRegistry
+import org.generic.IMissingObject
 
 class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
