@@ -2,7 +2,7 @@ package org.commons
 
 import org.generic.IShellRegistry
 import org.generic.IMissingObject
-import org.commons.CommonValidation
+import org.generic.ICommonValidation
 
 class CommonValidation implements ICommonValidation, IMissingObject, Serializable {
 	private _steps
