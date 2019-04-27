@@ -1,10 +1,9 @@
 package org.commons
 
 import org.generic.IHttpRegistry
-// import org.generic.IMissingObject
-import org.commons.CommonValidation
+import org.generic.IMissingObject
 
-class HttpExecutor implements IHttpRegistry, Serializable {
+class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
 
     HttpExecutor(steps) {
@@ -83,5 +82,22 @@ class HttpExecutor implements IHttpRegistry, Serializable {
     @Override
     Map headRquest(Map payload) {
         _steps.println("PASS")
+    }
+
+    @Override
+    String propertyMissing(String name) {
+        "Caught missing property: $name"
+    }
+
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.println """
+            Possible solutions: 
+            String bashShell(String command)
+            String batchScript(String command)
+            String powerShellScript(String command)
+        """
+
+        _steps.error "Missing method name is $name"
     }
 }
