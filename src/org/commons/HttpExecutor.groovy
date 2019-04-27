@@ -12,6 +12,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
     Closure httpDsl = { String httpMethod, Map payload ->
         if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
+            _steps.println "-----------//TRUE"
             return _steps.httpRequest(
                 acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                 contentType: _steps.globalPipelineSetting.httpVars.contentType,
@@ -33,6 +34,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
             ]
         */
+
         def a = httpDsl("GET", payload)
         _steps.println a.status.toInteger()
         _steps.println "-----//aa"
