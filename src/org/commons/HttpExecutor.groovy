@@ -20,7 +20,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             ]
         */
         _steps.println "--------//ll"
-        _steps.println CommonValidation.stringValidation("anand")
+        _steps.println CommonValidation.stringValidation(payload.auth)
         /*
         try {
             if(payload.auth)
