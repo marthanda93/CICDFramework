@@ -10,7 +10,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         this._steps = steps
     }
 
-    Closure<Object> httpDsl = { String httpMethod, Map payload ->
+    Closure httpDsl = { String httpMethod, Map payload ->
         if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
             response = _steps.httpRequest(
                 acceptType: globalPipelineSetting.httpVars.acceptType,
