@@ -20,7 +20,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 url: payload.url
             )
 
-            return response.status.toInteger()
+            return response
         }
     }
     
@@ -33,10 +33,9 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
             ]
         */
-        _steps.println "--------//ll"
-        _steps.println CommonValidation.stringValidation(payload.auth)
-
-        _steps.println httpDsl("GET", payload)
+        def a = ttpDsl("GET", payload)
+        _steps.println a.status.toInteger()
+        _steps.println "-----//aa"
 
         // try {
         //     if(payload.auth)
