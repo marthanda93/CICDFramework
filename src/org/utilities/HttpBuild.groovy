@@ -4,15 +4,13 @@ import org.generic.IHttpRegistry
 import org.stepRegistry.ContextRegistry
 
 class HttpBuild implements Serializable {
-    private String _solutionPath
+    private Map _pipelineParams
 
-    HttpBuild(String solutionPath) {
-        _solutionPath = solutionPath
+    HttpBuild(Map _pipelineParams) {
+        this._pipelineParams = _pipelineParams
     }
 
     void build() {
-        IHttpRegistry steps = ContextRegistry.getContext().getHttpExecutor()
-
-        steps.sh("echo \"building ${this._solutionPath}...\"")
+    	ContextRegistry.getContext().getHttpExecutor().getRequest(_pipelineParams)
     }
 }

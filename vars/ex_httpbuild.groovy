@@ -1,9 +1,9 @@
 import org.utilities.HttpBuild
 import org.stepRegistry.ContextRegistry
 
-def call(String solutionPath) {
+def call(Map pipelineParams) {
     ContextRegistry.registerDefaultContext(this)
 
-    def httpbuilder = new HttpBuild(solutionPath)
+    def httpbuilder = new HttpBuild(pipelineParams)
     httpbuilder.build()
 }
