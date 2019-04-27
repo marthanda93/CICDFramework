@@ -13,6 +13,7 @@ class CommonValidation implements ICommonValidation, IMissingObject, Serializabl
 		this.config = config
 	}
 
+	@Override
 	static String stringValidation(String word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
 			return true
