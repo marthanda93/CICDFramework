@@ -4,13 +4,6 @@ import org.generic.IShellRegistry
 import org.generic.IMissingObject
 
 class CommonValidation implements IMissingObject, Serializable {
-	private _steps
-	Map config
-
-	CommonValidation(_steps, config = [:]) {
-		this._steps = _steps
-		this.config = config
-	}
 
 	static boolean stringValidation(String word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
