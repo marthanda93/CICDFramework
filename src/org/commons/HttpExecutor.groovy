@@ -21,7 +21,7 @@ class HttpExecutor implements IHttpRegistry, Serializable {
             ]
         */
         _steps.println "--------//ll"
-        _steps.println CommonValidation(_steps).stringValidation(payload.auth)
+        _steps.println CommonValidation().stringValidation("anand")
         /*
         try {
             if(payload.auth)
