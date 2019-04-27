@@ -20,7 +20,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 url: payload.url
             )
 
-            return response
+            return response.status.toInteger()
         }
     }
     
