@@ -39,20 +39,20 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 		}
 	}
 
-	@Override
-	String propertyMissing(String name) {
-		"Caught missing property: $name"
-	}
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING ShellExecutor: Caught missing property: $name"
+    }
 
-	@Override
-	String methodMissing(String name, Object args) {
-		_steps.println """
-			Possible solutions: 
-			String bashShell(String command)
-			String batchScript(String command)
-			String powerShellScript(String command)
-		"""
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.println """
+        Possible solutions: 
+		    String bashShell(String command)
+		    String batchScript(String command)
+		    String powerShellScript(String command)
+        """
 
-		_steps.error "Missing method name is $name"
-	}
+        _steps.error "METHODMISSING ShellExecutor: Caught missing method: $name"
+    }
 }

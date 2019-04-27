@@ -86,18 +86,21 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
     @Override
     String propertyMissing(String name) {
-        "Caught missing property: $name"
+        _steps.error "PROPERTYMISSING HttpExecutor: Caught missing property: $name"
     }
 
     @Override
     String methodMissing(String name, Object args) {
         _steps.println """
-            Possible solutions: 
-            String bashShell(String command)
-            String batchScript(String command)
-            String powerShellScript(String command)
+        Possible solutions: 
+            Map getRequest(Map payload)
+            Map postRequest(Map payload)
+            Map putRequest(Map payload)
+            Map patchRequest(Map payload)
+            Map deleteRequest(Map payload)
+            Map headRquest(Map payload)
         """
 
-        _steps.error "Missing method name is $name"
+        _steps.error "METHODMISSING HttpExecutor: Caught missing method: $name"
     }
 }
