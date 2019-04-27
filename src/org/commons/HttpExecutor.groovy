@@ -90,6 +90,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
     @Override
     String methodMissing(String name, Object args) {
+        _steps.println name
         _steps.println """
             Possible solutions: 
             String bashShell(String command)
