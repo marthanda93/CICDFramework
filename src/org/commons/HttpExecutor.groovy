@@ -36,10 +36,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         _steps.println "--------//ll"
         _steps.println CommonValidation.stringValidation(payload.auth)
 
-        _steps.println httpDsl.with {
-            httpMethod = "GET"
-            payload = payload
-        }
+        _steps.println httpDsl("GET", payload)
 
         // try {
         //     if(payload.auth)
