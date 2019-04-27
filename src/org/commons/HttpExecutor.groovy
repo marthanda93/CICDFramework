@@ -10,10 +10,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         this._steps = steps
     }
 
-    def httpDsl(Map payload, def credentialObject = false) {
-        Closure anand = { _steps.println 'Done!' }
-    }
-
     Closure<Object> httpDsl = { String httpMethod, Map payload ->
         if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
             response = _steps.httpRequest(
@@ -48,8 +44,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         try {
             if(payload.auth)
             _steps.wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "clientToken", var: 'PASSWORD']]]) {
-                httpDsl
-
         //         response = _steps.httpRequest(
         //             acceptType: globalPipelineSetting.httpVars.acceptType,
         //             contentType: globalPipelineSetting.httpVars.contentType,
