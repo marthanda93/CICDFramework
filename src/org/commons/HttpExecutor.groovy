@@ -16,7 +16,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 acceptType: globalPipelineSetting.httpVars.acceptType,
                 contentType: globalPipelineSetting.httpVars.contentType,
                 httpMode: httpMethod,
-                consoleLogResponseBody: globalPipelineSetting.httpVars.consoleLogResponseBody,
+                consoleLogResponseBody: true,
                 url: payload.url
             )
 
