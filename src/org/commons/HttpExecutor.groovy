@@ -33,6 +33,17 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
             ]
         */
+
+            response = _steps.httpRequest(
+                acceptType: globalPipelineSetting.httpVars.acceptType,
+                contentType: globalPipelineSetting.httpVars.contentType,
+                httpMode: httpMethod,
+                consoleLogResponseBody: true,
+                url: payload.url
+            )
+
+            _steps.println response.status.toInteger()
+
         def a = httpDsl("GET", payload)
         _steps.println a.status.toInteger()
         _steps.println "-----//aa"
