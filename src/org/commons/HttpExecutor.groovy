@@ -13,14 +13,16 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     Closure httpDsl = { String httpMethod, Map payload ->
         if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
             response = _steps.httpRequest(
-                acceptType: globalPipelineSetting.httpVars.acceptType,
-                contentType: globalPipelineSetting.httpVars.contentType,
+                acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                contentType: _steps.globalPipelineSetting.httpVars.contentType,
                 httpMode: httpMethod,
                 consoleLogResponseBody: true,
                 url: payload.url
             )
 
             return response
+        } else {
+            _steps.println "-------------//FALSE"
         }
     }
     
@@ -35,8 +37,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         */
 
             response = _steps.httpRequest(
-                acceptType: globalPipelineSetting.httpVars.acceptType,
-                contentType: globalPipelineSetting.httpVars.contentType,
+                acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                contentType: _steps.globalPipelineSetting.httpVars.contentType,
                 httpMode: "GET",
                 consoleLogResponseBody: true,
                 url: payload.url
