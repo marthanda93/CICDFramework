@@ -2,6 +2,7 @@ package org.commons
 
 import org.generic.IHttpRegistry
 import org.generic.IMissingObject
+import org.commons.CommonValidation
 
 class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
