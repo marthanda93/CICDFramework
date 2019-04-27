@@ -10,6 +10,24 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         this._steps = steps
     }
 
+    def httpDsl(Map payload, def credentialObject = false) {
+        Closure anand = { _steps.println 'Done!' }
+    }
+
+    Closure<Object> httpDsl = { String httpMethod, Map payload ->
+        if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
+            response = _steps.httpRequest(
+                acceptType: globalPipelineSetting.httpVars.acceptType,
+                contentType: globalPipelineSetting.httpVars.contentType,
+                httpMode: httpMethod,
+                consoleLogResponseBody: globalPipelineSetting.httpVars.consoleLogResponseBody,
+                url: payload.url
+            )
+
+            return response
+        }
+    }
+    
     @Override
     Map getRequest(Map payload) {
         /**
@@ -21,29 +39,35 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         */
         _steps.println "--------//ll"
         _steps.println CommonValidation.stringValidation(payload.auth)
-        /*
-        try {
-            if(payload.auth)
-            _steps.wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${clientToken}", var: 'PASSWORD']]]) {
-                response = _steps.httpRequest(
-                    acceptType: globalPipelineSetting.httpVars.acceptType,
-                    contentType: globalPipelineSetting.httpVars.contentType,
-                    httpMode: 'GET',
-                    consoleLogResponseBody: globalPipelineSetting.httpVars.consoleLogResponseBody,
-                    customHeaders: [[name: 'X-Vault-Token', value: "${clientToken}"]],
-                    url:
-                )
-            }
-            if(response.status.toInteger() != 200) {
-                _steps.error "failed"
-            }
-        catch(e) {
-            _steps.error ""
+
+        _steps.println httpDsl.with {
+            httpMethod = "GET",
+            payload = payload
         }
 
-        response = _steps.readJSON text: response.content
-        def datasize = response.data.size()
-        */
+        try {
+            if(payload.auth)
+            _steps.wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "clientToken", var: 'PASSWORD']]]) {
+                httpDsl
+
+        //         response = _steps.httpRequest(
+        //             acceptType: globalPipelineSetting.httpVars.acceptType,
+        //             contentType: globalPipelineSetting.httpVars.contentType,
+        //             httpMode: 'GET',
+        //             consoleLogResponseBody: globalPipelineSetting.httpVars.consoleLogResponseBody,
+        //             customHeaders: [[name: 'X-Vault-Token', value: "${clientToken}"]],
+        //             url:
+        //         )
+        //     }
+        //     if(response.status.toInteger() != 200) {
+        //         _steps.error "failed"
+        //     }
+        // catch(e) {
+        //     _steps.error ""
+        // }
+
+        // response = _steps.readJSON text: response.content
+        // def datasize = response.data.size()
     }
 
     @Override
