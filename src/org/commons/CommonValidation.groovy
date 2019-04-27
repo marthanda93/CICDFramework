@@ -17,7 +17,7 @@ class CommonValidation implements ICommonValidation, IMissingObject, Serializabl
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
 			return true
 		} else {
-			return flase
+			return false
 		}
 	}
 
