@@ -37,7 +37,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             response = _steps.httpRequest(
                 acceptType: globalPipelineSetting.httpVars.acceptType,
                 contentType: globalPipelineSetting.httpVars.contentType,
-                httpMode: httpMethod,
+                httpMode: "GET",
                 consoleLogResponseBody: true,
                 url: payload.url
             )
