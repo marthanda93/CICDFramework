@@ -2,9 +2,8 @@ package org.commons
 
 import org.generic.IShellRegistry
 import org.generic.IMissingObject
-import org.generic.ICommonValidation
 
-class CommonValidation implements ICommonValidation, IMissingObject, Serializable {
+class CommonValidation implements IMissingObject, Serializable {
 	private _steps
 	Map config
 
@@ -13,8 +12,7 @@ class CommonValidation implements ICommonValidation, IMissingObject, Serializabl
 		this.config = config
 	}
 
-	@Override
-	static String stringValidation(String word) {
+	static boolean stringValidation(String word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
 			return true
 		} else {
