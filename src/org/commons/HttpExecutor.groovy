@@ -12,7 +12,15 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     }
 
     Object httpDsl(String httpMethod, Map payload) {
-        if(CommonUtilities.stringValidation(httpMethod) && httpMethod == "GET") {
+        /**
+            payload = [
+                credentialId: "toekn Gtoken",
+                customHeaders: [Authorization:"toekn Gtoken", bob:"two"]
+                url: "https://api.github.com/repositories"
+            ]
+        */
+
+        if(CommonUtilities.stringValidation(httpMethod) && httpMethod in ["GET", "POST"]) {
             if(payload.containsKey('customHeaders')) {
                 return _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
@@ -36,14 +44,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     
     @Override
     Map getRequest(Map payload) {
-        /**
-            payload = [
-                credentialId: "toekn Gtoken",
-                customHeaders: [Authorization:"toekn Gtoken", bob:"two"]
-                url: "https://api.github.com/repositories"
-            ]
-        */
-
         Object response
 
         if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
@@ -58,25 +58,36 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         }
 
         response = _steps.readJSON text: response.content
-        def datasize = response.data.size()
+
+        if(response.data.size() > 0) {
+            return response
+        } else {
+            return false
+        }
     }
 
     @Override
     Map postRequest(Map payload) {
-        _steps.println("PASS")
-        /*_steps.httpRequest(
-            acceptType: 'APPLICATION_JSON',
-            contentType: 'APPLICATION_JSON',
-            httpMode: 'POST',
-            requestBody: body,
-            consoleLogResponseBody: false,
-            url: url
-            validResponseContent
-            validResponseCodes
-            timeout
-            ignoreSslErrors
-            customHeaders
-        )*/
+        Object response
+
+        if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
+            _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
+                payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
+
+                payload.customHeaders = payload.customHeaders.cHeader()
+                response = httpDsl("GET", payload)
+            }
+        } else {
+            response = httpDsl("GET", payload)
+        }
+
+        response = _steps.readJSON text: response.content
+
+        if(response.data.size() > 0) {
+            return response
+        } else {
+            return false
+        }
     }
 
     @Override
