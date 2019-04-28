@@ -2,7 +2,7 @@ package org.generic
 
 class MetaCode implements Serializable {
     static void baseBuiltinTypes() {
-        // (2..20).findAll { it.isPrime() }
+        //(2..20).findAll { it.isPrime() }
         Number.metaClass.isPrime = { ->
             Integer x = delegate as Integer
             if (x == 2) return true
@@ -17,7 +17,7 @@ class MetaCode implements Serializable {
             return result
         }
 
-        // Map a = [foo: 'FOO', bar: 'BAR', baz: 'BAZ'];   def test1 = a.asMap()
+        //Map a = [foo: 'FOO', bar: 'BAR', baz: 'BAZ'];   def test1 = a.asMap()
         Map.metaClass.cHeader = { ->
             def result = []
             Map arg = delegate as Map
