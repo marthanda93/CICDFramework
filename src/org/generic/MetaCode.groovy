@@ -4,6 +4,8 @@ import java.util.LinkedHashMap
 import java.util.Set
 
 class MetaCode implements Serializable {
+
+    @NonCPS
     static void baseBuiltinTypes() {
         //(2..20).findAll { it.isPrime() }
         Number.metaClass.isPrime = { ->
@@ -25,13 +27,13 @@ class MetaCode implements Serializable {
             def result = []
             
             Map<String, String> hashMap = delegate as Map<String, String>
-            def set = hashMap.entrySet();
+            Set<String> keys = hashMap.keySet();
             
             // for(String key:keys){
             //     result.add([name:key, value:arg.get(key)])
             // }
 
-            return set
+            return keys
         }
     }
 }
