@@ -34,14 +34,20 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             ]
         */
 
+        Object response
+
         if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
-_steps.error "------------------//ANAND//----------"
+            _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
+                payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
+
+                payload.customHeaders = payload.customHeaders.asMap()
+
+                _steps.println payload
+                _steps.error "-----------------------------------//ANAND"
+            }
         }
 
 // start using pointer and refrence of variable
-
-
-        Object response
 
         // try {
             if(CommonUtilities.stringValidation(payload.credentialId)) {
