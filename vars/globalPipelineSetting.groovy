@@ -5,6 +5,6 @@ import groovy.transform.Field
 	expectedHttpResponse: 200,
 	acceptType: "APPLICATION_JSON",
 	contentType: "APPLICATION_JSON",
-	consoleLogResponseBody: false,
+	consoleLogResponseBody: true,
 	validResponseCodes: "ok"
 ]
