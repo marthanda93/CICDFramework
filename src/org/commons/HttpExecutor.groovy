@@ -33,20 +33,12 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             ]
         */
 
-        try {
+        // try {
             if(payload.auth) {
                 _steps.withCredentials([string(credentialsId: 'Gtoken', variable: 'gtoken')]) {
                     response = httpDsl("GET", payload, _steps.gtoken)
                 }
-            } else {
-
             }
-            if(response.status.toInteger() != 200) {
-                _steps.error "failed"
-            }
-        catch(e) {
-            _steps.error ""
-        }
 
         response = _steps.readJSON text: response.content
         def datasize = response.data.size()
