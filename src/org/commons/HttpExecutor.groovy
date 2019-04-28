@@ -13,14 +13,24 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
     Object httpDsl(String httpMethod, Map payload) {
         if(CommonUtilities.stringValidation(httpMethod) && httpMethod == "GET") {
-            return _steps.httpRequest(
-                acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
-                contentType: _steps.globalPipelineSetting.httpVars.contentType,
-                httpMode: httpMethod,
-                consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
-                customHeaders: payload.customHeaders,
-                url: payload.url
-            )
+            if(payload.containsKey('customHeaders')) {
+                return _steps.httpRequest(
+                    acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                    contentType: _steps.globalPipelineSetting.httpVars.contentType,
+                    httpMode: httpMethod,
+                    consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
+                    customHeaders: payload.customHeaders,
+                    url: payload.url
+                )
+            } else {
+                return _steps.httpRequest(
+                    acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                    contentType: _steps.globalPipelineSetting.httpVars.contentType,
+                    httpMode: httpMethod,
+                    consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
+                    url: payload.url
+                )
+            }
         }
     }
     
@@ -43,6 +53,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 payload.customHeaders = payload.customHeaders.cHeader()
                 response = httpDsl("GET", payload)
             }
+        } else {
+            response = httpDsl("GET", payload)
         }
 
         response = _steps.readJSON text: response.content
