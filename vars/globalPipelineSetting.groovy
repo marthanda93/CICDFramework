@@ -8,3 +8,10 @@ import groovy.transform.Field
 	consoleLogResponseBody: false,
 	validResponseCodes: "ok"
 ]
+
+
+@groovy.transform.Field kubeApis = [
+	namespace: [
+		create: "POST::"
+	],
+]

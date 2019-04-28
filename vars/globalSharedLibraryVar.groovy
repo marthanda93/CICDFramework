@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat
 
 @groovy.transform.Field common = [
 	currentDate: "${new SimpleDateFormat("MM.dd.yyyy-HH.mm.ss").format(new Date())}",
-	currentYear: "",
-	currentMonth: "",
-	currentDay: "",
-	currentTime: "",
-	currentHour: ""
+	currentYear: "${new SimpleDateFormat("yyyy").format(new Date())}",
+	currentMonth: "${new SimpleDateFormat("MM").format(new Date())}",
+	currentDay: "${new SimpleDateFormat("dd").format(new Date())}",
+	currentTime: "${new SimpleDateFormat("HH.mm.ss").format(new Date())}",
+	currentHour: "${new SimpleDateFormat("HH").format(new Date())}"
 ]

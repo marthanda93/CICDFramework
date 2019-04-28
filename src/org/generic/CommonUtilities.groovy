@@ -33,11 +33,6 @@ class CommonUtilities implements IMissingObject, Serializable {
 
     @Override
     String methodMissing(String name, Object args) {
-        _steps.println """
-        Possible solutions: 
-			boolean stringValidation(String word)
-        """
-
         _steps.error "METHODMISSING CommonUtilities: Caught missing method: $name"
     }
 }

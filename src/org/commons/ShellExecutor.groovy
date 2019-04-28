@@ -46,13 +46,6 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 
     @Override
     String methodMissing(String name, Object args) {
-        _steps.println """
-        Possible solutions: 
-		    String bashShell(String command)
-		    String batchScript(String command)
-		    String powerShellScript(String command)
-        """
-
         _steps.error "METHODMISSING ShellExecutor: Caught missing method: $name"
     }
 }
