@@ -17,17 +17,11 @@ class MetaCode implements Serializable {
             return result
         }
 
-        LinkedHashMap.metaClass.cHeaders = { ->
-            def result = []
-            Map arg = delegate as Map
-            return arg
-        }
-
         //Map a = [foo: 'FOO', bar: 'BAR', baz: 'BAZ'];   def test1 = a.asMap()
         LinkedHashMap.metaClass.cHeader = { ->
             def result = []
-            LinkedHashMap arg = delegate as LinkedHashMap
-            arg.each { key, val ->
+            // LinkedHashMap arg = delegate as LinkedHashMap
+            delegate.each { key, val ->
                 result.add([name:key, value:val])
             }
             return result
