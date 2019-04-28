@@ -24,7 +24,7 @@ class MetaCode implements Serializable {
         LinkedHashMap.metaClass.cHeader = { ->
             def result = []
             
-            LinkedHashMap<String, String> hashMap = delegate as LinkedHashMap<String, String>
+            Map<String, String> hashMap = delegate as Map<String, String>
             // def arg = delegate as LinkedHashMap
             // Set<String> keys = arg.keySet();
             
