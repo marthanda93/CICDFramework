@@ -40,12 +40,10 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
                 payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
 
-                _steps.println payload.getClass()
-                _steps.println payload.customHeaders.getClass()
+                def a = payload.customHeaders.cHeaders()
 
-                payload.customHeaders = payload.customHeaders.cHeader()
-
-                _steps.println payload
+                _steps.println a
+                _steps.println a.getClass()
                 _steps.error "-----------------------------------//ANAND"
             }
         }
