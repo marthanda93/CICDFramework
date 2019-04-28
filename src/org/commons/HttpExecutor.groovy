@@ -43,9 +43,9 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 _steps.println payload.getClass()
                 _steps.println payload.customHeaders.getClass()
 
-                //payload.customHeaders = payload.customHeaders.asMap()
+                payload.customHeaders = payload.customHeaders.cHeader()
 
-                //_steps.println payload
+                _steps.println payload
                 _steps.error "-----------------------------------//ANAND"
             }
         }
