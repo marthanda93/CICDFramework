@@ -34,7 +34,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             ]
         */
 
-        if(CommonUtilities.listValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
+        if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
 _steps.error "------------------//ANAND//----------"
         }
 

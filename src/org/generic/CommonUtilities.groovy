@@ -10,8 +10,16 @@ class CommonUtilities implements IMissingObject, Serializable {
 		}
 	}
 
-    static boolean listValidation(List colle) {
-        if (colle instanceof java.util.List && colle.size > 0) {
+    static boolean listValidation(List collection) {
+        if (collection instanceof java.util.List && collection.size > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    static boolean mapValidation(Map collection) {
+        if (collection instanceof java.util.Map && collection.size() > 0) {
             return true
         } else {
             return false
