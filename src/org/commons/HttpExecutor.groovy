@@ -35,7 +35,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
         // try {
             if(payload.auth) {
-                _steps.withCredentials([string(credentialsId: 'Gtoken', variable: 'gtoken')]) {
+                _steps.withCredentials([_steps.string(credentialsId: 'Gtoken', variable: 'gtoken')]) {
                     response = httpDsl("GET", payload, _steps.gtoken)
                 }
             }
