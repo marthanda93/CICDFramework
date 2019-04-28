@@ -18,7 +18,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 contentType: _steps.globalPipelineSetting.httpVars.contentType,
                 httpMode: httpMethod,
                 consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
-                customHeaders: [[name: 'Authorization', value: "${payload.credentialId.split(" ")[0]} ${cred}"]],
+                customHeaders: payload.customHeaders,
                 url: payload.url
             )
         }
@@ -40,10 +40,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
                 payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
 
-                def a = payload.customHeaders.cHeader()
-
-                _steps.println a
-                _steps.println a.getClass()
+                payload.customHeaders = payload.customHeaders.cHeader()
+                response = httpDsl("GET", payload)
                 _steps.error "-----------------------------------//ANAND"
             }
         }
