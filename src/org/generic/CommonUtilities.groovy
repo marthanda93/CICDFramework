@@ -1,6 +1,4 @@
-package org.commons
-
-import org.generic.IMissingObject
+package org.generic
 
 class CommonUtilities implements IMissingObject, Serializable {
 
@@ -11,6 +9,14 @@ class CommonUtilities implements IMissingObject, Serializable {
 			return false
 		}
 	}
+
+    static boolean listValidation(List colle) {
+        if (colle instanceof java.util.List && colle.size > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     @Override
     String propertyMissing(String name) {

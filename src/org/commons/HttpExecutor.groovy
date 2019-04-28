@@ -2,6 +2,7 @@ package org.commons
 
 import org.generic.IHttpRegistry
 import org.generic.IMissingObject
+import org.generic.CommonUtilities
 
 class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
@@ -28,12 +29,15 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         /**
             payload = [
                 credentialId: "toekn Gtoken",
+                customHeaders: [Authorization:"toekn Gtoken", bob:"two"]
                 url: "https://api.github.com/repositories"
             ]
         */
 
+        if(CommonUtilities.listValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
+_steps.println "------------------//ANAND//----------"
+        }
 
-//TODO : write closuer for convert user map to customHeaders
 // start using pointer and refrence of variable
 
 
