@@ -11,7 +11,7 @@ class ContextRegistry implements Serializable {
     }
 
     static void registerDefaultContext(Object steps) {
-        MetaCode.baseBuiltinTypes()
+        // MetaCode.baseBuiltinTypes()
         _context = new DefaultContext(steps)
     }
 
