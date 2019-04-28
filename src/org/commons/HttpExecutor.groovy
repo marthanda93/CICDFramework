@@ -11,7 +11,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         this._steps = steps
     }
 
-    Object httpDsl(String httpMethod, Map payload, def cred) {
+    Object httpDsl(String httpMethod, Map payload) {
         if(CommonUtilities.stringValidation(httpMethod) && httpMethod == "GET") {
             return _steps.httpRequest(
                 acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
