@@ -24,14 +24,14 @@ class MetaCode implements Serializable {
         LinkedHashMap.metaClass.cHeader = { ->
             def result = []
             
-            LinkedHashMap hashMap = delegate;
+            Map hashMap = delegate;
             def arg = delegate as Map
             Set<String> keys = arg.keySet();
             
             for(String key:keys){
                 result.add([name:key, value:arg.get(key)])
             }
-            
+
             return result
         }
     }
