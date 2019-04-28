@@ -35,7 +35,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         */
 
         if(CommonUtilities.listValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
-_steps.println "------------------//ANAND//----------"
+_steps.error "------------------//ANAND//----------"
         }
 
 // start using pointer and refrence of variable
