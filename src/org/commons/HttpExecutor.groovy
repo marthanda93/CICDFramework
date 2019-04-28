@@ -48,7 +48,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // start using pointer and refrence of variable
 
         // try {
-                    response = httpDsl("GET", payload, _steps.maskToken)
+                    response = httpDsl("GET", payload)
 
         // response = _steps.readJSON text: response.content
         // def datasize = response.data.size()
