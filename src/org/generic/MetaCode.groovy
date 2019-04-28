@@ -25,7 +25,7 @@ class MetaCode implements Serializable {
             def result = []
             
             Map<String, String> hashMap = delegate as Map<String, String>
-            Set set = hashMap.entrySet();
+            Set set = hashMap.every();
             
             // for(String key:keys){
             //     result.add([name:key, value:arg.get(key)])
