@@ -39,7 +39,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         Object response
 
         // try {
-            if(payload.credentialId) {
+            if(CommonUtilities.stringValidation(payload.credentialId)) {
                 _steps.withCredentials([_steps.string(credentialsId: payload.credentialId.split(" ")[1], variable: 'maskToken')]) {
                     response = httpDsl("GET", payload, _steps.maskToken)
                 }
