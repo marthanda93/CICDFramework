@@ -1,5 +1,8 @@
 package org.generic
 
+import java.util.LinkedHashMap
+import java.util.Set
+
 class MetaCode implements Serializable {
     static void baseBuiltinTypes() {
         //(2..20).findAll { it.isPrime() }
@@ -20,10 +23,15 @@ class MetaCode implements Serializable {
         //Map a = [foo: 'FOO', bar: 'BAR', baz: 'BAZ'];   def test1 = a.asMap()
         LinkedHashMap.metaClass.cHeader = { ->
             def result = []
+            
+            LinkedHashMap hashMap = delegate;
             def arg = delegate as Map
-            arg.each { key, val ->
-                result.add([name:key, value:val])
+            Set<String> keys = arg.keySet();
+            
+            for(String key:keys){
+                result.add([name:key, value:arg.get(key)])
             }
+            
             return result
         }
     }
