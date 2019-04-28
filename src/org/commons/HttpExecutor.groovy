@@ -41,18 +41,18 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
 
                 payload.customHeaders = payload.customHeaders.cHeader()
-                response = httpDsl("GET", payload)
+                // response = httpDsl("GET", payload)
             }
         }
 
 // start using pointer and refrence of variable
 
         // try {
-            // if(CommonUtilities.stringValidation(payload.credentialId)) {
-            //     _steps.withCredentials([_steps.string(credentialsId: payload.credentialId.split(" ")[1], variable: 'maskToken')]) {
-            //         response = httpDsl("GET", payload, _steps.maskToken)
-            //     }
-            // }
+            if(CommonUtilities.stringValidation(payload.credentialId)) {
+                _steps.withCredentials([_steps.string(credentialsId: payload.credentialId.split(" ")[1], variable: 'maskToken')]) {
+                    response = httpDsl("GET", payload, _steps.maskToken)
+                }
+            }
 
         response = _steps.readJSON text: response.content
         def datasize = response.data.size()
