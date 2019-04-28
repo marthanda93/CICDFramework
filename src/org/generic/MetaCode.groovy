@@ -25,13 +25,13 @@ class MetaCode implements Serializable {
             def result = []
             
             Map<String, String> hashMap = delegate as Map<String, String>
-            def keys = hashMap.keySet();
+            Set set = hashMap.entrySet();
             
             // for(String key:keys){
             //     result.add([name:key, value:arg.get(key)])
             // }
 
-            return keys
+            return set
         }
     }
 }
