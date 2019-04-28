@@ -40,7 +40,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
                 payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
 
-                payload.customHeaders = payload.customHeaders.cHeader()
+                //payload.customHeaders = payload.customHeaders.cHeader()
                 // response = httpDsl("GET", payload)
             }
         }
@@ -54,8 +54,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 }
             }
 
-        response = _steps.readJSON text: response.content
-        def datasize = response.data.size()
+        // response = _steps.readJSON text: response.content
+        // def datasize = response.data.size()
     }
 
     @Override
