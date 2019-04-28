@@ -20,8 +20,8 @@ class MetaCode implements Serializable {
         //Map a = [foo: 'FOO', bar: 'BAR', baz: 'BAZ'];   def test1 = a.asMap()
         LinkedHashMap.metaClass.cHeader = { ->
             def result = []
-            // LinkedHashMap arg = delegate as LinkedHashMap
-            delegate.each { key, val ->
+            def arg = delegate as Map
+            arg.each { key, val ->
                 result.add([name:key, value:val])
             }
             return result
