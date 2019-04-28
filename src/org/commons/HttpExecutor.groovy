@@ -34,7 +34,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
 
 //TODO : write closuer for convert user map to customHeaders
-start using pointer and refrence of variable
+// start using pointer and refrence of variable
 
 
         Object response
