@@ -25,7 +25,7 @@ class MetaCode implements Serializable {
             def result = []
             
             Map hashMap = delegate;
-            def arg = delegate as Map
+            def arg = delegate as LinkedHashMap
             Set<String> keys = arg.keySet();
             
             for(String key:keys){
