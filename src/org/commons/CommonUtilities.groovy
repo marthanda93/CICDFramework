@@ -2,7 +2,7 @@ package org.commons
 
 import org.generic.IMissingObject
 
-class CommonValidation implements IMissingObject, Serializable {
+class CommonUtilities implements IMissingObject, Serializable {
 
 	static boolean stringValidation(String word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
@@ -14,7 +14,7 @@ class CommonValidation implements IMissingObject, Serializable {
 
     @Override
     String propertyMissing(String name) {
-        _steps.error "PROPERTYMISSING CommonValidation: Caught missing property: $name"
+        _steps.error "PROPERTYMISSING CommonUtilities: Caught missing property: $name"
     }
 
     @Override
@@ -24,6 +24,6 @@ class CommonValidation implements IMissingObject, Serializable {
 			boolean stringValidation(String word)
         """
 
-        _steps.error "METHODMISSING CommonValidation: Caught missing method: $name"
+        _steps.error "METHODMISSING CommonUtilities: Caught missing method: $name"
     }
 }

@@ -11,13 +11,13 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     }
 
     Object httpDsl(String httpMethod, Map payload, def cred) {
-        if(CommonValidation.stringValidation(httpMethod) && httpMethod == "GET") {
+        if(CommonUtilities.stringValidation(httpMethod) && httpMethod == "GET") {
             return _steps.httpRequest(
                 acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                 contentType: _steps.globalPipelineSetting.httpVars.contentType,
                 httpMode: httpMethod,
                 consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
-                customHeaders: [[name: 'Authorization', value: "token ${cred}"]],
+                customHeaders: [[name: 'Authorization', value: "${payload.credentialId.split(" ")[0]} ${cred}"]],
                 url: payload.url
             )
         }
@@ -27,16 +27,21 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     Map getRequest(Map payload) {
         /**
             payload = [
-                auth: authName,
-                url: url,
-
+                credentialId: "toekn Gtoken",
+                url: "https://api.github.com/repositories"
             ]
         */
 
+
+//TODO : write closuer for convert user map to customHeaders
+
+
+        Object response
+
         // try {
             if(payload.auth) {
-                _steps.withCredentials([_steps.string(credentialsId: 'Gtoken', variable: 'gtoken')]) {
-                    response = httpDsl("GET", payload, _steps.gtoken)
+                _steps.withCredentials([_steps.string(credentialsId: payload.credentialId.split(" ")[1], variable: 'maskToken')]) {
+                    response = httpDsl("GET", payload, _steps.maskToken)
                 }
             }
 
