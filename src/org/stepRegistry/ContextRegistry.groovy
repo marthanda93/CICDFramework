@@ -1,6 +1,7 @@
 package org.stepRegistry
 
 import org.generic.IContext
+import org.generic.MetaCode
 
 class ContextRegistry implements Serializable {
     private static IContext _context
@@ -11,6 +12,7 @@ class ContextRegistry implements Serializable {
 
     static void registerDefaultContext(Object steps) {
         _context = new DefaultContext(steps)
+        MetaCode.baseBuiltinTypes()
     }
 
     static IContext getContext() {
