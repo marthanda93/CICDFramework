@@ -1,6 +1,5 @@
 package org.generic
 
 interface INexusArtifactRegistry {
-	prepareNPush
-	pullNPrepare
+	need to work on available API by nexus
 }

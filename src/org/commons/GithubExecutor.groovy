@@ -7,7 +7,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	private _steps
 	Map config
 
-	YamlJsonProcess(_steps, config = [:]) {
+	GithubExecutor(_steps, config = [:]) {
 		this._steps = _steps
 		this.config = config
 	}

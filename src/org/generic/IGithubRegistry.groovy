@@ -1,8 +1,7 @@
 package org.generic
 
 interface IGithubRegistry {
-	plainClone
-	cloneWithDirectory
-	branchApiCall
-	pullRequestClone
+	Boolean cloneExecutor(Boolean dependencyRepo = false)	//false, true, patch, diff
+	String cloneWithDirectory(Map appParam)
+	Boolean pullRequestClone(Map appParam)
 }

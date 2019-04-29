@@ -15,3 +15,5 @@ import groovy.transform.Field
 		create: "POST::"
 	],
 ]
+
+@Field dockerRegistry = "https://registry.hub.docker.com"

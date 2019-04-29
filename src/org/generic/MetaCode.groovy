@@ -2,6 +2,7 @@ package org.generic
 
 import java.util.LinkedHashMap
 import java.util.Set
+import com.cloudbees.groovy.cps.NonCPS
 
 class MetaCode implements Serializable {
 

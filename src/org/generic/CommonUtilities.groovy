@@ -1,7 +1,6 @@
 package org.generic
 
-class CommonUtilities implements IMissingObject, Serializable {
-
+class CommonUtilities implements Serializable {
 	static boolean stringValidation(String word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
 			return true
@@ -26,13 +25,15 @@ class CommonUtilities implements IMissingObject, Serializable {
         }
     }
 
-    @Override
-    String propertyMissing(String name) {
-        _steps.error "PROPERTYMISSING CommonUtilities: Caught missing property: $name"
-    }
+    static boolean fileSlaveDownload(Object _step, String path, String destination) {
+        try {
+            _step.writeFile file: "${destination}", text: _step.libraryResource "${path}"
 
-    @Override
-    String methodMissing(String name, Object args) {
-        _steps.error "METHODMISSING CommonUtilities: Caught missing method: $name"
+            return true
+        } catch(e) {
+            _steps.println "ERROR:CommonUtilities: Failed at fileSlaveDownload \n${e.getMessage()}"
+
+            return false
+        }
     }
 }
