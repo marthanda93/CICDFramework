@@ -1,6 +1,8 @@
 import org.lib.*
 import groovy.transform.Field
 
+@Field dockerRegistry = "https://registry.hub.docker.com"
+
 @groovy.transform.Field httpVars = [
 	expectedHttpResponse: 200,
 	acceptType: "APPLICATION_JSON",
@@ -16,4 +18,6 @@ import groovy.transform.Field
 	],
 ]
 
-@Field dockerRegistry = "https://registry.hub.docker.com"
+@groovy.transform.Field maven = [
+	
+]

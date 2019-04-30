@@ -12,3 +12,9 @@ class NexusArtifactExecutor implements INexusArtifactRegistry, IMissingObject, S
 		this.config = config
 	}
 }
+
+
+release
+artifact/config upload
+artifact/config download -> with path flag
+purge old artifact/config
