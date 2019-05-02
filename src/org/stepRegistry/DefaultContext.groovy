@@ -28,6 +28,6 @@ class DefaultContext implements IContext, Serializable {
 
     @Override
     IGithubRegistry getGithubExecutor() {
-        return new HttpExecutor(this._steps)
+        return new GithubExecutor(this._steps)
     }
 }
