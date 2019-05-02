@@ -44,4 +44,14 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	Boolean pullRequestClone(Map appParam) {
 		_steps.println("__PAASS__")
 	}
+
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING GithubExecutor: Caught missing property: $name"
+    }
+
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.error "METHODMISSING GithubExecutor: Caught missing method: $name"
+    }
 }
