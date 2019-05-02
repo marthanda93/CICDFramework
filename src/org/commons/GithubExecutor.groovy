@@ -24,6 +24,17 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
+			_steps.println"""
+				${appParam.url.getClass()}
+				${CommonUtilities.stringValidation(appParam.url)}
+				----
+				${appParam.branch.getClass()}
+				${CommonUtilities.stringValidation(appParam.branch)}
+				----
+				${appParam.credentialsId.getClass()}
+				${CommonUtilities.stringValidation(appParam.credentialsId)}
+
+			"""
 			_steps.git(
 				changelog: false,
 				url: appParam.url, 
