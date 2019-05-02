@@ -5,8 +5,7 @@ import org.generic.IShellRegistry
 
 import org.generic.IContext
 
-import org.commons.HttpExecutor
-import org.commons.ShellExecutor
+import org.commons.*
 
 class DefaultContext implements IContext, Serializable {
     private _steps
@@ -25,4 +24,8 @@ class DefaultContext implements IContext, Serializable {
         return new ShellExecutor(this._steps)
     }
 
+    @Override
+    IGithubRegistry getGithubExecutor() {
+        return new HttpExecutor(this._steps)
+    }
 }

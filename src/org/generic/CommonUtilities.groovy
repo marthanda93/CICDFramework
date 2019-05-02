@@ -36,4 +36,12 @@ class CommonUtilities implements Serializable {
             return false
         }
     }
+
+    static boolean gitValidation(Map collection) {
+    	if(mapValidation(collection) && collection.size() <= 3 && (stringValidation(collection.url) && stringValidation(collection.branch) && stringValidation(collection.credentialsId))) {
+    		return true
+    	} else {
+    		return false
+    	}
+    }
 }
