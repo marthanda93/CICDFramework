@@ -2,6 +2,8 @@ package org.stepRegistry
 
 import org.generic.IHttpRegistry
 import org.generic.IShellRegistry
+import org.generic.IGithubRegistry
+
 
 import org.generic.IContext
 
