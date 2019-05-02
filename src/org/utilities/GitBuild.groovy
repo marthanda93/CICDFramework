@@ -13,6 +13,6 @@ class GitBuild implements Serializable {
     void build() {
         // IShellRegistry steps = ContextRegistry.getContext().getShellExecutor()
         // steps.bashShell("echo \"building ${this._solutionPath}...\"")
-        ContextRegistry.getContext().getGithubExecutor().plainClone(solutionPath)
+        ContextRegistry.getContext().getGithubExecutor().plainClone(_solutionPath)
     }
 }
