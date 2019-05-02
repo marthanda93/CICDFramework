@@ -38,7 +38,8 @@ class CommonUtilities implements Serializable {
     // }
 
     static boolean gitValidation(Map collection) {
-    	if(mapValidation(collection) && collection.size() <= 3 && (stringValidation(collection.url) && stringValidation(collection.branch) && stringValidation(collection.credentialsId))) {
+    	//if(mapValidation(collection) && collection.size() <= 3 && (stringValidation(collection.url) && stringValidation(collection.branch) && stringValidation(collection.credentialsId))) {
+        if(mapValidation(collection) && collection.size() <= 3) {
     		return true
     	} else {
     		return false
