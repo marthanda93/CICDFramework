@@ -12,13 +12,34 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	}
 
 	@Override
-	Boolean cloneExecutor(Boolean dependencyRepo = false) {
-		_steps.println("__PAASS__")
+	Object cloneExecutor(Map appParam && String cloneType = 'plain') {
+		_steps.cleanWs()
+
+		switch (cloneType.toLowerCase()) {
+			case 'plain':
+				return (_steps.env.ghprbSourceBranch && _steps.env.ghprbTargetBranch) ? extendedClone(appParam) : plainClone(appParam)
+				break
+			case 'parent':
+				return cloneWithDirectory(appParam)
+				break
+			case 'lfs':
+				return lfsClone(appParam)
+				break
+			default:
+				_steps.error "ERROR:GitClone: ${cloneType} Undefined Parameter!"
+				break
+		}
 	}
 
 	@Override
 	String cloneWithDirectory(Map appParam) {
-		_steps.println("__PAASS__")
+		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
+
+		this.script.dir ("${path}") {
+			plainClone(appParam)
+		}
+
+		return path
 	}
 
 	@Override
@@ -36,13 +57,53 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	}
 
 	@Override
-	Boolean extendedClone(Map appParam) {
-		_steps.println("__PAASS__")
+	Boolean lfsClone(Map appParam) {
+		_steps.checkout(
+			changelogs: false, 
+			poll: true, 
+			scm: [
+				$class: 'GitSCM', 
+				branches: [[name: "${appParam.branch}"]], 
+				doGenerateSubmoduleConfigurations: false, 
+				extensions: [
+					[$class: 'CheckoutOption', timeout: _steps.githubConfig.timeout], 
+					[$class: 'UserIdentity', email: "${_steps.githubConfig.email}", name: "${_steps.githubConfig.user}"], 
+					[$class: 'GitLFSPull']
+				], 
+				submoduleCfg: [], 
+				userRemoteConfigs: [[credentialsId: "${appParam.credentialsId}", url: "${appParam.url}"]]
+			]
+		)
 	}
 
 	@Override
-	Boolean pullRequestClone(Map appParam) {
-		_steps.println("__PAASS__")
+	Boolean extendedClone(Map appParam) {	//Merge before Build
+		if(CommonUtilities.gitValidation(appParam)) {
+			String uuid = java.util.UUID.randomUUID().toString()
+
+			_steps.checkout(
+				changelogs: false, 
+				poll: true, 
+				scm: [
+					$class: 'GitSCM', 
+					branches: [[name: "${_steps.env.ghprbSourceBranch}"]], 
+					doGenerateSubmoduleConfigurations: false, 
+					extensions: [
+						[$class: 'CheckoutOption', timeout: _steps.githubConfig.timeout], 
+						[$class: 'UserIdentity', email: "${_steps.githubConfig.email}", name: "${_steps.githubConfig.user}"], 
+						[$class: 'PreBuildMerge', options: [mergeRemote: "${uuid}", mergeTarget: "${_steps.env.ghprbTargetBranch}"]]
+					], 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[
+						credentialsId: "${appParam.credentialsId}", 
+						name: "${uuid}", 
+						url: "${appParam.url}"
+					]]
+				]
+			)
+		} else {
+			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!"
+		}
 	}
 
     @Override

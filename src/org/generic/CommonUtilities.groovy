@@ -1,7 +1,7 @@
 package org.generic
 
 class CommonUtilities implements Serializable {
-	static boolean stringValidation(String word) {
+	static boolean stringValidation(Object word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
 			return true
 		} else {
@@ -9,7 +9,7 @@ class CommonUtilities implements Serializable {
 		}
 	}
 
-    static boolean listValidation(List collection) {
+    static boolean listValidation(Object collection) {
         if (collection instanceof java.util.List && collection.size > 0) {
             return true
         } else {
@@ -17,7 +17,15 @@ class CommonUtilities implements Serializable {
         }
     }
 
-    static boolean mapValidation(Map collection) {
+    static boolean booleanValidation(Object collection) {
+        if (collection instanceof Boolean) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    static boolean mapValidation(Object collection) {
         if (collection instanceof java.util.Map && collection.size() > 0) {
             return true
         } else {
@@ -37,7 +45,7 @@ class CommonUtilities implements Serializable {
     //     }
     // }
 
-    static boolean gitValidation(Map collection) {
+    static boolean gitValidation(Object collection) {
     	if(mapValidation(collection) && collection.size() <= 3 && (stringValidation(collection.url) && stringValidation(collection.branch))) {
     		return true
     	} else {

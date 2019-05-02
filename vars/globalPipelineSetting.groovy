@@ -11,6 +11,13 @@ import groovy.transform.Field
 	validResponseCodes: "ok"
 ]
 
+@groovy.transform.Field githubConfig = [
+	namespace: [
+		user: "Jenkins Robot",
+		email: "automation@devops.com",
+		timeout: 10
+	],
+]
 
 @groovy.transform.Field kubeApis = [
 	namespace: [
