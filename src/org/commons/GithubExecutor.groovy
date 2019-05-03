@@ -17,6 +17,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 		switch (cloneType.toLowerCase()) {
 			case 'plain':
+				_steps.println("${_steps.env}")
 				return (_steps.env.ghprbSourceBranch && _steps.env.ghprbTargetBranch) ? extendedClone(appParam) : plainClone(appParam)
 				break
 			case 'parent':
