@@ -5,4 +5,5 @@ interface IGithubRegistry {
 	String cloneWithDirectory(Map appParam)
 	Boolean plainClone(Map appParam)
 	Boolean extendedClone(Map appParam)
+	Boolean lfsClone(Map appParam)
 }
