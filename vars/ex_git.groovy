@@ -1,4 +1,3 @@
-import org.utilities.GitBuild
 import org.stepRegistry.ContextRegistry
 
 def call(Map pipelineParams) {
