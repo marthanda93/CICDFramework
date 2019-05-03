@@ -55,4 +55,14 @@ class DockerExecutor implements IDockerRegistry, IMissingObject, Serializable {
 			_steps.error "ERROR dockerHubPush: Failed with \n${e.getMessage()}"
 		}
 	}
+
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING DockerExecutor: Caught missing property: $name"
+    }
+
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.error "METHODMISSING DockerExecutor: Caught missing method: $name"
+    }
 }
