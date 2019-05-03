@@ -8,9 +8,8 @@ class DockerExecutor implements IDockerRegistry, IMissingObject, Serializable {
 	private _steps
 	Map config
 
-	DockerExecutor(_steps, config = [:]) {
+	DockerExecutor(_steps) {
 		this._steps = _steps
-		this.config = config
 	}
 
 	Object plainBuild(String path, String image, String registryID = '') {

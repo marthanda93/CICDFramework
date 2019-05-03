@@ -4,4 +4,5 @@ interface IContext {
     IHttpRegistry getHttpExecutor()
     IShellRegistry getShellExecutor()
     IGithubRegistry getGithubExecutor()
+    IDockerRegistry getDockerExecutor()
 }
