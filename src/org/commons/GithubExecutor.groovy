@@ -68,8 +68,8 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				branches: [[name: "${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
 				extensions: [
-					[$class: 'CheckoutOption', timeout: _steps.githubConfig.timeout], 
-					[$class: 'UserIdentity', email: "${_steps.githubConfig.email}", name: "${_steps.githubConfig.user}"], 
+					[$class: 'CheckoutOption', timeout: _steps.globalPipelineSetting.githubConfig.timeout], 
+					[$class: 'UserIdentity', email: "${_steps.globalPipelineSetting.githubConfig.email}", name: "${_steps.globalPipelineSetting.githubConfig.user}"], 
 					[$class: 'GitLFSPull']
 				], 
 				submoduleCfg: [], 
@@ -91,8 +91,8 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 					branches: [[name: "${_steps.env.ghprbSourceBranch}"]], 
 					doGenerateSubmoduleConfigurations: false, 
 					extensions: [
-						[$class: 'CheckoutOption', timeout: _steps.githubConfig.timeout], 
-						[$class: 'UserIdentity', email: "${_steps.githubConfig.email}", name: "${_steps.githubConfig.user}"], 
+						[$class: 'CheckoutOption', timeout: _steps.globalPipelineSetting.githubConfig.timeout], 
+						[$class: 'UserIdentity', email: "${_steps.globalPipelineSetting.githubConfig.email}", name: "${_steps.globalPipelineSetting.githubConfig.user}"], 
 						[$class: 'PreBuildMerge', options: [mergeRemote: "${uuid}", mergeTarget: "${_steps.env.ghprbTargetBranch}"]]
 					], 
 					submoduleCfg: [], 
