@@ -12,22 +12,29 @@ class DockerExecutor implements IDockerRegistry, IMissingObject, Serializable {
 		this._steps = _steps
 	}
 
-	Object plainBuild(String path, String image, String registryID = '') {
+	Object executor(Map dockerParameter, Boolean dockerPush = false) {
+
+	}
+
+	Object plainBuild(String image, String registryID = '', String path = '') {
+		String dockerPath
+
+		dockerPath = "project/${_steps.env.AppName}/${_steps.env.DeploymentStage}"
+
+		if(CommonUtilities.stringValidation(path)) {
+			dockerPath = "${dockerPath}/${path}".stripSlash()
+		}
+
 		if(CommonUtilities.stringValidation(registryID)) {
 			image = "${registryID}/${image}"
 		}
 
-		if(CommonUtilities.fileSlaveDownload(_steps, path, 'Dockerfile')) {
-			try {
-				Object dObject = _steps.docker.build("${image}", '.')
-
-				return dObject
-			} catch(e) {
-				_steps.error "ERROR plainBuild: Failed with \n${e.getMessage()}"
-			}
-		} else {
-			_steps.error "ERROR: PlainBuild: Build failed"
-		}
+        try {
+			_step.writeFile file: "Dockerfile", text: _step.libraryResource "${path}"
+			return _steps.docker.build("${image}", '.')
+        } catch(e) {
+            _steps.println "ERROR:CommonUtilities: Failed at fileSlaveDownload \n${e.getMessage()}"
+        }
 	}
 
 	Boolean dockerHubPush(Object dObject, String credentialID = '', Boolean latest = false) {

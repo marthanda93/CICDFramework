@@ -36,5 +36,9 @@ class MetaCode implements Serializable {
 
             return result
         }
+
+        String.metaClass.stripSlash = {
+            return delegate.replaceAll("/+", "/");
+        }
     }
 }

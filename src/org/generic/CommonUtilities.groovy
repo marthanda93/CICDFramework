@@ -33,18 +33,6 @@ class CommonUtilities implements Serializable {
         }
     }
 
-    // static boolean fileSlaveDownload(Object _step, String path, String destination) {
-    //     try {
-    //         _step.writeFile file: "${destination}", text: _step.libraryResource "${path}"
-
-    //         return true
-    //     } catch(e) {
-    //         _steps.println "ERROR:CommonUtilities: Failed at fileSlaveDownload \n${e.getMessage()}"
-
-    //         return false
-    //     }
-    // }
-
     static boolean gitValidation(Object collection) {
     	if(mapValidation(collection) && collection.size() <= 3 && (stringValidation(collection.url) && stringValidation(collection.branch))) {
     		return true
