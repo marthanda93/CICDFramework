@@ -4,11 +4,9 @@ import org.generic.IHttpRegistry
 import org.generic.IShellRegistry
 import org.generic.IGithubRegistry
 import org.generic.IDockerRegistry
-
+import org.generic.IMavenRegistry
 
 import org.generic.IContext
-
-import org.commons.*
 
 class DefaultContext implements IContext, Serializable {
     private _steps
@@ -19,21 +17,26 @@ class DefaultContext implements IContext, Serializable {
 
     @Override
     IHttpRegistry getHttpExecutor() {
-        return new HttpExecutor(this._steps)
+        return new org.commons.HttpExecutor(this._steps)
     }
 
     @Override
     IShellRegistry getShellExecutor() {
-        return new ShellExecutor(this._steps)
+        return new org.commons.ShellExecutor(this._steps)
     }
 
     @Override
     IGithubRegistry getGithubExecutor() {
-        return new GithubExecutor(this._steps)
+        return new org.commons.GithubExecutor(this._steps)
     }
 
     @Override
     IDockerRegistry getDockerExecutor() {
-        return new DockerExecutor(this._steps)
+        return new org.commons.DockerExecutor(this._steps)
+    }
+
+    @Override
+    IMavenRegistry getMavenExecutor() {
+        return new org.codebaseBuild.MavenBuild(this._steps)
     }
 }

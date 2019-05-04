@@ -5,4 +5,5 @@ interface IContext {
     IShellRegistry getShellExecutor()
     IGithubRegistry getGithubExecutor()
     IDockerRegistry getDockerExecutor()
+    IMavenRegistry getMavenExecutor()
 }

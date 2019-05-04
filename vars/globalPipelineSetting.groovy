@@ -28,3 +28,7 @@ import groovy.transform.Field
 @groovy.transform.Field maven = [
 	
 ]
+
+@groovy.transform.Field monoRepoPaths = [
+	repoName: ["path1", "path2", "path3"]
+]

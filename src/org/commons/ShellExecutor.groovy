@@ -5,11 +5,9 @@ import org.generic.IMissingObject
 
 class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	private _steps
-	Map config
 
-	ShellExecutor(_steps, config = [:]) {
+	ShellExecutor(_steps) {
 		this._steps = _steps
-		this.config = config
 	}
 
 	@Override
