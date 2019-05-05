@@ -42,7 +42,7 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 				_steps.println('__PASS__')
 			} else {
 				ContextRegistry.getContext().getShellExecutor().bashShell('pwd')
-				_steps.sh 'pwd'
+				_steps.sh 'pwd; ls -l'
 				ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
 			}
 		}

@@ -48,7 +48,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
 			ContextRegistry.getContext().getShellExecutor().bashShell('pwd')
-			_steps.sh 'pwd'
+			_steps.sh 'pwd; ls -l'
 			_steps.git(
 				changelog: false,
 				url: appParam.url, 
