@@ -49,8 +49,6 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 	// profile = settingProfile && repoType = mono/micro
 	@Override
 	Boolean extendedBuild(String profile = '', String repoType = 'Micro', List codebasePaths = []) {
-		_steps.cleanWs()
-
 		switch (repoType.toLowerCase()) {
 			case 'micro':
 				mvnBuild()
