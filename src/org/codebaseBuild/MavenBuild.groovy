@@ -41,8 +41,6 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 			if(CommonUtilities.stringValidation(profile)) {
 				_steps.println('__PASS__')
 			} else {
-				ContextRegistry.getContext().getShellExecutor().bashShell('pwd')
-				_steps.sh 'pwd; ls -l'
 				ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
 			}
 		}
@@ -51,6 +49,8 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 	// profile = settingProfile && repoType = mono/micro
 	@Override
 	Boolean extendedBuild(String profile = '', String repoType = 'Micro', List codebasePaths = []) {
+		_steps.cleanWs()
+
 		switch (repoType.toLowerCase()) {
 			case 'micro':
 				mvnBuild()

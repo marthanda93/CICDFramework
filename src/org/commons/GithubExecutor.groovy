@@ -4,8 +4,6 @@ import org.generic.IGithubRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
 
-import org.stepRegistry.ContextRegistry
-
 class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	private _steps
 
@@ -47,8 +45,6 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
-			ContextRegistry.getContext().getShellExecutor().bashShell('pwd')
-			_steps.sh 'pwd; ls -l'
 			_steps.git(
 				changelog: false,
 				url: appParam.url, 
