@@ -41,7 +41,8 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 			if(CommonUtilities.stringValidation(profile)) {
 				_steps.println('__PASS__')
 			} else {
-				ContextRegistry.getContext().getShellExecutor().bashShell('hostname')
+				ContextRegistry.getContext().getShellExecutor().bashShell('pwd')
+				_steps.sh 'pwd'
 				ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
 			}
 		}
