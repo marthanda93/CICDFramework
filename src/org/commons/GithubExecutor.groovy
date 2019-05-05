@@ -13,6 +13,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Object cloneExecutor(Map appParam, String cloneType = 'plain') {
+		_steps.println("---------------------//Called//1")
 		_steps.cleanWs()
 
 		switch (cloneType.toLowerCase()) {
@@ -44,6 +45,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
+		_steps.println("---------------------//Called//2")
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.git(
 				changelog: false,
