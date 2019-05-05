@@ -7,6 +7,6 @@ interface IMavenRegistry {
 	Boolean pruneMavenArtifact()
 	Object mvnBuild(String profile, List codebasePaths)
 	// profile = settingProfile && repoType = mono/micro
-	Boolean extendedBuild(String profile, Boolean repoType, List codebasePaths)
+	Boolean extendedBuild(String profile, String repoType, List codebasePaths)
 	Void buildStats()
 }
