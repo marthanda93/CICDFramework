@@ -3,6 +3,9 @@ package org.codebaseBuild
 import org.generic.IMavenRegistry
 import org.generic.IMissingObject
 
+import org.generic.CommonUtilities
+import org.stepRegistry.ContextRegistry
+
 class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 	private _steps
 
@@ -15,20 +18,41 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 		_steps.println('__PASS__')
 	}
 
+	@Override
 	Boolean tuneMavenBuild() {
 		_steps.println('__PASS__')
 	}
 
+	@Override
 	Boolean dependencySteup() {
 		_steps.println('__PASS__')
 	}
 
+	@Override
 	Boolean pruneMavenArtifact() {
 		_steps.println('__PASS__')
 	}
 
 	// profile = settingProfile && repoType = mono/micro
-	Boolean extendedBuild(String profile, Boolean repoType, String codebasePath) {
+	@Override
+	Boolean extendedBuild(String profile = '', Boolean repoType = 'Micro', String codebasePath = '') {
+		_steps.cleanWs()
+
+		switch (repoType.toLowerCase()) {
+			case 'micro':
+				return (_steps.env.ghprbSourceBranch && _steps.env.ghprbTargetBranch) ? extendedClone(appParam) : plainClone(appParam)
+				break
+			case 'mono':
+				return cloneWithDirectory(appParam)
+				break
+			default:
+				_steps.error "ERROR:MavenBuild: ${repoType} Undefined Parameter!"
+				break
+		}
+	}
+
+	@Override
+	Void buildStats() {
 		_steps.println('__PASS__')
 	}
 

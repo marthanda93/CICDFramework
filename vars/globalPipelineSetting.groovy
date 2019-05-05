@@ -26,7 +26,7 @@ import groovy.transform.Field
 ]
 
 @groovy.transform.Field maven = [
-	
+	artifactExtension: 'jar'
 ]
 
 @groovy.transform.Field monoRepoPaths = [
