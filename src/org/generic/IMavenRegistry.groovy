@@ -5,7 +5,8 @@ interface IMavenRegistry {
 	Boolean tuneMavenBuild()
 	Boolean dependencySteup()
 	Boolean pruneMavenArtifact()
+	Object mvnBuild(String profile, List codebasePaths)
 	// profile = settingProfile && repoType = mono/micro
-	Boolean extendedBuild(String profile, Boolean repoType, String codebasePath)
+	Boolean extendedBuild(String profile, Boolean repoType, List codebasePaths)
 	Void buildStats()
 }

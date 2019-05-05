@@ -26,7 +26,8 @@ import groovy.transform.Field
 ]
 
 @groovy.transform.Field maven = [
-	artifactExtension: 'jar'
+	artifactExtension: 'jar',
+	command: 'mvn clean install'
 ]
 
 @groovy.transform.Field monoRepoPaths = [

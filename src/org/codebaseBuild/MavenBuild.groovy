@@ -33,17 +33,30 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 		_steps.println('__PASS__')
 	}
 
+	@Override
+	Object mvnBuild(String profile = '', List codebasePaths = []) {
+		if(CommonUtilities.listValidation(codebasePaths)) {
+			_steps.println('__PASS__')
+		} else {
+			if(CommonUtilities.stringValidation(profile)) {
+				_steps.println('__PASS__')
+			} else {
+				ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
+			}
+		}
+	}
+
 	// profile = settingProfile && repoType = mono/micro
 	@Override
-	Boolean extendedBuild(String profile = '', Boolean repoType = 'Micro', String codebasePath = '') {
+	Boolean extendedBuild(String profile = '', Boolean repoType = 'Micro', List codebasePaths = []) {
 		_steps.cleanWs()
 
 		switch (repoType.toLowerCase()) {
 			case 'micro':
-				return (_steps.env.ghprbSourceBranch && _steps.env.ghprbTargetBranch) ? extendedClone(appParam) : plainClone(appParam)
+				mvnBuild()
 				break
 			case 'mono':
-				return cloneWithDirectory(appParam)
+				return false
 				break
 			default:
 				_steps.error "ERROR:MavenBuild: ${repoType} Undefined Parameter!"
@@ -58,11 +71,11 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 
     @Override
     String propertyMissing(String name) {
-        _steps.error "PROPERTYMISSING ShellExecutor: Caught missing property: $name"
+        _steps.error "PROPERTYMISSING MavenBuild: Caught missing property: $name"
     }
 
     @Override
     String methodMissing(String name, Object args) {
-        _steps.error "METHODMISSING ShellExecutor: Caught missing method: $name"
+        _steps.error "METHODMISSING MavenBuild: Caught missing method: $name"
     }
 }
