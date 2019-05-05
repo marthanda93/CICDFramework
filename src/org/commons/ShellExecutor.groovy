@@ -13,7 +13,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	@Override
 	String bashShell(String command) {
 		try {
-			_steps.sh(script: "${command}", returnStdout: true)
+			return _steps.sh(script: "${command}", returnStdout: true)
 		} catch(e) {
 			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
@@ -22,7 +22,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	@Override
 	String batchScript(String command) {
 		try {
-			_steps.bat(script: "${command}", returnStdout: true)
+			return _steps.bat(script: "${command}", returnStdout: true)
 		} catch(e) {
 			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
@@ -31,7 +31,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	@Override
 	String powerShellScript(String command) {
 		try {
-			_steps.powershell(script: "${command}", returnStdout: true)
+			return _steps.powershell(script: "${command}", returnStdout: true)
 		} catch(e) {
 			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
