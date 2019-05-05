@@ -13,14 +13,6 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 		this._steps = _steps
 	}
 
-	String bashShell(String command) {
-		try {
-			return _steps.sh(script: "${command}", returnStdout: true)
-		} catch(e) {
-			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
-		}
-	}
-
 	@Override
 	Boolean environmentSetup() {
 		_steps.println('__PASS__')
@@ -49,8 +41,7 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 			if(CommonUtilities.stringValidation(profile)) {
 				_steps.println('__PASS__')
 			} else {
-				bashShell(_steps.globalPipelineSetting.maven.command)
-				//return ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
+				return ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
 			}
 		}
 	}
