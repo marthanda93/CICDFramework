@@ -24,7 +24,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 		try {
 			return _steps.sh(script: "set +x; ${command}; set -x", returnStdout: true)
 		} catch(e) {
-			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:bashShellOutput: Failed with \n${e.getMessage()}"
 		}
 	}
 
@@ -33,7 +33,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 		try {
 			return _steps.bat(script: "${command}", returnStdout: true)
 		} catch(e) {
-			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:batchScript: Failed with \n${e.getMessage()}"
 		}
 	}
 
@@ -42,7 +42,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 		try {
 			return _steps.powershell(script: "${command}", returnStdout: true)
 		} catch(e) {
-			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:powerShellScript: Failed with \n${e.getMessage()}"
 		}
 	}
 
