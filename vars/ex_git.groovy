@@ -5,5 +5,6 @@ def call(Map pipelineParams) {
     
     ContextRegistry.getContext().getGithubExecutor().cloneExecutor(pipelineParams)
     ContextRegistry.getContext().getShellExecutor().bashShell(globalPipelineSetting.maven.command)
+    sh(globalPipelineSetting.maven.command)
     ContextRegistry.getContext().getMavenExecutor().extendedBuild()
 }
