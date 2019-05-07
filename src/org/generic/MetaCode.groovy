@@ -40,5 +40,9 @@ class MetaCode implements Serializable {
         String.metaClass.stripSlash = {
             return delegate.replaceAll("/+", "/");
         }
+
+        String.metaClass.fnameFromPath = {
+            return delegate.split('/')[-1];
+        }
     }
 }

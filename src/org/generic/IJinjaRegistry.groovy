@@ -1,5 +1,6 @@
 package org.generic
 
 interface IJinjaRegistry {
-	Void build()
+	Boolean teamplateProcess(String teamplate, String param, String output)
+	Boolean teamplateHealthCheck(String output)
 }
