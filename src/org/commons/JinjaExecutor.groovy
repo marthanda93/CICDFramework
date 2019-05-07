@@ -37,12 +37,12 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 	@Override
 	Boolean teamplateHealthCheck(String output) {
 		try {
-			Object size = ContextRegistry.getContext().getShellExecutor().bashShell("ls -Ss1pq --block-size=1 ${output}")
+			int size = ContextRegistry.getContext().getShellExecutor().bashShell("ls -Ss1pq --block-size=1 ${output}").split(' ')[0].toInteger() as Integer
 		} catch(e) {
 			_steps.error "ERROR:teamplateHealthCheck: Failed with \n${e.getMessage()}"
 		}
 
-		if(size.split(' ')[0].toInteger() > 0) {
+		if(size > 0) {
 			return true
 		} else {
 			return false
