@@ -16,9 +16,10 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 		// def a = _steps.libraryResource "org/example/param/nginx.json"
 
 		_steps.writeFile file: "nginx.json", text: "${_steps.libraryResource 'org/example/param/nginx.json'}"
-		// _steps.writeFile file: "nginx.j2", text: _steps.libraryResource "org/example/template/nginx.j2"
+		_steps.writeFile file: "nginx.j2", text: "${_steps.libraryResource 'org/example/template/nginx.j2'}"
 		ContextRegistry.getContext().getShellExecutor().bashShell('ls -l')
-		// ContextRegistry.getContext().getShellExecutor().bashShell('j2 -f json nginx.j2 nginx.json -o nginx.conf')
-		// ContextRegistry.getContext().getShellExecutor().bashShell('ls -l')
+		ContextRegistry.getContext().getShellExecutor().bashShell('j2 -f json nginx.j2 nginx.json -o nginx.conf')
+		ContextRegistry.getContext().getShellExecutor().bashShell('ls -l')
+		ContextRegistry.getContext().getShellExecutor().bashShell('cat nginx.conf')
 	}
 }
