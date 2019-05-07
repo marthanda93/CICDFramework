@@ -39,4 +39,9 @@ class DefaultContext implements IContext, Serializable {
     IMavenRegistry getMavenExecutor() {
         return new org.codebaseBuild.MavenBuild(this._steps)
     }
+
+    @Override
+    IJinjaRegistry getJinjaExecutor() {
+        return new org.commons.JinjaExecutor(this._steps)
+    }
 }

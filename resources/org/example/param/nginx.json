@@ -1,0 +1,6 @@
+{
+    "nginx":{
+        "hostname": "localhost",
+        "webroot": "/var/www/project"
+    }
+}

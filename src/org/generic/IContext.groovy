@@ -6,4 +6,5 @@ interface IContext {
     IGithubRegistry getGithubExecutor()
     IDockerRegistry getDockerExecutor()
     IMavenRegistry getMavenExecutor()
+    IJinjaRegistry getJinjaExecutor()
 }
