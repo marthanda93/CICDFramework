@@ -5,7 +5,7 @@ import org.generic.IMissingObject
 
 import org.stepRegistry.ContextRegistry
 
-class JinjaExecutor implements IJinjaRegistry, Serializable {
+class JinjaExecutor implements IJinjaRegistry, IMissingObject, Serializable {
 	private _steps
 
 	JinjaExecutor(_steps) {
@@ -49,13 +49,13 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 		}
 	}
 
-    // @Override
-    // String propertyMissing(String name) {
-    //     _steps.error "PROPERTYMISSING JinjaExecutor: Caught missing property: $name"
-    // }
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING JinjaExecutor: Caught missing property: $name"
+    }
 
-    // @Override
-    // String methodMissing(String name, Object args) {
-    //     _steps.error "METHODMISSING JinjaExecutor: Caught missing method: $name"
-    // }
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.error "METHODMISSING JinjaExecutor: Caught missing method: $name"
+    }
 }
