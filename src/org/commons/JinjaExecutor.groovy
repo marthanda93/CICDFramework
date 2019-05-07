@@ -13,6 +13,7 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 	@Override
 	Void build() {
 		_steps.println "------//ANAND//-------"
+		_steps.libraryResource "org/example/param/nginx.json"
 
 		_steps.writeFile file: "nginx.json", text: _steps.libraryResource "org/example/param/nginx.json"
 		_steps.writeFile file: "nginx.j2", text: _steps.libraryResource "org/example/template/nginx.j2"
