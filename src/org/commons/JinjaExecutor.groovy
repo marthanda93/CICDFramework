@@ -37,7 +37,7 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 	@Override
 	Boolean teamplateHealthCheck(String output) {
 		try {
-			int size = ContextRegistry.getContext().getShellExecutor().bashShell("ls -Ss1pq --block-size=1 ${output}").split(' ')[0].toInteger() as Integer
+			int size = ContextRegistry.getContext().getShellExecutor().bashShellOutput("ls -Ss1pq --block-size=1 ${output}").split(' ')[0].toInteger() as Integer
 		} catch(e) {
 			_steps.error "ERROR:teamplateHealthCheck: Failed with \n${e.getMessage()}"
 		}
