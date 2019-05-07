@@ -16,7 +16,7 @@ class JinjaExecutor implements IJinjaRegistry, IMissingObject, Serializable {
 	Boolean teamplateProcess(Map jparam) {
 		String path = "teamplate${_steps.env.BUILD_NUMBER}"
 
-		this.script.dir ("${jparam.path}") {
+		_steps.dir ("${jparam.path}") {
 			_steps.cleanWs()
 
 			try {
