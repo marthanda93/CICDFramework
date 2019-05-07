@@ -5,6 +5,7 @@ import org.generic.IShellRegistry
 import org.generic.IGithubRegistry
 import org.generic.IDockerRegistry
 import org.generic.IMavenRegistry
+import org.generic.IJinjaRegistry
 
 import org.generic.IContext
 
