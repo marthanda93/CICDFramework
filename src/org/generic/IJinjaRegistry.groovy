@@ -1,6 +1,6 @@
 package org.generic
 
 interface IJinjaRegistry {
-	Boolean teamplateProcess(String teamplate, String param, String output)
+	Boolean teamplateProcess(Map jparam)
 	Boolean teamplateHealthCheck(String output)
 }
