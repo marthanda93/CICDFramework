@@ -13,7 +13,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	@Override
 	String bashShell(String command) {
 		try {
-			return _steps.sh(script: "${command}", returnStdout: true)
+			return _steps.sh(script: "${command}")
 		} catch(e) {
 			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
 		}
