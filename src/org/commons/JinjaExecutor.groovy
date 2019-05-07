@@ -38,14 +38,14 @@ class JinjaExecutor implements IJinjaRegistry, Serializable {
 	Boolean teamplateHealthCheck(String output) {
 		try {
 			int size = ContextRegistry.getContext().getShellExecutor().bashShellOutput("ls -Ss1pq --block-size=1 ${output}").split(' ')[0].toInteger() as Integer
+
+			if(size > 0) {
+				return true
+			} else {
+				return false
+			}
 		} catch(e) {
 			_steps.error "ERROR:teamplateHealthCheck: Failed with \n${e.getMessage()}"
-		}
-
-		if(size > 0) {
-			return true
-		} else {
-			return false
 		}
 	}
 
