@@ -1,0 +1,15 @@
+readinessProbe:
+failureThreshold: 3
+httpGet:
+  httpHeaders:
+  - name: Accept
+    value: text/plain
+  - name: Host
+    value: r18-7-videoml-dev.lle-mcommerce.kohls.com
+  path: /api/health/isAlive
+  port: 8443
+  scheme: HTTPS
+initialDelaySeconds: 60
+periodSeconds: 30
+successThreshold: 1
+timeoutSeconds: 1

@@ -1,0 +1,13 @@
+livenessProbe:
+ failureThreshold: 3
+httpGet:
+  httpHeaders:
+  - name: Accept
+    value: text/plain
+  path: /api/health/isAlive
+  port: 8443
+  scheme: HTTPS
+initialDelaySeconds: 180
+periodSeconds: 30
+successThreshold: 1
+timeo1utSeconds: 3
