@@ -33,3 +33,7 @@ import groovy.transform.Field
 @groovy.transform.Field monoRepoPaths = [
 	repoName: ["path1", "path2", "path3"]
 ]
+
+@groovy.transform.Field synonyms = [
+	pv: ["pv", "pvs", "persistentvolume", "persistentvolumes"]
+]
