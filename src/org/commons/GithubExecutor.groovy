@@ -44,12 +44,6 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-_steps.println CommonUtilities.gitValidation(appParam)
-_steps.println appParam instanceof java.util.Map
-_steps.println appParam instanceof java.util.LinkedHashMap
-_steps.println appParam.size()
-
-
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.git(
 				changelog: false,

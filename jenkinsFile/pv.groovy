@@ -23,50 +23,25 @@ pipeline {
             }
             failFast true
             parallel {
-                stage('Branch A') {
-                    agent {
-                        label "for-branch-a"
-                    }
+                stage('AppRepo') {
                     steps {
-                        echo "On Branch A"
+                        gitSvn(
+                            url: appRepo,
+                            branch: appBranch,
+                            credentialsId: appCred
+                        )
                     }
                 }
-                stage('Branch B') {
-                    agent {
-                        label "for-branch-b"
-                    }
+                stage('AppRepo') {
                     steps {
-                        echo "On Branch B"
-                    }
-                }
-                stage('Branch C') {
-                    agent {
-                        label "for-branch-c"
-                    }
-                    stages {
-                        stage('Nested 1') {
-                            steps {
-                                echo "In stage Nested 1 within Branch C"
-                            }
-                        }
-                        stage('Nested 2') {
-                            steps {
-                                echo "In stage Nested 2 within Branch C"
-                            }
-                        }
+                        gitSvn(globalPipelineSetting.opsRepo, 'parent')
                     }
                 }
             }
         }
-
-
-        stage('Shell build') {
+        stage('After clone') {
             steps {
-                ex_git(
-                    url: "https://github.com/marthanda93/spring-petclinic.git",
-                    branch: "master",
-                    credentialsId: ""
-                )
+                println "------"
             }
         }
 
