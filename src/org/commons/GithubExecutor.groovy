@@ -4,7 +4,7 @@ import org.generic.IGithubRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
 
-class GithubExecutor implements IGithubRegistry, Serializable {
+class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	private _steps
 
 	GithubExecutor(_steps) {
@@ -35,7 +35,7 @@ class GithubExecutor implements IGithubRegistry, Serializable {
 	String cloneWithDirectory(Map appParam) {
 		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
 
-		this.script.dir ("${path}") {
+		_steps.dir ("${path}") {
 			plainClone(appParam)
 		}
 
@@ -106,13 +106,13 @@ class GithubExecutor implements IGithubRegistry, Serializable {
 		}
 	}
 
-    // @Override
-    // String propertyMissing(String name) {
-    //     _steps.error "PROPERTYMISSING GithubExecutor: Caught missing property: $name"
-    // }
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING GithubExecutor: Caught missing property: $name"
+    }
 
-    // @Override
-    // String methodMissing(String name, Object args) {
-    //     _steps.error "METHODMISSING GithubExecutor: Caught missing method: $name"
-    // }
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.error "METHODMISSING GithubExecutor: Caught missing method: $name"
+    }
 }
