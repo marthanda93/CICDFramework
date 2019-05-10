@@ -25,7 +25,7 @@ pipeline {
             parallel {
                 stage('AppRepo') {
                     steps {
-                        gitSvn(
+                        gitCli(
                             url: appRepo,
                             branch: appBranch,
                             credentialsId: appCred
@@ -34,7 +34,7 @@ pipeline {
                 }
                 stage('AppRepo') {
                     steps {
-                        gitSvn(globalPipelineSetting.opsRepo, 'parent')
+                        gitCli(globalPipelineSetting.opsRepo, 'parent')
                     }
                 }
             }
