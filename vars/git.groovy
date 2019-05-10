@@ -1,8 +1,8 @@
 import org.stepRegistry.ContextRegistry
 
-def call(Map pipelineParams) {
+def call(Map pipelineParams, String cloneType = 'plain') {
     ContextRegistry.registerDefaultContext(this)
     
-    ContextRegistry.getContext().getGithubExecutor().cloneExecutor(pipelineParams)
+    ContextRegistry.getContext().getGithubExecutor().cloneExecutor(pipelineParams, cloneType)
     ContextRegistry.getContext().getMavenExecutor().extendedBuild()
 }
