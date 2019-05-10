@@ -1,0 +1,4 @@
+pv:
+    name: pvName
+    labels:
+        storage: local

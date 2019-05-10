@@ -35,8 +35,7 @@ pipeline {
                 stage('AppRepo') {
                     steps {
                         script {
-                            gitCli(globalPipelineSetting.opsRepo, 'parent')
-                            globalPipelineSetting.opsRepo.branch = 'dev'
+                            globalPipelineSetting.opsRepo.clonedPath = gitCli(globalPipelineSetting.opsRepo, 'parent')
                         }
                     }
                 }
@@ -48,6 +47,5 @@ pipeline {
                 println globalPipelineSetting.opsRepo
             }
         }
-
     }
 }
