@@ -52,7 +52,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				credentialsId: appParam.credentialsId
 			)
 		} else {
-			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!"
+			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
 	}
 
