@@ -26,7 +26,7 @@ class CommonUtilities implements Serializable {
     }
 
     static boolean mapValidation(Object collection) {
-        if (collection instanceof java.util.Map && collection.size() > 0) {
+        if ((collection instanceof java.util.Map || collection instanceof java.util.LinkedHashMap) && collection.size() > 0) {
             return true
         } else {
             return false
