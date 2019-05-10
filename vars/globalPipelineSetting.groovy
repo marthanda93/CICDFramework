@@ -2,6 +2,20 @@ import org.lib.*
 import groovy.transform.Field
 
 @Field dockerRegistry = "https://registry.hub.docker.com"
+@Field jinjaFormat = 'yaml'
+
+@groovy.transform.Field opsRepo = [
+    url: "git@github.com:marthanda93/ops.git",
+    branch: "master",
+    credentialsId: "GithubSSh"
+]
+
+@groovy.transform.Field deploymentStages = [
+	production: ['prod', 'production'],
+	pre_production: ['pre-prod', 'preprod', 'pre_prod', 'perf', 'pre_production'],
+	staging: ['reldev', 'qa', 'relqa', 'uat', 'staging'],
+	development: ['gatedbuild', 'dev', 'development']
+]
 
 @groovy.transform.Field httpVars = [
 	expectedHttpResponse: 200,

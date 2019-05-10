@@ -1,7 +1,9 @@
-package org.commons
+package org.kubernetes
 
-import org.generic.IShellRegistry
+import org.generic.IPersistentVolumeRegistry
 import org.generic.IMissingObject
+
+import org.stepRegistry.ContextRegistry
 
 class PersistentVolume implements IPersistentVolumeRegistry, IMissingObject, Serializable {
 	private _steps
@@ -11,12 +13,9 @@ class PersistentVolume implements IPersistentVolumeRegistry, IMissingObject, Ser
 	}
 
 	@Override
-	String bashShell(String command) {
-		try {
-			return _steps.sh(script: "${command}")
-		} catch(e) {
-			_steps.error "ERROR:bashShell: Failed with \n${e.getMessage()}"
-		}
+	String templateProcess() {
+		ContextRegistry.getContext().getGithubExecutor().cloneExecutor(Map appParam, String cloneType = 'parent')
+		ContextRegistry.getContext().getJinjaExecutor().teamplateProcess()
 	}
-}
 
+}

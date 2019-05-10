@@ -14,6 +14,13 @@ class JinjaExecutor implements IJinjaRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean teamplateProcess(Map jparam) {
+		/*
+			jparam = [
+				teamplate
+				param
+				output
+			]
+		**/
 		String path = "teamplate${_steps.env.BUILD_NUMBER}"
 
 		_steps.dir ("${path}") {
@@ -21,7 +28,7 @@ class JinjaExecutor implements IJinjaRegistry, IMissingObject, Serializable {
 				_steps.writeFile file: "${jparam.teamplate.fnameFromPath()}", text: "${_steps.libraryResource jparam.teamplate}"
 				_steps.writeFile file: "${jparam.param.fnameFromPath()}", text: "${_steps.libraryResource jparam.param}"
 
-				ContextRegistry.getContext().getShellExecutor().bashShell("j2 -f json ${jparam.teamplate.fnameFromPath()} ${jparam.param.fnameFromPath()} -o ${jparam.output}")
+				ContextRegistry.getContext().getShellExecutor().bashShell("j2 -f ${_steps.globalPipelineSetting.jinjaFormat} ${jparam.teamplate.fnameFromPath()} ${jparam.param.fnameFromPath()} -o ${jparam.output}")
 			} catch(e) {
 				_steps.error "ERROR:teamplateProcess: Failed with \n${e.getMessage()}"
 			}
