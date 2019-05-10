@@ -14,12 +14,12 @@ pipeline {
     }
     
     environment { 
-        deployment = "dev"
+        deploymentStage = "dev"
     }
     stages {
         stage('Parallel Stage') {
             when {
-                branch 'master'
+                expression {  globalPipelineSetting.deploymentStages.findResults{ k, v -> env.deploymentStage in v ? k : null } == ['development'] }
             }
             failFast true
             parallel {
