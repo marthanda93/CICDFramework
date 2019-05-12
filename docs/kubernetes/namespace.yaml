@@ -1,7 +1,6 @@
-persistentVolume:
+namespace:
     name: pvName
-    namespace: nm
     labels:
-        storage: local
+        name: local
     annotations:
         env: dev
