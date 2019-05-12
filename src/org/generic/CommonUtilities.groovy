@@ -1,5 +1,7 @@
 package org.generic
 
+import hudson.util.RemotingDiagnostics
+
 class CommonUtilities implements Serializable {
 	static boolean stringValidation(Object word) {
 		if (word != null && word != "" && word instanceof String && word.size() > 0) {
@@ -39,5 +41,23 @@ class CommonUtilities implements Serializable {
     	} else {
     		return false
     	}
+    }
+
+    static boolean executeOnMaster(String cmd, Integer timeout = 10) {
+        Object out = new StringBuffer(), err = new StringBuffer()
+
+        Object proc = cmd.execute()
+        proc.consumeProcessOutput(out, err)
+        proc.waitForOrKill(timeout)
+
+        if( out.size() > 0 ) return true
+        if( err.size() > 0 ) return false
+    }
+
+    static boolean executeOnWorker(String worker, String cmd) {
+        Object slave = Jenkins.instance.slaves.find {slave -> slave.displayName == worker}
+        Object channel = slave.getComputer().getChannel()
+
+        println RemotingDiagnostics.executeGroovy( "${cmd}.execute().in.text", channel)
     }
 }
