@@ -4,6 +4,9 @@ import java.util.LinkedHashMap
 import java.util.Set
 import com.cloudbees.groovy.cps.NonCPS
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 class MetaCode implements Serializable {
 
     @NonCPS
@@ -43,6 +46,33 @@ class MetaCode implements Serializable {
 
         String.metaClass.fnameFromPath = {
             return delegate.split('/')[-1];
+        }
+
+        String.metaClass.MStringTemplateEngine = { Map parameter ->
+            String strObj = delegate as String
+            String prefixPattern = ''
+            String prefix = ''
+            String key = ''
+
+            if((strObj =~ /\$\{.+?\}/).size() > 0) {
+                prefixPattern = /\$\{.+?\}/
+                prefix = /\$\{([^\}]*)/
+            } else if((strObj =~ /\{\{.+?\}\}/).size() > 0) {
+                prefixPattern = /\{\{.+?\}\}/
+                prefix = /\{\{([^\}\}]*)/
+            }
+            
+            Matcher patternMatcher = Pattern.compile(prefixPattern).matcher(strObj)
+
+            if(patternMatcher.size() > 0) {
+                
+                patternMatcher[0..-1].unique().each{ keyWithPrefix ->
+                    key = (keyWithPrefix=~prefix).collect{it[1]}[0] as String
+                    
+                    strObj = strObj.replaceAll(keyWithPrefix.replaceAll(/(\{|\}|\$)/, /\\$0/), parameter[key.strip()])
+                }
+            }
+            return strObj
         }
     }
 }

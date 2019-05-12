@@ -4,3 +4,4 @@ will go with apis
 	-> create yaml resources (namespace, configmap, secret, deployment, service)
 	-> Kubernetes
 	-> groovy jinja templating
+
