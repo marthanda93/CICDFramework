@@ -51,3 +51,13 @@ import groovy.transform.Field
 @groovy.transform.Field synonyms = [
 	pv: ["pv", "pvs", "persistentvolume", "persistentvolumes"]
 ]
+
+@groovy.transform.Field standardization = [
+	valueofTeamplate: '{{ application }}/{{ deploymentStages }}/templateParameter/{{ kubeKind }}',
+	artifact: '',
+	namespace: '',
+	deployment: '',
+	service: '',
+	configmap: '',
+	secret: ''
+]
