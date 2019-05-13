@@ -8,7 +8,7 @@ def call(String action, String className, Object parameter = false) {
 			println "_____NameSpace______"
 			break
 		default:
-			error "ERROR:GitClone: ${cloneType} Undefined Parameter!"
+			error "ERROR:Kubectl: ${className} Undefined!"
 			break
 	}
 }
