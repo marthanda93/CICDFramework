@@ -60,8 +60,8 @@ class CommonUtilities implements Serializable {
         proc.waitForOrKill(4 * timeout)
 
         if( out.size() > 0 ) return out
-        // if( err.size() > 0 ) return err
-        return (err.size() > 0) ? err : "ERROR: Process killed before completing!\n${err}"
+        if( err.size() > 0 ) return err
+        // return (err.size() > 0) ? err : "ERROR: Process killed before completing!\n${err}"
     }
 
     static boolean executeOnWorker(String worker, String cmd) {
