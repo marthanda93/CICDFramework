@@ -1,4 +1,4 @@
-import org.lib.*
+//import org.lib.*
 import groovy.transform.Field
 
 @Field dockerRegistry = "https://registry.hub.docker.com"
@@ -56,7 +56,7 @@ import groovy.transform.Field
 @groovy.transform.Field standardization = [
 	valueofTeamplate: '{{ application }}/{{ deploymentStages }}/templateParameter/{{ kubeKind }}',
 	artifact: '',
-	namespace: '',
+	namespace: 'poc{{ deploymentStage }}',
 	deployment: '',
 	service: '',
 	configmap: '',

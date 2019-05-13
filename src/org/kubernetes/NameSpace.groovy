@@ -19,8 +19,11 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	}
 
 	@Override
-	Boolean templateProcess() {
+	Boolean templateProcess(Map k8Param) {
 		_steps.println "__PASS__"
+		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
+
+
 
 
 		// -> process path from var
