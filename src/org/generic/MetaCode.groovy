@@ -49,13 +49,10 @@ class MetaCode implements Serializable {
         }
 
         String.metaClass.MStringTemplateEngine = { Object _steps, Map parameter ->
-            _steps.println "-------//0"
             String strObj = delegate as String
             String prefixPattern = ''
             String prefix = ''
             String key = ''
-
-            _steps.println "-------//1"
 
             if((strObj =~ /\$\{.+?\}/).size() > 0) {
                 prefixPattern = /\$\{.+?\}/
@@ -64,20 +61,19 @@ class MetaCode implements Serializable {
                 prefixPattern = /\{\{.+?\}\}/
                 prefix = /\{\{([^\}\}]*)/
             }
-
-            _steps.println "-------//2"
             
             Matcher patternMatcher = Pattern.compile(prefixPattern).matcher(strObj)
 
-            _steps.println "-------//3"
-
             if(patternMatcher.size() > 0) {
-_steps.println "-------//4"
+_steps.println "-------//1"
                 patternMatcher[0..-1].unique().each{ keyWithPrefix ->
+_steps.println "-------//2"
                     key = (keyWithPrefix=~prefix).collect{it[1]}[0] as String
-_steps.println "-------//5"
+_steps.println "-------//3"
                     strObj = strObj.replaceAll(keyWithPrefix.replaceAll(/(\{|\}|\$)/, /\\$0/), parameter[key.strip()])
+_steps.println "-------//4"
                 }
+_steps.println "-------//5"
             }
 _steps.println "-------//6"
             return strObj
