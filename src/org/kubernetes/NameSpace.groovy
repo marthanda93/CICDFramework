@@ -2,7 +2,7 @@ package org.kubernetes
 
 import org.generic.IK8NameSpaceRegistry
 import org.generic.IMissingObject
-package org.generic.CommonUtilities
+import org.generic.CommonUtilities
 import org.stepRegistry.ContextRegistry
 
 class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
