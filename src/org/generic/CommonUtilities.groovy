@@ -1,6 +1,7 @@
 package org.generic
 
 import hudson.util.RemotingDiagnostics
+import java.time.LocalTime
 
 class CommonUtilities implements Serializable {
 	static boolean stringValidation(Object word) {
@@ -43,15 +44,19 @@ class CommonUtilities implements Serializable {
     	}
     }
 
-    static Object executeOnMaster(String cmd, String path, Integer timeout = 60) {
-        Object out = new StringBuffer(), err = new StringBuffer()
+    static Object executeOnMaster(String cmd, String path, Integer timeout = 1000) {
+        try {
+            Object out = new StringBuffer(), err = new StringBuffer()
 
-        Object proc = cmd.execute(null, new File(path))
-        proc.consumeProcessOutput(out, err)
-        proc.waitForOrKill()
+            Object proc = cmd.execute(null, new File(path))
+            proc.consumeProcessOutput(out, err)
+            proc.waitForOrKill(2 * timeout)
 
-        if( out.size() > 0 ) return out
-        if( err.size() > 0 ) return err
+            if( out.size() > 0 ) return out
+            if( err.size() > 0 ) return err
+        } catch (IOException e) {
+            return "ERROR: Process killed before completing!"
+        }
     }
 
     static boolean executeOnWorker(String worker, String cmd) {
