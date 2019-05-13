@@ -48,7 +48,7 @@ class MetaCode implements Serializable {
             return delegate.split('/')[-1];
         }
 
-        String.metaClass.MStringTemplateEngine = { Object _steps, Map parameter ->
+        String.metaClass.MStringTemplateEngine = { Map parameter ->
             String strObj = delegate as String
             String prefixPattern = ''
             String prefix = ''
@@ -65,17 +65,13 @@ class MetaCode implements Serializable {
             Matcher patternMatcher = Pattern.compile(prefixPattern).matcher(strObj)
 
             if(patternMatcher.size() > 0) {
-_steps.println "-------//1"
+                
                 patternMatcher[0..-1].unique().each{ keyWithPrefix ->
-_steps.println "-------//2"
                     key = (keyWithPrefix=~prefix).collect{it[1]}[0] as String
-_steps.println "-------//3"
-                    strObj = strObj.replaceAll(keyWithPrefix.replaceAll(/(\{|\}|\$)/, /\\$0/), parameter[key.strip()])
-_steps.println "-------//4"
+                    
+                    strObj = strObj.replaceAll(keyWithPrefix.replaceAll(/(\{|\}|\$)/, /\\$0/), parameter[key.trim()])
                 }
-_steps.println "-------//5"
             }
-_steps.println "-------//6"
             return strObj
         }
     }
