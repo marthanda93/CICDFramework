@@ -45,18 +45,17 @@ class CommonUtilities implements Serializable {
     }
 
     static Object executeOnMaster(String cmd, String path, Integer timeout = 1) {
-        try {
-            Object out = new StringBuffer(), err = new StringBuffer()
+        Object output
+        Object out = new StringBuffer(), err = new StringBuffer()
 
-            Object proc = cmd.execute(null, new File(path))
-            proc.consumeProcessOutput(out, err)
-            proc.waitForOrKill(2 * timeout)
+        Object proc = cmd.execute(null, new File(path))
+        proc.consumeProcessOutput(out, err)
+        proc.waitForOrKill(2 * timeout)
 
-            if( out.size() > 0 ) return out
-            if( err.size() > 0 ) return err
-        } catch (IOException e) {
-            return "ERROR: Process killed before completing!"
-        }
+        output = (out.size() > 0) ? out : "ERROR: Process killed before completing!"
+        output = (err.size() > 0) ? err : "ERROR: Process killed before completing!"
+
+        return output
     }
 
     static boolean executeOnWorker(String worker, String cmd) {
