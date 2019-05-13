@@ -49,7 +49,8 @@ import groovy.transform.Field
 ]
 
 @groovy.transform.Field synonyms = [
-	pv: ["pv", "pvs", "persistentvolume", "persistentvolumes"]
+	pv: ["pv", "pvs", "persistentvolume", "persistentvolumes"],
+	ns: ["namespace", "ns", "names", "nspace"]
 ]
 
 @groovy.transform.Field standardization = [
