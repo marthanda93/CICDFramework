@@ -15,7 +15,8 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean create(Map k8Param) {
 		_steps.println "__PASS__"
 
-		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
+		_steps.println _steps.globalPipelineSetting.standardization.namespace   //.MStringTemplateEngine(k8Param)
+		_steps.println _steps.globalPipelineSetting.standardization.namespace.getClass()
 
 		return true;
 	}
