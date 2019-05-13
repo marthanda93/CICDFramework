@@ -8,7 +8,7 @@ def call(String action, String className, Object parameter = false) {
 			println "_____NameSpace______"
 			break
 		default:
-			_steps.error "ERROR:GitClone: ${cloneType} Undefined Parameter!"
+			error "ERROR:GitClone: ${cloneType} Undefined Parameter!"
 			break
 	}
 }
