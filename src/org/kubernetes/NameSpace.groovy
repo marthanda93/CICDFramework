@@ -14,15 +14,13 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Map k8Param) {
-		_steps.println "__PASS__"
-
 		// _steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
 		// _steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
 
 
 		_steps.println CommonUtilities.executeOnMaster("""
-			/usr/bin/j2 -f yaml namespace.yaml
-		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes/objectTemplate")
+			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml
+		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes")
 
 		return true;
 	}
