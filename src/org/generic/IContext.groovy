@@ -7,4 +7,5 @@ interface IContext {
     IDockerRegistry getDockerExecutor()
     IMavenRegistry getMavenExecutor()
     IJinjaRegistry getJinjaExecutor()
+    INameSpaceRegistry getK8NameSpaceExecutor()
 }

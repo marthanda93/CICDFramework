@@ -45,4 +45,9 @@ class DefaultContext implements IContext, Serializable {
     IJinjaRegistry getJinjaExecutor() {
         return new org.commons.JinjaExecutor(this._steps)
     }
+
+    @Override
+    INameSpaceRegistry getK8NameSpaceExecutor() {
+        return org.kubernetes.NameSpace(this._steps)
+    }
 }

@@ -1,6 +1,6 @@
 package org.generic
 
-interface INameSpaceRegistry {
+interface IK8NameSpaceRegistry {
 	Boolean create()
 	Boolean templateProcess()
 	Boolean healthCheck()
