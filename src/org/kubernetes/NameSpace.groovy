@@ -19,7 +19,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 		_steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
 		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
 
-		_steps.println CommonUtilities.executeOnMaster("ls $HOME")
+		_steps.println CommonUtilities.executeOnMaster('ls $HOME')
 
 		_steps.println CommonUtilities.executeOnMaster("'ls $HOME/workspace/'${env.JOB_NAME}'@libs'")
 
