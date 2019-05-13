@@ -8,7 +8,7 @@ def call(String action, String className, Object k8Param = false) {
 			try {
 				ContextRegistry.getContext().getK8NameSpaceExecutor()."${action}"(k8Param)
 			} catch(e) {
-				error "ERROR: Action: ${action} missing!"
+				error "Action: ${action} missing!"
 			}
 			break
 		default:
