@@ -28,7 +28,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 		_steps.println CommonUtilities.executeOnMaster("""
 			ls -l
-		""", "/tmp/")
+		""", "/")
 		return true;
 	}
 
