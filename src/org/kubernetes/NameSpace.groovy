@@ -21,13 +21,15 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 
 		_steps.println CommonUtilities.executeOnMaster("""
-			cd ${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}
+			/usr/bin/cd ${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}
 			\n
 			ls -l
 		""")
 
 		_steps.println CommonUtilities.executeOnMaster("""
-			cd /tmp ls -l
+			/usr/bin/cd /tmp
+			\n
+			ls -l
 		""")
 		return true;
 	}
