@@ -15,6 +15,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean create(Map k8Param) {
 		_steps.println "__PASS__"
 
+		_steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
 		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
 
 		return true;
@@ -24,17 +25,11 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean templateProcess() {
 		_steps.println "__PASS__"
 		
-		// -> process path from var
-		// 	-> create map
-		// -> verify path
-		// 	-> check current path
-		// 	-> check new path with files
 		// -> run jinja command
 		// 	-> check j2 command is there or not if not then install
 		// 	-> run j2
 		// -> shift from master to slave
 
-		// ContextRegistry.getContext().getGithubExecutor().cloneExecutor(Map appParam, String cloneType = 'parent')
 		// ContextRegistry.getContext().getJinjaExecutor().teamplateProcess()
 	}
 
