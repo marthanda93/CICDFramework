@@ -26,7 +26,7 @@ _steps.println output
 _steps.println output.getClass()
 
 
-		if(CommonUtilities.stringValidation(output) && output.startsWith("ERROR: ")) {
+		if(CommonUtilities.stringValidation(output as String) && output.startsWith("ERROR: ")) {
 			_steps.println "-----//1"
 			_steps.error output.split('ERROR: ')[-1]
 		} else {
