@@ -19,7 +19,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 
 		Object output = CommonUtilities.executeOnMaster("""
-			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml
+			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml -o anand.yaml
 		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes")
 
 		if(CommonUtilities.stringValidation(output as String) && output.startsWith("ERROR: ")) {

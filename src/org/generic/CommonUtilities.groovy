@@ -12,6 +12,14 @@ class CommonUtilities implements Serializable {
 		}
 	}
 
+    static boolean StringBufferValidation(Object word) {
+        if (word != null && word != "" && word instanceof StringBuffer && word.size() > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     static boolean listValidation(Object collection) {
         if (collection instanceof java.util.List && collection.size > 0) {
             return true
@@ -52,6 +60,7 @@ class CommonUtilities implements Serializable {
         proc.waitForOrKill(4 * timeout)
 
         if( out.size() > 0 ) return out
+        // if( err.size() > 0 ) return err
         return (err.size() > 0) ? err : "ERROR: Process killed before completing!\n${err}"
     }
 
