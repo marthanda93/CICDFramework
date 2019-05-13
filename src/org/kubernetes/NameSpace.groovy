@@ -22,7 +22,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 		_steps.println CommonUtilities.executeOnMaster("""
 			ls -l
-		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}")
+		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes/objectTemplate")
 
 		_steps.println CommonUtilities.executeOnMaster("""
 			ls -l
