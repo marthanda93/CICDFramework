@@ -14,6 +14,8 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean create() {
 		_steps.println "__PASS__"
+
+		return true;
 	}
 
 	@Override
