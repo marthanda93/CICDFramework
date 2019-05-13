@@ -6,6 +6,7 @@ import org.generic.IGithubRegistry
 import org.generic.IDockerRegistry
 import org.generic.IMavenRegistry
 import org.generic.IJinjaRegistry
+import org.generic.IK8NameSpaceRegistry
 
 import org.generic.IContext
 
@@ -47,7 +48,7 @@ class DefaultContext implements IContext, Serializable {
     }
 
     @Override
-    INameSpaceRegistry getK8NameSpaceExecutor() {
+    IK8NameSpaceRegistry getK8NameSpaceExecutor() {
         return org.kubernetes.NameSpace(this._steps)
     }
 }
