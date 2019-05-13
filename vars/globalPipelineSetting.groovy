@@ -54,7 +54,7 @@ import groovy.transform.Field
 ]
 
 @groovy.transform.Field standardization = [
-	templateParameter: '{{ application }}/{{ deploymentStages }}/templateParameter/{{ kubeKind }}.yaml',
+	templateParameter: '{{ application }}/{{ deploymentStage }}/templateParameter/{{ kubeKind }}.yaml',
 	artifact: '',
 	namespace: 'poc{{ deploymentStage }}',
 	deployment: '',
