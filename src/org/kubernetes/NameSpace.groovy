@@ -32,7 +32,7 @@ _steps.println "------//2"
 		""")
 _steps.println "------//3"
 		_steps.println CommonUtilities.executeOnMaster("""
-			ls -l ls -l /tmp
+			ls -l /etc ls -l /tmp
 		""")
 _steps.println "------//4"
 		_steps.println CommonUtilities.executeOnMaster("""
@@ -41,7 +41,7 @@ _steps.println "------//4"
 
 _steps.println "------//5"
 		_steps.println CommonUtilities.executeOnMaster("""
-			ls -l \n ls -l /tmp
+			ls -l /etc \n ls -l /tmp
 		""")
 		return true;
 	}
