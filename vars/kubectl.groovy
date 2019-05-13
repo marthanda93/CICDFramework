@@ -5,9 +5,9 @@ def call(String action, String className, Object k8Param = false) {
 
 	switch (className.toLowerCase()) {
 		case globalPipelineSetting.synonyms.ns:
-			try {
+			if(action in ['create']) {
 				ContextRegistry.getContext().getK8NameSpaceExecutor()."${action}"(k8Param)
-			} catch(e) {
+			} else {
 				error "Action: ${action} missing!"
 			}
 			break
