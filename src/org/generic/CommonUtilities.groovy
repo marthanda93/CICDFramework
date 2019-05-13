@@ -43,14 +43,14 @@ class CommonUtilities implements Serializable {
     	}
     }
 
-    static boolean executeOnMaster(String cmd, Integer timeout = 10) {
+    static Object executeOnMaster(String cmd, Integer timeout = 10) {
         Object out = new StringBuffer(), err = new StringBuffer()
 
         Object proc = cmd.execute()
         proc.consumeProcessOutput(out, err)
         proc.waitForOrKill(timeout)
 
-        if( out.size() > 0 ) return true
+        if( out.size() > 0 ) return out
         if( err.size() > 0 ) return false
     }
 

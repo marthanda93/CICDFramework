@@ -2,6 +2,7 @@ package org.kubernetes
 
 import org.generic.IK8NameSpaceRegistry
 import org.generic.IMissingObject
+package org.generic.CommonUtilities
 import org.stepRegistry.ContextRegistry
 
 class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
@@ -17,6 +18,9 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 		_steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
 		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
+
+		CommonUtilities.executeOnMaster('pwd')
+
 
 		return true;
 	}
