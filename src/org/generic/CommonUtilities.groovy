@@ -51,7 +51,7 @@ class CommonUtilities implements Serializable {
         proc.waitForOrKill(timeout)
 
         if( out.size() > 0 ) return out
-        if( err.size() > 0 ) return false
+        if( err.size() > 0 ) return err
     }
 
     static boolean executeOnWorker(String worker, String cmd) {
