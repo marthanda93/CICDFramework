@@ -14,9 +14,15 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Map k8Param) {
-		// _steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
-		// _steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
+// -> validation
+// -> standardization of path
+// -> write yaml from slave to master
+// -> generate
+// -> pull back data from master to slave
 
+
+		_steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
+		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
 
 		CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml -o anand.yaml
@@ -29,8 +35,6 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean templateProcess() {
 		_steps.println "__PASS__"
 		
-		// -> shift from master to slave
-
 		// ContextRegistry.getContext().getJinjaExecutor().teamplateProcess()
 	}
 
