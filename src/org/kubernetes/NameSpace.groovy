@@ -21,25 +21,28 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 _steps.println "------//1"
 		_steps.println CommonUtilities.executeOnMaster("""
-sh <<EOF
+/usr/bin/sh <<EOF
 ls -l
 ls -l /tmp
 EOF
 		""")
 _steps.println "------//2"
 		_steps.println CommonUtilities.executeOnMaster("""
-sh -c "ls -l; ls -l /tmp"
+/usr/bin/sh -c "ls -l; ls -l /tmp"
 		""")
 _steps.println "------//3"
 		_steps.println CommonUtilities.executeOnMaster("""
-			ls -l; ls -l /tmp
+			ls -l ls -l /tmp
 		""")
 _steps.println "------//4"
 		_steps.println CommonUtilities.executeOnMaster("""
 			ls -l ${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}
 		""")
 
-
+_steps.println "------//5"
+		_steps.println CommonUtilities.executeOnMaster("""
+			ls -l \n ls -l /tmp
+		""")
 		return true;
 	}
 
