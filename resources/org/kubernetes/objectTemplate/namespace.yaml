@@ -1,0 +1,6 @@
+namespace:
+    name: anand
+    labels:
+        name: anand
+    annotations:
+        env: dev
