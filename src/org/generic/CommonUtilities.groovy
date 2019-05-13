@@ -48,7 +48,7 @@ class CommonUtilities implements Serializable {
 
         Object proc = cmd.execute(null, new File(path))
         proc.consumeProcessOutput(out, err)
-        proc.waitForOrKill(timeout)
+        proc.waitForOrKill()
 
         if( out.size() > 0 ) return out
         if( err.size() > 0 ) return err
