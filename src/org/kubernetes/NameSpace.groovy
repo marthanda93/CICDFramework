@@ -19,6 +19,10 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 		_steps.println _steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)
 		_steps.println _steps.globalPipelineSetting.standardization.namespace.MStringTemplateEngine(k8Param)
 
+		_steps.println env.getClass()
+		_steps.println env.findAll { it.key =~ /^library.(.+).version$/ }
+
+
 		_steps.println CommonUtilities.executeOnMaster("ls ${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}")
 
 
