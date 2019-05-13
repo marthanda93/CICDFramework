@@ -49,6 +49,6 @@ class DefaultContext implements IContext, Serializable {
 
     @Override
     IK8NameSpaceRegistry getK8NameSpaceExecutor() {
-        return org.kubernetes.NameSpace(this._steps)
+        return new org.kubernetes.NameSpace(this._steps)
     }
 }
