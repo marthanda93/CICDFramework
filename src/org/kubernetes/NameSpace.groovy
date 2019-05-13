@@ -22,15 +22,9 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml
 		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes")
 
-_steps.println output
-_steps.println output.getClass()
-
-
 		if(CommonUtilities.stringValidation(output as String) && output.startsWith("ERROR: ")) {
-			_steps.println "-----//1"
 			_steps.error output.split('ERROR: ')[-1]
 		} else {
-			_steps.println "-----//2"
 			_steps.println output
 		}
 
@@ -41,9 +35,6 @@ _steps.println output.getClass()
 	Boolean templateProcess() {
 		_steps.println "__PASS__"
 		
-		// -> run jinja command
-		// 	-> check j2 command is there or not if not then install
-		// 	-> run j2
 		// -> shift from master to slave
 
 		// ContextRegistry.getContext().getJinjaExecutor().teamplateProcess()
