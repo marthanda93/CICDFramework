@@ -29,7 +29,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 			}
 		}
 
-		_steps.println CommonUtilities.executeOnMaster("""
+		CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml template/namespace.j2 parameter/namespace.yaml -o output/namespace.yaml
 		""", opsMasterParameterPath)
 
