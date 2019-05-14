@@ -23,11 +23,11 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 // -> pull back data from master to slave
 
 if(_steps.fileExists(opsSlaveParameterPath)) {
-	_steps.println _steps.readFile(opsSlaveParameterPath)
-
 	Object path = new File( opsMasterParameterPath )
+	
 	if(path.exists()) {
-		_steps.println "__path exists"
+		File file = new File("${opsMasterParameterPath}/namespace.yaml")
+		file.write "${_steps.readFile(opsSlaveParameterPath)}\n"
 	} else {
 		_steps.println "__path does not exists"
 	}
