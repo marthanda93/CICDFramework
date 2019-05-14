@@ -26,7 +26,7 @@ if(_steps.fileExists(opsSlaveParameterPath)) {
 	_steps.println _steps.readFile(opsSlaveParameterPath)
 
 	Object path = new File( opsMasterParameterPath )
-	if(folder.exists()) {
+	if(path.exists()) {
 		_steps.println "__path exists"
 	} else {
 		_steps.println "__path does not exists"
