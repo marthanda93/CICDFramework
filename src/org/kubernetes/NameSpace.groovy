@@ -1,5 +1,7 @@
 package org.kubernetes
 
+import java.io.File
+
 import org.generic.IK8NameSpaceRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
@@ -16,6 +18,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean create(Map k8Param) {
 		String opsSlaveParameterPath = "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml"
 		String opsMasterParameterPath = "${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes"
+
 // -> validation
 
 		if(_steps.fileExists(opsSlaveParameterPath)) {
@@ -33,8 +36,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 			/usr/bin/j2 -f yaml template/namespace.j2 parameter/namespace.yaml -o output/namespace.yaml
 		""", opsMasterParameterPath)
 
-
-		_steps.writeYaml(file:'anand.yaml', data: new File("${opsMasterParameterPath}/output/namespace.yaml").text)
+		_steps.writeYaml(file:'anand.yaml', data: new File("${opsMasterParameterPath}/output/namespace.yaml").text.trim())
 		_steps.println _steps.readYaml(file:'anand.yaml')
 
 		return true;
