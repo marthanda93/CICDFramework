@@ -5,12 +5,12 @@ metadata:
     namespace: {{ persistentVolume.namespace }}
     {% if persistentVolume.labels is defined %}
         {%- with labels=persistentVolume.labels %}
-            {%- include "teamplateChunks/labels.j2" %}
+            {%- include "chunks/labels.j2" %}
         {%- endwith %}
     {%- endif %}
     {% if persistentVolume.annotations is defined %}
         {%- with annotations=persistentVolume.annotations %}
-            {%- include "teamplateChunks/annotations.j2" %}
+            {%- include "chunks/annotations.j2" %}
         {%- endwith %}
     {%- endif %}
 spec:

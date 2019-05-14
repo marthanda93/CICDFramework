@@ -4,11 +4,11 @@ metadata:
     name: {{ namespace.name }}
     {% if namespace.labels is defined %}
         {%- with labels=namespace.labels %}
-            {%- include "teamplateChunks/labels.j2" %}
+            {%- include "chunks/labels.j2" %}
         {%- endwith %}
     {%- endif %}
     {% if namespace.annotations is defined %}
         {%- with annotations=namespace.annotations %}
-            {%- include "teamplateChunks/annotations.j2" %}
+            {%- include "chunks/annotations.j2" %}
         {%- endwith %}
     {%- endif %}
