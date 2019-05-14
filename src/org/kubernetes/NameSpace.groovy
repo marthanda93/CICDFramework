@@ -37,7 +37,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 String content = new File("${opsMasterParameterPath}/output/namespace.yaml").text
 		_steps.writeYaml(file:'anand.yaml', data:content)
-		_steps.println _steps.readYaml('anand.yaml')
+		_steps.println _steps.readYaml(file:'anand.yaml')
 
 		return true;
 	}
