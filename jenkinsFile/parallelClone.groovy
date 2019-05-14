@@ -32,20 +32,24 @@ pipeline {
                         )
                     }
                 }
-                stage('AppRepo') {
+                stage('OpsRepo') {
                     steps {
                         script {
-                            globalPipelineSetting.opsRepo.clonedPath = gitCli(globalPipelineSetting.opsRepo, 'parent')
+                            globalPipelineSetting.opsRepo.path = gitCli(globalPipelineSetting.opsRepo, 'parent')
                         }
                     }
                 }
             }
         }
-        stage('After clone') {
+        stage('Yaml Generator') {
             steps {
-                println "------"
-                println globalPipelineSetting.opsRepo
+                kubectl(
+                    'create',
+                    'nspace', 
+                    [deploymentStage:env.deploymentStage, application:'application', kubeKind:'namespace', opsRepoPath:globalPipelineSetting.opsRepo.path]
+                )
             }
         }
+
     }
 }
