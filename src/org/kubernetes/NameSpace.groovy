@@ -37,7 +37,7 @@ if(_steps.fileExists(opsSlaveParameterPath)) {
 
 
 
-		CommonUtilities.executeOnMaster("""
+		_steps.println CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml template/namespace.j2 parameter/namespace.yaml -o output/anand.yaml
 		""", opsMasterParameterPath)
 
