@@ -14,15 +14,24 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Map k8Param) {
-		String opsParameter = "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml"
+		String opsSlaveParameterPath = "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml"
+		String opsMasterParameterPath = "${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes"
 // -> validation
 // -> standardization of path
 // -> write yaml from slave to master
 // -> generate
 // -> pull back data from master to slave
 
-if(_steps.fileExists(opsParameter)) {
-	_steps.println _steps.readFile(opsParameter)
+if(_steps.fileExists(opsSlaveParameterPath)) {
+	_steps.println _steps.readFile(opsSlaveParameterPath)
+
+	Object path = new File( opsMasterParameterPath )
+	if(folder.exists()) {
+		_steps.println "__path exists"
+	} else {
+		_steps.println "__path does not exists"
+	}
+
 }
 
 // _steps.println _steps.fileExists "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
@@ -32,7 +41,7 @@ if(_steps.fileExists(opsParameter)) {
 
 		CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml -o anand.yaml
-		""","${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes")
+		""", opsMasterParameterPath)
 
 		return true;
 	}
