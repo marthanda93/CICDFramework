@@ -23,24 +23,22 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 // -> pull back data from master to slave
 
 if(_steps.fileExists(opsSlaveParameterPath)) {
-	Object path = new File( opsMasterParameterPath )
-	
+	Object path = new File( "${opsMasterParameterPath}/parameter" )
+
 	if(path.exists()) {
-		File file = new File("${opsMasterParameterPath}/namespace.yaml")
+		File file = new File("${opsMasterParameterPath}/parameter/namespace.yaml")
 		file.write "${_steps.readFile(opsSlaveParameterPath)}\n"
 	} else {
 		_steps.println "__path does not exists"
 	}
-
 }
 
-// _steps.println _steps.fileExists "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
 // _steps.println _steps.readFile "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
 
 
 
 		CommonUtilities.executeOnMaster("""
-			/usr/bin/j2 -f yaml objectTemplate/namespace.j2 objectTemplate/namespace.yaml -o anand.yaml
+			/usr/bin/j2 -f yaml template/namespace.j2 parameter/namespace.yaml -o output/anand.yaml
 		""", opsMasterParameterPath)
 
 		return true;
