@@ -20,8 +20,8 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 // -> generate
 // -> pull back data from master to slave
 
-_steps.println _steps.fileExists "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
-_steps.println _steps.readFile "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
+// _steps.println _steps.fileExists "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
+_steps.println "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
 
 
 		CommonUtilities.executeOnMaster("""
