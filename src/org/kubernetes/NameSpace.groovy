@@ -14,14 +14,16 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Map k8Param) {
+		String opsParameter = "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml"
 // -> validation
 // -> standardization of path
 // -> write yaml from slave to master
 // -> generate
 // -> pull back data from master to slave
 
-_steps.println _steps.fileExists("${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
-
+if(_steps.fileExists(opsParameter)) {
+	_steps.println _steps.readFile(opsParameter)
+}
 
 // _steps.println _steps.fileExists "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
 // _steps.println _steps.readFile "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/namespace.yaml")
