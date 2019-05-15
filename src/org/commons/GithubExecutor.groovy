@@ -62,7 +62,10 @@ _steps.checkout changelog: false, poll: false, scm: [
 	$class: 'GitSCM', 
 	branches: [[name: "*/${appParam.branch}"]], 
 	doGenerateSubmoduleConfigurations: false, 
-	extensions: [[$class: 'CloneOption', depth: 0, noTags: true, reference: '/opt/one', shallow: false]], 
+	extensions: [
+            [$class: 'RelativeTargetDirectory', relativeTargetDir: 'spring-petclinic.git'],
+            [$class: 'CloneOption', reference: "/opt/spring-petclinic.git"]
+	], 
 	submoduleCfg: [], 
 	userRemoteConfigs: [[
 		credentialsId: appParam.credentialsId, 
