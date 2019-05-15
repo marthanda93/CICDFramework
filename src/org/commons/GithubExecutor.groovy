@@ -46,18 +46,18 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
 
-    _steps.checkout([
-        $class: 'GitSCM',
-        branches: [[name: appParam.branch]],
-        doGenerateSubmoduleConfigurations: false,
-        submoduleCfg: [],
-        userRemoteConfigs: [
-            [credentialsId: appParam.credentialsId, url: appParam.url]
-        ]
-    ])
-
-
-
+_steps.checkout([
+	$class: 'GitSCM', 
+	branches: [[name: "*/${appParam.branch}"]], 
+	doGenerateSubmoduleConfigurations: false, 
+	extensions: [], 
+	submoduleCfg: [], 
+	userRemoteConfigs: [[
+		credentialsId: appParam.credentialsId, 
+		refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
+		url: appParam.url
+	]]
+])
 
 
 
