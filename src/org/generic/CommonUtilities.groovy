@@ -12,7 +12,7 @@ class CommonUtilities implements Serializable {
 		}
 	}
 
-    static boolean StringBufferValidation(Object word) {
+    static boolean stringBufferValidation(Object word) {
         if (word != null && word != "" && word instanceof StringBuffer && word.size() > 0) {
             return true
         } else {
