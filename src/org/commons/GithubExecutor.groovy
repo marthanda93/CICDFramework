@@ -49,7 +49,9 @@ _steps.checkout([
 	$class: 'GitSCM', 
 	branches: [[name: "*/${appParam.branch}"]], 
 	doGenerateSubmoduleConfigurations: false, 
-	extensions: [], 
+	extensions: [
+[$class: 'CloneOption', depth: 0, noTags: true, shallow: false]
+	], 
 	submoduleCfg: [], 
 	userRemoteConfigs: [[
 		credentialsId: appParam.credentialsId, 
