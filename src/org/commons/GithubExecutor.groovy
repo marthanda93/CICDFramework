@@ -63,7 +63,7 @@ _steps.checkout changelog: false, poll: false, scm: [
 	branches: [[name: "*/${appParam.branch}"]], 
 	doGenerateSubmoduleConfigurations: false, 
 	extensions: [
-		[$class: 'CloneOption', depth: 0, noTags: true, reference: '/opt/spring-petclinic.git', shallow: false]
+		[$class: 'CloneOption', depth: 0, noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
 	], 
 	submoduleCfg: [], 
 	userRemoteConfigs: [[
