@@ -49,6 +49,10 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
         $class: 'GitSCM',
         branches: [[name: appParam.branch]],
         doGenerateSubmoduleConfigurations: false,
+        extensions: [
+            [$class: 'RelativeTargetDirectory', relativeTargetDir: appParam.reponame],
+            [$class: 'CloneOption', reference: "/opt/${appParam.reponame}"]
+        ],
         submoduleCfg: [],
         userRemoteConfigs: [
             [credentialsId: appParam.credentialsId, url: appParam.url]
