@@ -13,7 +13,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Object cloneExecutor(Map appParam, String cloneType = 'plain') {
-		_steps.cleanWs()
+		// _steps.cleanWs()
 
 		switch (cloneType.toLowerCase()) {
 			case 'plain':
@@ -44,29 +44,16 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		// if(CommonUtilities.gitValidation(appParam)) {
-    _steps.checkout([
-        $class: 'GitSCM',
-        branches: [[name: appParam.branch]],
-        doGenerateSubmoduleConfigurations: false,
-        extensions: [
-            [$class: 'RelativeTargetDirectory', relativeTargetDir: appParam.reponame],
-            [$class: 'CloneOption', reference: "/opt/${appParam.reponame}"]
-        ],
-        submoduleCfg: [],
-        userRemoteConfigs: [
-            [credentialsId: appParam.credentialsId, url: appParam.url]
-        ]
-    ])
-			// _steps.git(
-			// 	changelog: false,
-			// 	url: appParam.url, 
-			// 	branch: appParam.branch, 
-			// 	credentialsId: appParam.credentialsId
-			// )
-		// } else {
-		// 	_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
-		// }
+		if(CommonUtilities.gitValidation(appParam)) {
+			_steps.git(
+				changelog: false,
+				url: appParam.url, 
+				branch: appParam.branch, 
+				credentialsId: appParam.credentialsId
+			)
+		} else {
+			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
+		}
 	}
 
 	@Override
