@@ -15,7 +15,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 	Boolean create(Map k8Param) {
 		String k8Object = 'namespace.yaml'
 
-		if(CommonUtilities.syncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
+		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
 			_steps.println _steps.readYaml(file: k8Object)
 		}
 
