@@ -50,7 +50,8 @@ _steps.checkout([
 	branches: [[name: "*/${appParam.branch}"]], 
 	doGenerateSubmoduleConfigurations: false, 
 	extensions: [
-[$class: 'CloneOption', depth: 0, noTags: true, shallow: false]
+[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
+[$class: 'CloneOption', depth: 0, noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
 	], 
 	submoduleCfg: [], 
 	userRemoteConfigs: [[
