@@ -45,34 +45,33 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
-_steps.checkout([
-	$class: 'GitSCM', 
-	branches: [[name: "*/${appParam.branch}"]], 
-	doGenerateSubmoduleConfigurations: false, 
-	extensions: [], 
-	submoduleCfg: [], 
-	userRemoteConfigs: [[
-		credentialsId: appParam.credentialsId, 
-		refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
-		url: appParam.url
-	]]
-])
-
-// _steps.checkout changelog: false, poll: false, scm: [
+// _steps.checkout([
 // 	$class: 'GitSCM', 
 // 	branches: [[name: "*/${appParam.branch}"]], 
 // 	doGenerateSubmoduleConfigurations: false, 
-// 	extensions: [
-//             [$class: 'RelativeTargetDirectory', relativeTargetDir: 'spring-petclinic.git'],
-//             [$class: 'CloneOption', reference: "/opt/spring-petclinic.git"]
-// 	], 
+// 	extensions: [], 
 // 	submoduleCfg: [], 
 // 	userRemoteConfigs: [[
 // 		credentialsId: appParam.credentialsId, 
 // 		refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
 // 		url: appParam.url
 // 	]]
-// ]
+// ])
+
+_steps.checkout changelog: false, poll: false, scm: [
+	$class: 'GitSCM', 
+	branches: [[name: "*/${appParam.branch}"]], 
+	doGenerateSubmoduleConfigurations: false, 
+	extensions: [
+		[$class: 'CloneOption', depth: 0, noTags: true, reference: '/opt/spring-petclinic.git', shallow: false]
+	], 
+	submoduleCfg: [], 
+	userRemoteConfigs: [[
+		credentialsId: appParam.credentialsId, 
+		refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
+		url: appParam.url
+	]]
+]
 
 // _steps.git(
 // 	changelog: false,
