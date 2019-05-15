@@ -45,12 +45,21 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
-			_steps.git(
-				changelog: false,
-				url: appParam.url, 
-				branch: appParam.branch, 
-				credentialsId: appParam.credentialsId
-			)
+    _steps.checkout([
+        $class: 'GitSCM',
+        branches: [[name: appParam.branch]],
+        doGenerateSubmoduleConfigurations: false,
+        submoduleCfg: [],
+        userRemoteConfigs: [
+            [credentialsId: appParam.credentialsId, url: appParam.url]
+        ]
+    ])
+			// _steps.git(
+			// 	changelog: false,
+			// 	url: appParam.url, 
+			// 	branch: appParam.branch, 
+			// 	credentialsId: appParam.credentialsId
+			// )
 		} else {
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
