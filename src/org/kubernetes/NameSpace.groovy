@@ -13,16 +13,13 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Map k8Param) {
-		CommonUtilities.syncFileBetweenMasterSlavenGenerate(_steps, k8Param)
+		String k8Object = 'namespace.yaml'
+
+		if(CommonUtilities.syncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
+			_steps.println _steps.readYaml(file: k8Object)
+		}
 
 		return true;
-	}
-
-	@Override
-	Boolean templateProcess() {
-		_steps.println "__PASS__"
-		
-		// ContextRegistry.getContext().getJinjaExecutor().teamplateProcess()
 	}
 
 	@Override
