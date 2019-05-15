@@ -13,7 +13,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Object cloneExecutor(Map appParam, String cloneType = 'plain') {
-		_steps.cleanWs()
+		// _steps.cleanWs()
 
 		switch (cloneType.toLowerCase()) {
 			case 'plain':
