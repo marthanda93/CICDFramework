@@ -19,7 +19,7 @@ class CommonUtilities {
 		}
 
 		org.generic.CommonUtilities.executeOnMaster("""
-			/usr/bin/j2 -f yaml template/${k8Object.split('.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
+			/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
 		""", opsMasterParameterPath)
 
 		try {
@@ -28,10 +28,10 @@ class CommonUtilities {
 			if(data.size() > 25) {
 				_steps.writeYaml(file:k8Object, data: data.trim())
 			} else {
-				_steps.error "${k8Object.split('.')[0].toUpperCase()}: content size is very less"
+				_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: content size is very less"
 			}
 		} catch(e) {
-			_steps.error "${k8Object.split('.')[0].toUpperCase()}: ${e.getMessage()}"
+			_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: ${e.getMessage()}"
 		}
 
 		return true
