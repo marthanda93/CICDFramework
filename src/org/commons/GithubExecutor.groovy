@@ -45,9 +45,9 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
-			if(_steps.fileExists("/opt/${appParam.url.split('/')[-1]}")) {
-				_steps.println "----------//Not exists"
-			}
+			// if(_steps.fileExists("/opt/${appParam.url.split('/')[-1]}")) {
+			// 	_steps.println "----------//Not exists"
+			// }
 
 
 			_steps.checkout changelog: false, poll: false, scm: [
