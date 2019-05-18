@@ -50,7 +50,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				branches: [[name: "*/${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
 				extensions: [
-					[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
+					[$class: 'CloneOption', noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: true]
 				],
 				submoduleCfg: [], 
 				userRemoteConfigs: [[
@@ -59,6 +59,20 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 					url: appParam.url
 				]]
 			]
+
+// checkout changelog: false, poll: false, scm: [
+// 	$class: 'GitSCM', 
+// 	branches: [[name: '*/master']], 
+// 	doGenerateSubmoduleConfigurations: false, 
+// 	extensions: [
+// 		[$class: 'UserIdentity', email: 'email@example.com', name: 'username'], 
+// 		[$class: 'CloneOption', noTags: true, reference: '/opt/app', shallow: true]
+// 	], 
+// 	submoduleCfg: [], 
+// 	userRemoteConfigs: [
+// 		[credentialsId: 'GithubSSh', url: 'https://github.com/spring-projects/spring-petclinic.git']
+// 	]
+// ]
 		} else {
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
