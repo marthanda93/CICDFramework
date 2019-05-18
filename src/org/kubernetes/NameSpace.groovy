@@ -22,7 +22,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 			def data = _steps.readYaml(file: k8Object)
 			data = new Yaml().load(data)
 
-_steps.println  readJSON text:groovy.json.JsonOutput.toJson(data)
+_steps.println  _steps.readJSON(text:groovy.json.JsonOutput.toJson(data))
 		}
 
 		return true;
