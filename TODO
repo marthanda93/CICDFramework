@@ -5,3 +5,21 @@ will go with apis
 	-> Kubernetes
 	-> groovy jinja templating
 
+
+
+
+
+// -> covert yaml to json | to process more
+// -> start executing through API
+// -> monitor for healthCheck
+
+// import hudson.model.*
+// readJSON text:data
+
+// import static groovy.json.JsonOutput.*
+
+// data.toLowerCase().replaceAll("[.|,|_| ]", '-')
+
+// import groovy.json.*
+// JsonOutput.toJson(data)
+// data = readJSON text:data
