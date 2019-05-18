@@ -6,20 +6,8 @@ will go with apis
 	-> groovy jinja templating
 
 
-
-
-
-// -> covert yaml to json | to process more
-// -> start executing through API
-// -> monitor for healthCheck
-
-// import hudson.model.*
-// readJSON text:data
-
-// import static groovy.json.JsonOutput.*
-
 // data.toLowerCase().replaceAll("[.|,|_| ]", '-')
+-------------------
+will check environment or global variable name: drivedFromTemplate: true/false
 
-// import groovy.json.*
-// JsonOutput.toJson(data)
-// data = readJSON text:data
+so either drive name from globalvariable file
