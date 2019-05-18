@@ -5,5 +5,5 @@ import groovy.transform.Field
 ]
 
 @groovy.transform.Field appRepo = [
-	temp: ''
+	url: ''
 ]
