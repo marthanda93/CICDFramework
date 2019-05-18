@@ -20,6 +20,9 @@ pipeline {
                     branch: appBranch,
                     credentialsId: appCred
                 )
+                script {
+                    globalPipelineSettingTemp.appRepo.url = appRepo
+                }
             }
         }
         stage('build') {
