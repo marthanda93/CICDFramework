@@ -17,15 +17,15 @@ class DefaultContext implements IContext, Serializable {
         this._steps = steps
     }
 
-    @Override
-    IHttpRegistry getHttpExecutor() {
-        return new org.commons.HttpExecutor(this._steps)
-    }
+    // @Override
+    // IHttpRegistry getHttpExecutor() {
+    //     return new org.commons.HttpExecutor(this._steps)
+    // }
 
-    @Override
-    IShellRegistry getShellExecutor() {
-        return new org.commons.ShellExecutor(this._steps)
-    }
+    // @Override
+    // IShellRegistry getShellExecutor() {
+    //     return new org.commons.ShellExecutor(this._steps)
+    // }
 
     @Override
     IGithubRegistry getGithubExecutor() {
