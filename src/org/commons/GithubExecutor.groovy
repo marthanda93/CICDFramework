@@ -61,19 +61,6 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				]]
 			]
 
-// checkout changelog: false, poll: false, scm: [
-// 	$class: 'GitSCM', 
-// 	branches: [[name: '*/master']], 
-// 	doGenerateSubmoduleConfigurations: false, 
-// 	extensions: [
-// 		[$class: 'UserIdentity', email: 'email@example.com', name: 'username'], 
-// 		[$class: 'CloneOption', noTags: true, reference: '/opt/app', shallow: true]
-// 	], 
-// 	submoduleCfg: [], 
-// 	userRemoteConfigs: [
-// 		[credentialsId: 'GithubSSh', url: 'https://github.com/spring-projects/spring-petclinic.git']
-// 	]
-// ]
 		} else {
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
