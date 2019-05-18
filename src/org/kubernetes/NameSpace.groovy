@@ -43,13 +43,13 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 // -> start executing through API
 // -> monitor for healthCheck
 
-import hudson.model.*
-readJSON text:data
+// import hudson.model.*
+// readJSON text:data
 
-import static groovy.json.JsonOutput.*
+// import static groovy.json.JsonOutput.*
 
-data.toLowerCase().replaceAll("[.|,|_| ]", '-')
+// data.toLowerCase().replaceAll("[.|,|_| ]", '-')
 
-import groovy.json.*
-JsonOutput.toJson(data)
-data = readJSON text:data
+// import groovy.json.*
+// JsonOutput.toJson(data)
+// data = readJSON text:data
