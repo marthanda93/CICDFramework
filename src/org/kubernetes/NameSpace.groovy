@@ -1,8 +1,5 @@
 package org.kubernetes
 
-@Grab('org.yaml:snakeyaml:1.17')
-import org.yaml.snakeyaml.Yaml
-
 import org.generic.IK8NameSpaceRegistry
 import org.generic.IMissingObject
 import org.stepRegistry.ContextRegistry
@@ -19,10 +16,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 		String k8Object = 'namespace.yaml'
 
 		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
-			def data = _steps.readYaml(file: k8Object)
-			data = new Yaml().load(data)
-
-_steps.println  _steps.readJSON(text:groovy.json.JsonOutput.toJson(data))
+			_steps.println CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
 		}
 
 		return true;

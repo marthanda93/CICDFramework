@@ -1,5 +1,7 @@
 package org.kubernetes
 
+@Grab('org.yaml:snakeyaml:1.17')
+import org.yaml.snakeyaml.Yaml
 import java.io.File
 
 class CommonUtilities {
@@ -41,5 +43,9 @@ class CommonUtilities {
     	// alternante of opsSyncFileBetweenMasterSlavenGenerate
     	// will create parameterfile from parameter
     	_steps.println "__PASS__"
+    }
+
+    static boolean yamltoJson(Object _steps, Object data) {
+		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
     }
 }
