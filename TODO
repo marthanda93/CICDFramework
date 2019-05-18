@@ -11,3 +11,5 @@ will go with apis
 will check environment or global variable name: drivedFromTemplate: true/false
 
 so either drive name from globalvariable file
+--------------------
+maven-> install, test

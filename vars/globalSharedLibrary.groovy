@@ -11,3 +11,7 @@ import java.text.SimpleDateFormat
 	currentTime: "${new SimpleDateFormat("HH.mm.ss").format(new Date())}",
 	currentHour: "${new SimpleDateFormat("HH").format(new Date())}"
 ]
+
+@groovy.transform.Field synonyms = [
+	mvn: ["mvn", "maven", "mavens", "java"]
+]
