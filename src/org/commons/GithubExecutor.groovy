@@ -45,19 +45,14 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
-_steps.println "HI GITHUB"
 			_steps.checkout changelog: false, poll: false, scm: [
 				$class: 'GitSCM', 
 				branches: [[name: "*/${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
-				extensions: [
-					[$class: 'RelativeTargetDirectory', relativeTargetDir: "/opt/${appParam.url.split('/')[-1]}"],
-					[$class: 'CloneOption', depth: 0, noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
-				],
+				extensions: [],
 				submoduleCfg: [], 
 				userRemoteConfigs: [[
 					credentialsId: appParam.credentialsId, 
-					refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
 					url: appParam.url
 				]]
 			]
