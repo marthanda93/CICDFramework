@@ -50,7 +50,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				branches: [[name: "*/${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
 				extensions: [
-					[$class: 'CloneOption', noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
+					[$class: 'CloneOption', noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: true]
 				],
 				submoduleCfg: [], 
 				userRemoteConfigs: [[
