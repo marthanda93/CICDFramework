@@ -37,3 +37,19 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
         _steps.error "METHODMISSING NameSpace: Caught missing method: $name"
     }
 }
+
+
+// -> covert yaml to json | to process more
+// -> start executing through API
+// -> monitor for healthCheck
+
+import hudson.model.*
+readJSON text:data
+
+import static groovy.json.JsonOutput.*
+
+data.toLowerCase().replaceAll("[.|,|_| ]", '-')
+
+import groovy.json.*
+JsonOutput.toJson(data)
+data = readJSON text:data

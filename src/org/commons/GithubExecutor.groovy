@@ -45,12 +45,17 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		if(CommonUtilities.gitValidation(appParam)) {
+			if(!_steps.fileExists("/opt/${appParam.url.split('/')[-1]}")) {
+				_steps.println "----------//Not exists"
+			}
+
+
 			_steps.checkout changelog: false, poll: false, scm: [
 				$class: 'GitSCM', 
 				branches: [[name: "*/${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
 				extensions: [
-					[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
+					[$class: 'RelativeTargetDirectory', relativeTargetDir: "/opt/${appParam.url.split('/')[-1]}"],
 					[$class: 'CloneOption', depth: 0, noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
 				], 
 				submoduleCfg: [], 
