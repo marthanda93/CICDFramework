@@ -32,23 +32,23 @@ class DefaultContext implements IContext, Serializable {
         return new org.commons.GithubExecutor(this._steps)
     }
 
-    @Override
-    IDockerRegistry getDockerExecutor() {
-        return new org.commons.DockerExecutor(this._steps)
-    }
+    // @Override
+    // IDockerRegistry getDockerExecutor() {
+    //     return new org.commons.DockerExecutor(this._steps)
+    // }
 
-    @Override
-    IMavenRegistry getMavenExecutor() {
-        return new org.codebaseBuild.MavenBuild(this._steps)
-    }
+    // @Override
+    // IMavenRegistry getMavenExecutor() {
+    //     return new org.codebaseBuild.MavenBuild(this._steps)
+    // }
 
-    @Override
-    IJinjaRegistry getJinjaExecutor() {
-        return new org.commons.JinjaExecutor(this._steps)
-    }
+    // @Override
+    // IJinjaRegistry getJinjaExecutor() {
+    //     return new org.commons.JinjaExecutor(this._steps)
+    // }
 
-    @Override
-    IK8NameSpaceRegistry getK8NameSpaceExecutor() {
-        return new org.kubernetes.NameSpace(this._steps)
-    }
+    // @Override
+    // IK8NameSpaceRegistry getK8NameSpaceExecutor() {
+    //     return new org.kubernetes.NameSpace(this._steps)
+    // }
 }
