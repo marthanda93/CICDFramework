@@ -16,7 +16,9 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 		String k8Object = 'namespace.yaml'
 
 		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
-			_steps.println _steps.readYaml(file: k8Object)
+			def data = _steps.readYaml(file: k8Object)
+_steps.println groovy.json.JsonOutput.toJson(data)
+// data = readJSON text:data
 		}
 
 		return true;

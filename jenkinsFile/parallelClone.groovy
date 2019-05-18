@@ -1,6 +1,7 @@
 @Library('paac@may19') _
 
-String appRepo = "https://github.com/spring-projects/spring-petclinic.git"
+// String appRepo = "https://github.com/spring-projects/spring-petclinic.git"
+String appRepo = "https://github.com/django/django.git"
 String appBranch = "master"
 String appCred = ""
 
