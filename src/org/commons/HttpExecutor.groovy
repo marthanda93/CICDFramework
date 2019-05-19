@@ -50,7 +50,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                     _steps.println "Status: ${response.status}"
 
-                    _steps.println "Dogs: ${json.message.keySet()}"
+                    _steps.println "Dogs: ${json.keySet()}"
 
 // _steps.println "------//${response}"
 
