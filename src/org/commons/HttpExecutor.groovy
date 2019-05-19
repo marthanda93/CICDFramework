@@ -42,6 +42,10 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             }
         }
 
+//{"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"namespaces \"anand\" already exists","reason":"AlreadyExists","details":{"name":"anand","kind":"namespaces"},"code":409}
+
+_steps.println "------//${response}"
+
         response = _steps.readJSON text: response
 
         if(response.status.phase == "Active") {
