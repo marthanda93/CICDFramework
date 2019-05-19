@@ -3,6 +3,7 @@ import groovy.transform.Field
 
 @Field dockerRegistry = "https://registry.hub.docker.com"
 @Field jinjaFormat = 'yaml'
+@Field gitReferencePath = '/opt'
 
 @groovy.transform.Field opsRepo = [
     url: "git@github.com:marthanda93/ops.git",
