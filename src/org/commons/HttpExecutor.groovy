@@ -29,15 +29,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 parameter.customHeaders = parameter.customHeaders.cHeader()
 
-
-
-def b = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
-_steps.println b
-def a = b.toString()
-_steps.println a
-_steps.println a.getClass()
-
-
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
@@ -51,8 +42,10 @@ _steps.println a.getClass()
             }
         }
 
-        response = _steps.readJSON text: response.content
+_steps.println response
 
+        response = _steps.readJSON text: response.content
+_steps.println response
         if(response.data.size() > 0) {
             return response
         } else {
