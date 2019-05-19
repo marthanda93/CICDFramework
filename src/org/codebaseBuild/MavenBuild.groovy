@@ -40,9 +40,7 @@ class MavenBuild implements IMavenRegistry, IMissingObject, Serializable {
 		} else {
 			if(CommonUtilities.stringValidation(profile)) {
 				_steps.println('__PASS__')
-			} else {
-				_steps.println _steps.globalPipelineSettingTemp.appRepo
-				
+			} else {				
 				_steps.dir(_steps.globalPipelineSettingTemp.appRepo.url.split('/')[-1] as String) {
 					return ContextRegistry.getContext().getShellExecutor().bashShell(_steps.globalPipelineSetting.maven.command)
 				}

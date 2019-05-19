@@ -22,3 +22,5 @@ extensions: [
 ],
 
 git fetch --all --prune
+
+yum install perf
