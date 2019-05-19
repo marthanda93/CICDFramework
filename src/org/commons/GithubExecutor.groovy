@@ -53,6 +53,13 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 			} else {
 				_steps.println "ERROR: =============//ELSE"
 			}
+
+
+			if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("[ \"\$(ls -A /media)\" ] && echo 'true' || echo 'false'") == false) {
+				_steps.println "ERROR: empty path found! media"
+			} else {
+				_steps.println "ERROR: =============//ELSE media"
+			}
 		} else {
 			_steps.println "WARNING: Reference is not available!"
 		}
