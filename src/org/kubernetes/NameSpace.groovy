@@ -14,9 +14,10 @@ class NameSpace implements IK8NameSpaceRegistry, Serializable {
 	@Override
 	Boolean create(Map k8Param) {
 		String k8Object = 'namespace.yaml'
+		List response
 
 		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
-			List response = ContextRegistry.getContext().getHttpExecutor().httpPost(
+			response = ContextRegistry.getContext().getHttpExecutor().httpPost(
 				customHeaders: [Authorization:"Bearer Gtoken"],
 				url: "https://104.197.4.139/api/v1/namespaces",
 				CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
