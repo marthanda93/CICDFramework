@@ -39,8 +39,9 @@ try {
                     ignoreSslErrors: true,
                     url: payload.url
                 )
-} catch {
+} catch(e) {
 _steps.println response
+_steps.println e
 }
 
             }
