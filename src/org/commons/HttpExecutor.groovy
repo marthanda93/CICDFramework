@@ -39,7 +39,7 @@ _steps.println "------------"
 
 def b = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
 _steps.println b
-_steps.println "${b}"
+_steps.println """${b}"""
 _steps.println b.getClass()
 
 
@@ -49,7 +49,7 @@ _steps.println b.getClass()
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
                     customHeaders: parameter.customHeaders,
-                    requestBody: "${CommonUtilities.yamltoJson(_steps, payload)}",
+                    requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)),
                     ignoreSslErrors: true,
                     url: parameter.url
                 )
