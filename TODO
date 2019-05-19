@@ -13,3 +13,10 @@ will check environment or global variable name: drivedFromTemplate: true/false
 so either drive name from globalvariable file
 --------------------
 maven-> install, test
+
+
+//relativeTargetDir -> will create path in workspace and clone
+extensions: [
+	[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
+	[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
+],
