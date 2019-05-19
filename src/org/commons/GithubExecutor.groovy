@@ -15,6 +15,8 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Object cloneExecutor(Map appParam, String cloneType = 'plain') {
+		_steps.cleanWs()
+
 		switch (cloneType.toLowerCase()) {
 			case 'plain':
 				return (_steps.env.ghprbSourceBranch && _steps.env.ghprbTargetBranch) ? extendedClone(appParam) : plainClone(appParam)
@@ -34,7 +36,10 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	String cloneWithDirectory(Map appParam) {
 		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
-		plainClone(appParam)
+
+		_steps.dir(path) {
+			plainClone(appParam)
+		}
 
 		return path
 	}
@@ -53,38 +58,20 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 		}
 
 		if(CommonUtilities.gitValidation(appParam)) {
-			if(CommonUtilities.stringValidation(path)) {
-				_steps.checkout changelog: false, poll: false, scm: [
-					$class: 'GitSCM', 
-					branches: [[name: "*/${appParam.branch}"]], 
-					doGenerateSubmoduleConfigurations: false, 
-					extensions: [
-						[$class: 'RelativeTargetDirectory', relativeTargetDir: "${path}"],
-						[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
-					],
-					submoduleCfg: [], 
-					userRemoteConfigs: [[
-						credentialsId: appParam.credentialsId, 
-						refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
-						url: appParam.url
-					]]
-				]
-			} else {
-				_steps.checkout changelog: false, poll: false, scm: [
-					$class: 'GitSCM', 
-					branches: [[name: "*/${appParam.branch}"]], 
-					doGenerateSubmoduleConfigurations: false, 
-					extensions: [
-						[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
-					],
-					submoduleCfg: [], 
-					userRemoteConfigs: [[
-						credentialsId: appParam.credentialsId, 
-						refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
-						url: appParam.url
-					]]
-				]
-			}
+			_steps.checkout changelog: false, poll: false, scm: [
+				$class: 'GitSCM', 
+				branches: [[name: "*/${appParam.branch}"]], 
+				doGenerateSubmoduleConfigurations: false, 
+				extensions: [
+					[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
+				],
+				submoduleCfg: [], 
+				userRemoteConfigs: [[
+					credentialsId: appParam.credentialsId, 
+					refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
+					url: appParam.url
+				]]
+			]
 		} else {
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
