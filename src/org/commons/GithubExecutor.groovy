@@ -50,6 +50,8 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 			_steps.println "INFO: Reference is available!"
 			if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("[ \"\$(ls -A /tmp)\" ] && echo 'true' || echo 'false'") == true) {
 				_steps.println "ERROR: empty path found!"
+			} else {
+				_steps.println "ERROR: =============//ELSE"
 			}
 		} else {
 			_steps.println "WARNING: Reference is not available!"
