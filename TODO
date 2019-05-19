@@ -21,6 +21,11 @@ extensions: [
 	[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
 ],
 
+git clone --mirror https://github.com/spring-projects/spring-petclinic.git
 git fetch --all --prune
 
 yum install perf
+
+export JAVA_OPTS="-server -Xms2048M -Xmx2048M -XX:MaxPermSize=128M"
+-Xmx6064M
+$JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+UseLargePages -XX:+UseParNewGC -XX:NewSize=512m
