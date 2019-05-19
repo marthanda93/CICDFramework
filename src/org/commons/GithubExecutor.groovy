@@ -4,6 +4,8 @@ import org.generic.IGithubRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
 
+import org.stepRegistry.ContextRegistry
+
 class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	private _steps
 
@@ -44,7 +46,10 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		_steps.println ContextRegistry.getContext().getShellExecutor().bashShell('[ -d "/path/to/dir" ] && true || false')
+		_steps.println ContextRegistry.getContext().getShellExecutor().bashShell('[ -d "/opt" ] && true || false')
+		def a = ContextRegistry.getContext().getShellExecutor().bashShell('[ -d "/path" ] && true || false')
+		_steps.println a
+		_steps.println a.getClass()
 
 
 		if(CommonUtilities.gitValidation(appParam)) {
