@@ -29,7 +29,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 payload.customHeaders = payload.customHeaders.cHeader()
 
- 
+// httpRequest 
 // customHeaders: [
 //     [maskValue: true, name: 'Authorization', value: 'Bearer ']
 // ], 
@@ -37,7 +37,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // responseHandle: 'NONE', 
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
-// requestBody: "${payload.payload}",
 
 
 
@@ -47,7 +46,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
                     customHeaders: payload.customHeaders,
-                    requestBody: '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"anand","labels":{"environment":"dev","app":"name"}}}', 
+                    requestBody: "${payload.payload}",
                     ignoreSslErrors: true,
                     url: payload.url
                 )
