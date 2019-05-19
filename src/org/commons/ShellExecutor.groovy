@@ -29,6 +29,15 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	}
 
 	@Override
+	String bashShellStatus(String command) {
+		try {
+			return _steps.sh(script: "set +x; ${command}; set -x", returnStatus: true)
+		} catch(e) {
+			_steps.error "ERROR:bashShellOutput: Failed with \n${e.getMessage()}"
+		}
+	}
+
+	@Override
 	String batchScript(String command) {
 		try {
 			return _steps.bat(script: "${command}", returnStdout: true)
