@@ -36,8 +36,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	String cloneWithDirectory(Map appParam) {
 		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
-
-			plainClone(appParam)
+		plainClone(appParam)
 
 		return path
 	}
