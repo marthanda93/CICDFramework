@@ -33,7 +33,9 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
 def b = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
 _steps.println b
-_steps.println b.toString()
+def a = b.toString()
+_steps.println a
+_steps.println a.getClass()
 
 
                 response = _steps.httpRequest(
@@ -42,7 +44,7 @@ _steps.println b.toString()
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
                     customHeaders: parameter.customHeaders,
-                    requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)),
+                    requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)).toString(),
                     ignoreSslErrors: true,
                     url: parameter.url
                 )
