@@ -33,7 +33,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                         acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                         contentType: _steps.globalPipelineSetting.httpVars.contentType,
                         httpMode: 'POST',
-                        consoleLogResponseBody: true,
+                        consoleLogResponseBody: false,
                         customHeaders: parameter.customHeaders,
                         requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)).toString(),
                         ignoreSslErrors: true,
