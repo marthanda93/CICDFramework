@@ -38,7 +38,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
 
-def a = """${payload}"""
+def a = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
 _steps.println a
 _steps.println a.getClass()
 
