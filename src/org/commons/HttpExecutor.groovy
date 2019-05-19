@@ -47,7 +47,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 _steps.println "------//${response}"
 
         response = _steps.readJSON text: response
-
+_steps.println "------//${response}"
         if(response.status.phase == "Active") {
             return response
         } else {
