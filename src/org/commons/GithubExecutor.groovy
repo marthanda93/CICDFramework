@@ -46,7 +46,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")) {
+		if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}s ]; then echo 'true'; else echo 'false'; fi")) {
 			_steps.println "INFO: Reference is available!"
 			if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("[ \"\$(ls -A /tmp)\" ] && echo 'true' || echo 'false'") == 'false') {
 				_steps.println "ERROR: empty path found!"
