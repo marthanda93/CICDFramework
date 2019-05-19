@@ -29,21 +29,28 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 payload.customHeaders = payload.customHeaders.cHeader()
 
-try {
+ 
+// customHeaders: [
+//     [maskValue: true, name: 'Authorization', value: 'Bearer ']
+// ], 
+// requestBody: '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"anand","labels":{"environment":"dev","app":"name"}}}', 
+// responseHandle: 'NONE', 
+// url: 'https://104.197.4.139/api/v1/namespaces', 
+// validResponseCodes: '100:500'
+// requestBody: "${payload.payload}",
+
+
+
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
                     httpMode: 'POST',
+                    consoleLogResponseBody: true,
                     customHeaders: payload.customHeaders,
-                    requestBody: """${payload.payload}""",
+                    requestBody: '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"anand","labels":{"environment":"dev","app":"name"}}}', 
                     ignoreSslErrors: true,
                     url: payload.url
                 )
-} catch(e) {
-_steps.println response
-_steps.println e
-}
-
             }
         }
 
