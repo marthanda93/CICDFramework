@@ -35,7 +35,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                     httpMode: 'POST',
                     consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
                     customHeaders: payload.customHeaders,
-                    requestBody: payload.payload,
+                    requestBody: """${payload.payload}""",
+                    ignoreSslErrors: true,
                     url: payload.url
                 )
             }
