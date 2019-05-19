@@ -4,6 +4,8 @@ import org.generic.IHttpRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
 
+import groovy.json.JsonSlurper
+
 class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
 
@@ -44,27 +46,21 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
 //{"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"namespaces \"anand\" already exists","reason":"AlreadyExists","details":{"name":"anand","kind":"namespaces"},"code":409}
 
-_steps.println "------//${response}"
+                    def json = new JsonSlurper().parseText(response.content)
 
-        response = _steps.readJSON text: response
-_steps.println "------//${response}"
-        if(response.status.phase == "Active") {
-            return response
-        } else {
-            return false
-        }
+                    _steps.println "Status: ${response.status}"
 
+                    _steps.println "Dogs: ${json.message.keySet()}"
 
-        if(CommonUtilities.mapValidation(payload)) {
-            return _steps.httpRequest(
-                acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
-                contentType: _steps.globalPipelineSetting.httpVars.contentType,
-                httpMode: httpMethod,
-                consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
-                customHeaders: payload.customHeaders,
-                url: payload.url
-            )
-        }
+// _steps.println "------//${response}"
+
+//         response = _steps.readJSON text: response
+// _steps.println "------//${response}"
+//         if(response.status.phase == "Active") {
+//             return response
+//         } else {
+//             return false
+//         }
     }
 
     Object httpDsl(String httpMethod, Map payload) {
