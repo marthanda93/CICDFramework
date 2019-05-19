@@ -4,8 +4,6 @@ import org.generic.IHttpRegistry
 import org.generic.IMissingObject
 import org.generic.CommonUtilities
 
-import groovy.json.JsonSlurper
-
 class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     private _steps
 
@@ -43,14 +41,16 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                         url: parameter.url
                     )
                 } catch(e) {
-                    _steps.println "ERROR: ${response} \n ${e.getMessage()}"
+                    if('409' in e.getMessage().toString()) {
+                        _steps.println "WARNING: ${payload.kind.toUpperCase()} already exists"
+                    } else {
+                        _steps.error "${payload.kind.toUpperCase()}: ${response} \n ${e.getMessage()}"
+                    }
                 }
             }
         }
 
-//{"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"namespaces \"anand\" already exists","reason":"AlreadyExists","details":{"name":"anand","kind":"namespaces"},"code":409}
-
-                    def json = new JsonSlurper().parseText(response.content)
+                    def json = new groovy.json.JsonSlurper().parseText(response.content)
 
                     _steps.println "Status: ${response.status}"
 
