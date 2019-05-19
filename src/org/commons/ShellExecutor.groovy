@@ -33,7 +33,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 		try {
 			return _steps.sh(script: "set +x; ${command}; set -x", returnStatus: true)
 		} catch(e) {
-			_steps.error "ERROR:bashShellStatus: Failed with \n${e.getMessage()}"
+			_steps.error "ERROR:bashShellStatus--------------: Failed with \n${e.getMessage()}"
 		}
 	}
 
