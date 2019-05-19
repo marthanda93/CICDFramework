@@ -27,7 +27,7 @@ class NameSpace implements IK8NameSpaceRegistry, Serializable {
 		if(response[0] == true && response[1].status.phase == "Active") {
 			_steps.println "INFO: Successfully NameSpace created!"
 		} else {
-			_steps.println response[1]
+			_steps.println "ANALYSIS OUTPUT: ${response[1]}"
 		}
 
 		return true;
