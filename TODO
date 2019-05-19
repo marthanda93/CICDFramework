@@ -29,3 +29,11 @@ yum install perf
 export JAVA_OPTS="-server -Xms2048M -Xmx2048M -XX:MaxPermSize=128M"
 -Xmx6064M
 $JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+UseLargePages -XX:+UseParNewGC -XX:NewSize=512m
+
+
+
+
+
+
+
+under workspace for every activity will create seprate folder

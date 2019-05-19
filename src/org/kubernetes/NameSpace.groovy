@@ -16,8 +16,14 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 		String k8Object = 'namespace.yaml'
 
 		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
-			_steps.println CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
+			_steps.println 
 		}
+
+		ContextRegistry.getContext().getHttpExecutor().httpPost(
+			customHeaders: [Authorization:"Bearer k8token"],
+			payload: CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object)),
+			url: "https://104.197.4.139/api/v1/namespaces"
+		)
 
 		return true;
 	}

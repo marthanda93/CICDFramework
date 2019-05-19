@@ -11,6 +11,57 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         this._steps = steps
     }
 
+    @Override
+    Object httpPost(Map payload, String flag = 'insecure') {
+        /**
+            payload = [
+                customHeaders: [Authorization:"Bearer Gtoken", bob:"two"]
+                payload: ''
+                url: "https://api.github.com/repositories"
+            ]
+        */
+
+        Object response
+
+        if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
+            _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
+                payload.customHeaders.Authorization = "${payload.customHeaders.get('Authorization').split(" ")[0]} ${_steps.maskToken}"
+
+                payload.customHeaders = payload.customHeaders.cHeader()
+
+                response = _steps.httpRequest(
+                    acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                    contentType: _steps.globalPipelineSetting.httpVars.contentType,
+                    httpMode: 'POST',
+                    consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
+                    customHeaders: payload.customHeaders,
+                    requestBody: payload.payload,
+                    url: payload.url
+                )
+            }
+        }
+
+        response = _steps.readJSON text: response.content
+
+        if(response.data.size() > 0) {
+            return response
+        } else {
+            return false
+        }
+
+
+        if(CommonUtilities.mapValidation(payload)) {
+            return _steps.httpRequest(
+                acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                contentType: _steps.globalPipelineSetting.httpVars.contentType,
+                httpMode: httpMethod,
+                consoleLogResponseBody: _steps.globalPipelineSetting.httpVars.consoleLogResponseBody,
+                customHeaders: payload.customHeaders,
+                url: payload.url
+            )
+        }
+    }
+
     Object httpDsl(String httpMethod, Map payload) {
         /**
             payload = [

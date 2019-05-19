@@ -1,6 +1,8 @@
 package org.generic
 
 interface IHttpRegistry {
+	Object httpPost(Map payload, String flag = 'insecure')
+	
 	Map getRequest(Map payload)
 	Map postRequest(Map payload)
 	Map putRequest(Map payload)
