@@ -36,7 +36,12 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	String cloneWithDirectory(Map appParam) {
 		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
-		plainClone(appParam, path)
+
+		_steps.dir ("${path}") {
+			ContextRegistry.getContext().getShellExecutor().bashShell("ls -l ${_steps.env.WORKSPACE}")
+			plainClone(appParam)
+		}
+
 		return path
 	}
 
@@ -55,7 +60,6 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 		if(CommonUtilities.gitValidation(appParam)) {
 			if(CommonUtilities.stringValidation(path)) {
-				_steps.println "-------------//IF//${path}"
 				_steps.checkout changelog: false, poll: false, scm: [
 					$class: 'GitSCM', 
 					branches: [[name: "*/${appParam.branch}"]], 
@@ -72,7 +76,6 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 					]]
 				]
 			} else {
-				_steps.println "-------------//ELSE//${path}"
 				_steps.checkout changelog: false, poll: false, scm: [
 					$class: 'GitSCM', 
 					branches: [[name: "*/${appParam.branch}"]], 
