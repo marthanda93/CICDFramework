@@ -38,7 +38,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
 
-
+_steps.println "${payload.payload}"
 
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
@@ -46,7 +46,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
                     customHeaders: payload.customHeaders,
-                    requestBody: "${payload.payload}",
+                    requestBody: "\'${payload.payload}\'",
                     ignoreSslErrors: true,
                     url: payload.url
                 )
