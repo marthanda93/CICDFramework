@@ -47,9 +47,11 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean plainClone(Map appParam) {
 		String b = ContextRegistry.getContext().getShellExecutor().bashShell("[ -d ${appParam.url.split('/')[-1]} ] && 'true' || 'false'")
-		if(b == 'true') {
-			_steps.println "Path exists"
-		}
+		// if(b == 'true') {
+		// 	_steps.println "Path exists"
+		// }
+
+		_steps.println "-----//hi"
 
 		Boolean a = ContextRegistry.getContext().getShellExecutor().bashShell("[ -d /opt/${appParam.url.split('/')[-1]} ] && 'true' || 'false'") as Boolean
 		if(a == 'false') {
