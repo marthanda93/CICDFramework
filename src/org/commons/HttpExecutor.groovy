@@ -29,6 +29,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 payload.customHeaders = payload.customHeaders.cHeader()
 
+_steps.println payload
+
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
