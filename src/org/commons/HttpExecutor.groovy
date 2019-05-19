@@ -29,27 +29,13 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 parameter.customHeaders = parameter.customHeaders.cHeader()
 
-// httpRequest 
-// customHeaders: [
-//     [maskValue: true, name: 'Authorization', value: 'Bearer ']
-// ], 
-// requestBody: '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"anand","labels":{"environment":"dev","app":"name"}}}', 
-// responseHandle: 'NONE', 
-// url: 'https://104.197.4.139/api/v1/namespaces', 
-// validResponseCodes: '100:500'
-
-def a = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
-_steps.println a
-_steps.println a.getClass()
-
-
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
                     customHeaders: parameter.customHeaders,
-                    requestBody: "\'${payload}\'",
+                    requestBody: "${CommonUtilities.yamltoJson(_steps, payload)}",
                     ignoreSslErrors: true,
                     url: parameter.url
                 )

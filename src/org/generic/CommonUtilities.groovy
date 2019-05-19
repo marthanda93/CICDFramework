@@ -70,4 +70,8 @@ class CommonUtilities implements Serializable {
 
         println RemotingDiagnostics.executeGroovy( "${cmd}.execute().in.text", channel)
     }
+
+    static Object yamltoJson(Object _steps, Object data) {
+        return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
+    }
 }
