@@ -19,7 +19,7 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 			ContextRegistry.getContext().getHttpExecutor().httpPost(
 				customHeaders: [Authorization:"Bearer Gtoken"],
 				url: "https://104.197.4.139/api/v1/namespaces",
-				payload = CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
+				CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
 			)
 		}
 
