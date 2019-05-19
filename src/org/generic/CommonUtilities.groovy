@@ -72,6 +72,6 @@ class CommonUtilities implements Serializable {
     }
 
     static Object yamltoJson(Object _steps, Object data) {
-        return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
+        return _steps.readJSON(text:groovy.json.JsonOutput.toJson(data))
     }
 }
