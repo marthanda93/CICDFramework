@@ -46,22 +46,13 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		String b = ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d ${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
-_steps.println b
-_steps.println b.getClass()
-		
-		if(b == 'false') {
-			_steps.println "Path exists"
+		if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d ${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")) {
+			_steps.println "${appParam.url.split('/')[-1]}"
 		}
 
-		String a = ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d /opt/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
-_steps.println a
-_steps.println a.getClass()
-
-		if(a == 'true') {
-			_steps.println "Path not exists"
+		if(ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d /opt/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")) {
+			_steps.println "/opt/${appParam.url.split('/')[-1]}"
 		}
-
 
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.checkout changelog: false, poll: false, scm: [
