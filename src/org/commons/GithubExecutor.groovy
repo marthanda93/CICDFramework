@@ -44,6 +44,9 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
+		_steps.println ContextRegistry.getContext().getShellExecutor().bashShell('[ -d "/path/to/dir" ] && true || false')
+
+
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.checkout changelog: false, poll: false, scm: [
 				$class: 'GitSCM', 
