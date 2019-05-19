@@ -46,23 +46,17 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam, String path = '') {
-_steps.println "-------------//1"
 		if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ] && exit 0 || exit 1") == 0) {
 			_steps.println "INFO: Reference is available!"
-_steps.println "-------------//2"
+
 			if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} 2>&1)\" ] && exit 0 || exit 1") > 0) {
-_steps.println "-------------//3"
 				_steps.println "ERROR: empty path found!"
-_steps.println "-------------//4"
 				ContextRegistry.getContext().getShellExecutor().bashShellOutput("rm -rf ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}")
-_steps.println "-------------//5"
-			} else {
-_steps.println "-------------//6"
 			}
 		} else {
 			_steps.println "WARNING: Reference is not available!"
 		}
-_steps.println "-------------//7"
+
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.checkout changelog: false, poll: false, scm: [
 				$class: 'GitSCM', 
@@ -78,12 +72,9 @@ _steps.println "-------------//7"
 					url: appParam.url
 				]]
 			]
-_steps.println "-------------//8"
 		} else {
-_steps.println "-------------//9"
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
-_steps.println "-------------//9"
 	}
 
 	@Override
