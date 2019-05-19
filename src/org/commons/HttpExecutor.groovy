@@ -30,16 +30,10 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 parameter.customHeaders = parameter.customHeaders.cHeader()
 
 
-def a = "${CommonUtilities.yamltoJson(_steps, payload)}"
-_steps.println a
-_steps.println "${a}"
-_steps.println a.getClass()
-
-_steps.println "------------"
 
 def b = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
 _steps.println b
-_steps.println """${b}"""
+_steps.println "'"+b+"'"
 _steps.println b.getClass()
 
 
