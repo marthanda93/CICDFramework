@@ -43,6 +43,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                 } catch(e) {
                     if('409' in e.getMessage().toString()) {
                         _steps.println "WARNING: ${payload.kind.toUpperCase()} already exists"
+                        _steps.error ""
                     } else {
                         _steps.error "${payload.kind.toUpperCase()}: ${response} \n ${e.getMessage()}"
                     }
