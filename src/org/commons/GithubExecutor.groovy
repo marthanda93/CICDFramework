@@ -37,10 +37,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 	String cloneWithDirectory(Map appParam) {
 		String path = "scmRepo_${_steps.env.BUILD_NUMBER}"
 
-		_steps.dir ("${path}") {
-			ContextRegistry.getContext().getShellExecutor().bashShell("ls -l ${_steps.env.WORKSPACE}")
 			plainClone(appParam)
-		}
 
 		return path
 	}
