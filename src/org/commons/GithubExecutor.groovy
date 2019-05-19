@@ -46,7 +46,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		String b = ContextRegistry.getContext().getShellExecutor().bashShell("if [ -d ${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
+		String b = ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d ${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
 _steps.println b
 _steps.println b.getClass()
 		
@@ -54,7 +54,7 @@ _steps.println b.getClass()
 			_steps.println "Path exists"
 		}
 
-		String a = ContextRegistry.getContext().getShellExecutor().bashShell("if [ -d /opt/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
+		String a = ContextRegistry.getContext().getShellExecutor().bashShellOutput("if [ -d /opt/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
 _steps.println a
 _steps.println a.getClass()
 
