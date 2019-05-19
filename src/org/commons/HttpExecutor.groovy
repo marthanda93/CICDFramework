@@ -12,7 +12,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     }
 
     @Override
-    Object httpPost(Map payload, String flag = 'insecure') {
+    Object httpPost(Map payload, Object payload, String flag = 'insecure') {
         /**
             payload = [
                 customHeaders: [Authorization:"Bearer Gtoken", bob:"two"]
@@ -38,7 +38,8 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
 
-_steps.println "${payload.payload}"
+_steps.println payload.payload
+
 
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
