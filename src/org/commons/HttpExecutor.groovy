@@ -16,7 +16,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
         /**
             payload = [
                 customHeaders: [Authorization:"Bearer Gtoken", bob:"two"]
-                payload: ''
                 url: "https://api.github.com/repositories"
             ]
         */
@@ -51,21 +50,12 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
             }
         }
 
-                    def json = new groovy.json.JsonSlurper().parseText(response.content)
-
-                    _steps.println "Status: ${response.status}"
-
-                    _steps.println "Dogs: ${json.keySet()}"
-
-// _steps.println "------//${response}"
-
-//         response = _steps.readJSON text: response
-// _steps.println "------//${response}"
-//         if(response.status.phase == "Active") {
-//             return response
-//         } else {
-//             return false
-//         }
+        if(response.status.toString() in ['200', '201']) {
+            response = new groovy.json.JsonSlurper().parseText(response.content)
+            return [true, response]
+        } else {
+            return [false, response.status]
+        }
     }
 
     Object httpDsl(String httpMethod, Map payload) {
@@ -101,30 +91,6 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     
     @Override
     Map getRequest(Map payload) {
-        Object response
-
-        if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
-            _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
-                payload.customHeaders.Authorization = "Authorization ${_steps.maskToken}"
-
-                payload.customHeaders = payload.customHeaders.cHeader()
-                response = httpDsl("GET", payload)
-            }
-        } else {
-            response = httpDsl("GET", payload)
-        }
-
-        response = _steps.readJSON text: response.content
-
-        if(response.data.size() > 0) {
-            return response
-        } else {
-            return false
-        }
-    }
-
-    @Override
-    Map postRequest(Map payload) {
         Object response
 
         if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
