@@ -38,7 +38,9 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
 
-_steps.println payload
+def a = """${payload}"""
+_steps.println a
+_steps.println a.getClass()
 
 
                 response = _steps.httpRequest(
