@@ -12,7 +12,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
     }
 
     @Override
-    Object httpPost(Map payload, Object payload, String flag = 'insecure') {
+    Object httpPost(Map parameter, Object payload, String flag = 'insecure') {
         /**
             payload = [
                 customHeaders: [Authorization:"Bearer Gtoken", bob:"two"]
@@ -23,11 +23,11 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
         Object response
 
-        if(CommonUtilities.mapValidation(payload.customHeaders) && payload.customHeaders.containsKey('Authorization')) {
-            _steps.withCredentials([_steps.string(credentialsId: payload.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
-                payload.customHeaders.Authorization = "${payload.customHeaders.get('Authorization').split(" ")[0]} ${_steps.maskToken}"
+        if(CommonUtilities.mapValidation(parameter.customHeaders) && parameter.customHeaders.containsKey('Authorization')) {
+            _steps.withCredentials([_steps.string(credentialsId: parameter.customHeaders.get('Authorization').split(" ")[1], variable: 'maskToken')]) {
+                parameter.customHeaders.Authorization = "${parameter.customHeaders.get('Authorization').split(" ")[0]} ${_steps.maskToken}"
 
-                payload.customHeaders = payload.customHeaders.cHeader()
+                parameter.customHeaders = parameter.customHeaders.cHeader()
 
 // httpRequest 
 // customHeaders: [
@@ -38,7 +38,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 // url: 'https://104.197.4.139/api/v1/namespaces', 
 // validResponseCodes: '100:500'
 
-_steps.println payload.payload
+_steps.println payload
 
 
                 response = _steps.httpRequest(
@@ -46,10 +46,10 @@ _steps.println payload.payload
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
                     httpMode: 'POST',
                     consoleLogResponseBody: true,
-                    customHeaders: payload.customHeaders,
-                    requestBody: "\'${payload.payload}\'",
+                    customHeaders: parameter.customHeaders,
+                    requestBody: "\'${payload}\'",
                     ignoreSslErrors: true,
-                    url: payload.url
+                    url: parameter.url
                 )
             }
         }
