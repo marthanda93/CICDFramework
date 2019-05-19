@@ -49,14 +49,14 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 		String b = ContextRegistry.getContext().getShellExecutor().bashShell("if [ -d ${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
 
 		
-		if(b == 'true') {
+		if(b == 'false') {
 			_steps.println "Path exists"
 		}
 
 		_steps.println "-----//hi"
 
 		String a = ContextRegistry.getContext().getShellExecutor().bashShell("if [ -d /opt/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
-		if(a == 'false') {
+		if(a == 'true') {
 			_steps.println "Path not exists"
 		}
 
@@ -67,6 +67,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 				branches: [[name: "*/${appParam.branch}"]], 
 				doGenerateSubmoduleConfigurations: false, 
 				extensions: [
+					[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
 					[$class: 'CloneOption', depth: 0, noTags: true, reference: "/opt/${appParam.url.split('/')[-1]}", shallow: false]
 				],
 				submoduleCfg: [], 
