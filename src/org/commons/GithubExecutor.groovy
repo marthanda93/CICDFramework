@@ -49,7 +49,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 		if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ] && exit 0 || exit 1") == 0) {
 			_steps.println "INFO: Reference is available!"
 
-			if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} | wc -l)\" ] && exit 0 || exit 1") > 0) {
+			if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} | wc -l)\" -gt 0 ] && exit 0 || exit 1") > 0) {
 				_steps.println "ERROR: empty path found!"
 				ContextRegistry.getContext().getShellExecutor().bashShellOutput("rm -rf ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}")
 			}
