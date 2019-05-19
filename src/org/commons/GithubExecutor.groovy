@@ -56,11 +56,13 @@ _steps.println "-------------//3"
 _steps.println "-------------//4"
 				ContextRegistry.getContext().getShellExecutor().bashShellOutput("rm -rf ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}")
 _steps.println "-------------//5"
+			} else {
+_steps.println "-------------//6"
 			}
 		} else {
 			_steps.println "WARNING: Reference is not available!"
 		}
-_steps.println "-------------//6"
+_steps.println "-------------//7"
 		if(CommonUtilities.gitValidation(appParam)) {
 			_steps.checkout changelog: false, poll: false, scm: [
 				$class: 'GitSCM', 
@@ -76,9 +78,9 @@ _steps.println "-------------//6"
 					url: appParam.url
 				]]
 			]
-_steps.println "-------------//7"
-		} else {
 _steps.println "-------------//8"
+		} else {
+_steps.println "-------------//9"
 			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
 		}
 _steps.println "-------------//9"
