@@ -22,7 +22,7 @@ class ShellExecutor implements IShellRegistry, IMissingObject, Serializable {
 	@Override
 	String bashShellOutput(String command) {
 		try {
-			return _steps.sh(script: "set +x; ${command}; set -x", returnStdout: true)
+			return _steps.sh(script: "${command}", returnStdout: true)
 		} catch(e) {
 			_steps.error "ERROR:bashShellOutput: Failed with \n${e.getMessage()}"
 		}
