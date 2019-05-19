@@ -29,6 +29,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 payload.customHeaders = payload.customHeaders.cHeader()
 
+try {
                 response = _steps.httpRequest(
                     acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
                     contentType: _steps.globalPipelineSetting.httpVars.contentType,
@@ -38,11 +39,12 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
                     ignoreSslErrors: true,
                     url: payload.url
                 )
+} catch {
+_steps.println response
+}
+
             }
         }
-
-
-_steps.println response
 
         response = _steps.readJSON text: response.content
 
