@@ -33,7 +33,7 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
 def b = _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload))
 _steps.println b
-_steps.println "'"+b+"'"
+_steps.println "'",b,"'"
 _steps.println b.getClass()
 
 
