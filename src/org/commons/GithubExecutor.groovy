@@ -55,26 +55,29 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 			_steps.println "WARNING: Reference is not available!"
 		}
 
-		if(CommonUtilities.gitValidation(appParam)) {
-			_steps.checkout changelog: false, poll: false, scm: [
-				$class: 'GitSCM', 
-				branches: [[name: "*/${appParam.branch}"]], 
-				doGenerateSubmoduleConfigurations: false, 
-				extensions: [
-					[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
-					[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
-				],
-				submoduleCfg: [], 
-				userRemoteConfigs: [[
-					credentialsId: appParam.credentialsId, 
-					refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
-					url: appParam.url
-				]]
-			]
 
-		} else {
-			_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
-		}
+
+
+		// if(CommonUtilities.gitValidation(appParam)) {
+		// 	_steps.checkout changelog: false, poll: false, scm: [
+		// 		$class: 'GitSCM', 
+		// 		branches: [[name: "*/${appParam.branch}"]], 
+		// 		doGenerateSubmoduleConfigurations: false, 
+		// 		extensions: [
+		// 			[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
+		// 			[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
+		// 		],
+		// 		submoduleCfg: [], 
+		// 		userRemoteConfigs: [[
+		// 			credentialsId: appParam.credentialsId, 
+		// 			refspec: "+refs/heads/${appParam.branch}:refs/remotes/origin/${appParam.branch}",
+		// 			url: appParam.url
+		// 		]]
+		// 	]
+
+		// } else {
+		// 	_steps.error "ERROR:Git:plainClone: App Parameter validation failed!\n ${appParam.getClass()} \n ${appParam}"
+		// }
 	}
 
 	@Override
