@@ -1,7 +1,7 @@
 package org.generic
 
 interface IHttpRegistry {
-	Object httpPost(Map payload, Object payload, String flag)
+	Object httpPost(Map parameter, Object payload, String flag)
 	
 	Map getRequest(Map payload)
 	Map postRequest(Map payload)
