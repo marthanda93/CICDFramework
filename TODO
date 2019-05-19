@@ -20,3 +20,5 @@ extensions: [
 	[$class: 'RelativeTargetDirectory', relativeTargetDir: "${appParam.url.split('/')[-1]}"],
 	[$class: 'CloneOption', depth: 0, noTags: true, reference: "${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]}", shallow: false]
 ],
+
+git fetch --all --prune

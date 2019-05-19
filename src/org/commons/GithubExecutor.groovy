@@ -55,6 +55,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 		if(CommonUtilities.gitValidation(appParam)) {
 			if(CommonUtilities.stringValidation(path)) {
+				_steps.println "-------------//IF//${path}"
 				_steps.checkout changelog: false, poll: false, scm: [
 					$class: 'GitSCM', 
 					branches: [[name: "*/${appParam.branch}"]], 
@@ -71,6 +72,7 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 					]]
 				]
 			} else {
+				_steps.println "-------------//ELSE//${path}"
 				_steps.checkout changelog: false, poll: false, scm: [
 					$class: 'GitSCM', 
 					branches: [[name: "*/${appParam.branch}"]], 
