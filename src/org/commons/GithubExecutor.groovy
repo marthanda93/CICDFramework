@@ -46,13 +46,13 @@ class GithubExecutor implements IGithubRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean plainClone(Map appParam) {
-		if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi") == 0) {
+		if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ]; then exit 0; else exit 1; fi") == 0) {
 			_steps.println "INFO: Reference is available!"
 
-_steps.println ContextRegistry.getContext().getShellExecutor().bashShellStatus("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ]; then echo 'true'; else echo 'false'; fi")
-_steps.println ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A /media 2>&1)\" ] && echo 'true' || echo 'false'")
+_steps.println ContextRegistry.getContext().getShellExecutor().bashShellStatus("if [ -d ${_steps.globalPipelineSetting.gitReferencePath}/${appParam.url.split('/')[-1]} ]; then exit 0; else exit 1; fi")
+_steps.println ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A /media 2>&1)\" ] && exit 0 || exit 1")
 
-			if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A /media 2>&1)\" ] && echo 'true' || echo 'false'") != 0) {
+			if(ContextRegistry.getContext().getShellExecutor().bashShellStatus("[ \"\$(ls -A /media 2>&1)\" ] && exit 0 || exit 1") != 0) {
 				_steps.println "ERROR: empty path found!"
 			}
 		} else {
