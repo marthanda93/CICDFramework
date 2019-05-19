@@ -31,16 +31,20 @@ class HttpExecutor implements IHttpRegistry, IMissingObject, Serializable {
 
                 parameter.customHeaders = parameter.customHeaders.cHeader()
 
-                response = _steps.httpRequest(
-                    acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
-                    contentType: _steps.globalPipelineSetting.httpVars.contentType,
-                    httpMode: 'POST',
-                    consoleLogResponseBody: true,
-                    customHeaders: parameter.customHeaders,
-                    requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)).toString(),
-                    ignoreSslErrors: true,
-                    url: parameter.url
-                )
+                try {
+                    response = _steps.httpRequest(
+                        acceptType: _steps.globalPipelineSetting.httpVars.acceptType,
+                        contentType: _steps.globalPipelineSetting.httpVars.contentType,
+                        httpMode: 'POST',
+                        consoleLogResponseBody: true,
+                        customHeaders: parameter.customHeaders,
+                        requestBody: _steps.readJSON(text:groovy.json.JsonOutput.toJson(payload)).toString(),
+                        ignoreSslErrors: true,
+                        url: parameter.url
+                    )
+                } catch(e) {
+                    _steps.println "ERROR: ${response} \n ${e.getMessage()}"
+                }
             }
         }
 
