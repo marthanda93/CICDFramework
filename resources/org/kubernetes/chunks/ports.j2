@@ -1,0 +1,8 @@
+{% if ports is sequence %}
+	ports:
+	{%- for item in ports %}
+	- name: {% if item.name is defined %}{{ item.name}}{% else %}port{{ item }}{% endif %}
+		containerPort: {% if item.containerPort is defined %}{{ item.containerPort }}{% else %}{{ item }}{% endif %}
+		{% if item.protocol is defined %}protocol: {{ item.protocol }}{% endif %}
+	{%- endfor %}
+{%- endif %}

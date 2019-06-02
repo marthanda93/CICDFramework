@@ -1,0 +1,13 @@
+{%- if resources is mapping %}
+	resources:
+	{%- if resources.limits is defined %}
+		limits:
+			{% if resources.limits.cpu is defined %}cpu: "{{ resources.limits.cpu }}"{% endif %}
+			{% if resources.limits.memory is defined %}memory: "{{ resources.limits.memory }}"{% endif %}
+	{%- endif %}
+	{%- if resources.requests is defined %}
+		requests:
+			{% if resources.limits.cpu is defined %}cpu: "{{ resources.limits.cpu }}"{% endif %}
+			{% if resources.limits.memory is defined %}memory: "{{ resources.limits.memory }}"{% endif %}
+	{%- endif %}
+{%- endif %}

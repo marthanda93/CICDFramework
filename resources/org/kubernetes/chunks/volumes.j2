@@ -1,0 +1,24 @@
+{%- block volume %}
+	- name: {% if volume.name is defined %}{{ volume.name }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+		{%- if volume.emptyDir is defined %}
+		emptyDir: {}
+		{%- elif volume.hostPath is defined %}
+		hostPath:
+			path: {% if volume.hostPath.path is defined %}{{ volume.hostPath.path }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+			type: {% if volume.hostPath.type is defined and volume.hostPath.type in ['DirectoryOrCreate', 'Directory', 'FileOrCreate', 'File', 'Socket', 'CharDevice', 'BlockDevice'] %}{{ volume.hostPath.type }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+		{%- elif volume.persistentVolumeClaim is defined %}
+    persistentVolumeClaim:
+      claimName: {% if volume.persistentVolumeClaim.claimName is defined %}{{ volume.persistentVolumeClaim.claimName }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+		{%- elif volume.configMap is defined %}
+		{#- Injecting ConfigMaps into the Container’s Volume #}
+		configMap:
+			name: {% if volume.configMap.name is defined %}{{ volume.configMap.name }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+			{%- if volume.configMap['items'] and volume.configMap['items'] is sequence %}
+				items:
+        {%- for item in volume.configMap['items'] if item|list|length > 0 %}
+        - key: {% if item.key is defined %}{{ item.key }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+          path: {% if item.path is defined %}{{ item.path }}{% else %} {{ "required_parameter must be defined."/0 }} {% endif %}
+        {%- endfor %}
+			{%- endif %}
+		{%- endif %}
+{%- endblock %}

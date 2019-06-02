@@ -1,8 +1,56 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: special-config
-  namespace: default
+  name: {{ configMap.name }}
+    {% if namespace.labels is defined %}
+      {%- with labels=namespace.labels %}
+        {%- include "chunks/labels.j2" %}
+      {%- endwith %}
+    {%- endif %}
+    {% if namespace.annotations is defined %}
+      {%- with annotations=namespace.annotations %}
+        {%- include "chunks/annotations.j2" %}
+      {%- endwith %}
+    {%- endif %}
 data:
   special.how: very
   special.type: charm
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-02-18T18:52:05Z
+  name: game-config
+  namespace: default
+  resourceVersion: "516"
+  selfLink: /api/v1/namespaces/default/configmaps/game-config
+  uid: b4952dc3-d670-11e5-8cd0-68f728db1985
+data:
+  game.properties: |
+    enemies=aliens
+    lives=3
+    enemies.cheat=true
+    enemies.cheat.level=noGoodRotten
+    secret.code.passphrase=UUDDLRLRBABAS
+    secret.code.allowed=true
+    secret.code.lives=30
+  ui.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true
+    how.nice.to.look=fairlyNice
+---
+data:
+  color: purple
+  how: fairlyNice
+  textmode: "true"
+---
+data:
+  # example of a simple property defined using --from-literal
+  example.property.1: hello
+  example.property.2: world
+  # example of a complex property defined using --from-file
+  example.property.file: |-
+    property.1=value-1
+    property.2=value-2
+    property.3=value-3

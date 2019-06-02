@@ -1,0 +1,7 @@
+{%- block selector -%}
+		metadata:
+			labels:
+			{%- for key, value in template.iteritems() %}
+				{{ key }}: {{ value }}
+			{%- endfor %}
+{%- endblock %}

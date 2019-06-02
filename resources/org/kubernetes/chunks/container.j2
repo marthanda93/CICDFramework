@@ -1,0 +1,28 @@
+{%- block container %}
+	- name: {{ container.name }}
+		image: {{ container.image }}
+	{%- if container.ports is defined %}
+        {%- filter indent(width=2) %}
+		    {%- with ports=container.ports %}
+		        {%- include "chunks/ports.j2" %}
+		    {%- endwith %}
+	    {%- endfilter %}
+	{%- endif %}
+	{%- if container.resources is defined %}
+        {%- filter indent(width=2) %}
+		    {%- with resources=container.resources %}
+		        {%- include "chunks/resources.j2" %}
+		    {%- endwith %}
+	    {%- endfilter %}
+	{%- endif %}
+	{%- if container.volumeMounts is defined %}
+		volumeMounts:
+        {%- for item in container.volumeMounts if item|list|length > 0 %}
+	        {%- filter indent(width=2) %}
+			    {%- with volumeMount=item %}
+			        {%- include "chunks/volumeMounts.j2" %}
+			    {%- endwith %}
+		    {%- endfilter %}
+		{%- endfor %}
+	{%- endif %}
+{%- endblock %}

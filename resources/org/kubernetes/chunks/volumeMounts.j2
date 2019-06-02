@@ -1,0 +1,5 @@
+{%- block volumeMount %}
+	- name: {% if volumeMount.name is defined %}{{ volumeMount.name }}{% else %}{{ "required_parameter must be defined."/0 }}{% endif %}
+		mountPath: {% if volumeMount.mountPath is defined %}{{ volumeMount.mountPath }}{% else %}{{ "required_parameter must be defined."/0 }}{% endif %}
+		{% if volumeMount.readOnly is defined and volumeMount.readOnly == true %}readOnly: true{% endif %}
+{%- endblock %}

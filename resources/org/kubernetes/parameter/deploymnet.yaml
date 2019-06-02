@@ -1,0 +1,73 @@
+deployment:
+  # This uses a "fullname" template (see _helpers)
+  # Basing names on .Release.Name means that the same chart can be installed
+  # multiple times into the same namespace.
+  name: nginx-app
+  labels:
+    app: nginx-app
+    environment: dev
+  replicas: 2
+  restartPolicy: Never
+  backoffLimit: 4
+  selector:
+    app: nginx-app
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"
+      requests: 
+        memory: "1Gi"
+        cpu: "500m"
+    ports:
+    - 80
+    - 8080
+    volumeMounts:
+    - name: all-in-one
+      mountPath: /projected-volume
+      readOnly: true
+    - name: all-in-two
+      mountPath: /projected-volume
+      readOnly: true
+  - name: nginx1
+    image: nginx:1.7.9
+    ports:
+    - name: nginxPort
+      containerPort: 80
+      protocol: TCP
+    - name: nginxPort1
+      containerPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"
+      requests: 
+        memory: "1Gi"
+        cpu: "500m"
+  volumes:
+  - name: mysql-persistent-storage
+    emptyDir: {}
+  - name: mysql-storage
+    hostPath:
+      path: /data
+      type: Directory
+  - name: mysql-persistent-storage
+    persistentVolumeClaim:
+      claimName: mysql-pv-claim
+  - name: config-volume-one
+    configMap:
+      name: trading-strategy
+  - name: config-volume-three
+    configMap:
+      name: trading-anand
+  - name: config-volume-two
+    configMap:
+      name: config-two
+      items:
+      - key: strategy.risk
+        path: risk
+      - key: strategy.anand
+        path: anand

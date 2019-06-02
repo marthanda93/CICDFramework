@@ -1,0 +1,7 @@
+{%- block selector -%}
+	selector:
+		matchLabels:
+		{%- for key, value in selector.iteritems() %}
+			{{ key }}: {{ value }}
+		{%- endfor %}
+{%- endblock %}

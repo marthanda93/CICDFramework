@@ -1,0 +1,35 @@
+  ports:
+  - name: management 
+    protocol: TCP
+    port: 80
+    targetPort: 8000
+  - name: query 
+    protocol: TCP
+    port: 81
+    targetPort: 8001
+
+
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 443
+  - name: something
+    port: 6001
+    targetPort: 6001
+
+        "ports": [
+          {
+            "name": "6379",
+            "port": 6379,
+            "targetPort": 6379
+          }
+
+
+ClusterIP (default)
+NodePort
+LoadBalancer
+ExternalName
+Headless
