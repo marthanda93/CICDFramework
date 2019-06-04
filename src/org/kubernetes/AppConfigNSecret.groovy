@@ -14,10 +14,9 @@ class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 	@Override
 	Boolean create(Object k8Param) {
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
-
+			_steps.println k8Param.keySet().collect()
 			List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 			_steps.println files
-			_steps.println _steps.globalPipelineSetting.opsRepo
 		} else {
 			_steps.error "Missing Parameter: ${k8Param}"
 		}
