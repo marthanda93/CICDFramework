@@ -13,8 +13,6 @@ def call(String action, String className, Object k8Param = false) {
 			break
 		case globalPipelineSetting.synonyms.cm:
 			if(action in ['create']) {
-				println k8Param
-				println k8Param.getClass()
 				ContextRegistry.getContext().getK8ConfigNSecretExecutor()."${action}"(k8Param)
 			} else {
 				error "Action: ${action} missing!"
