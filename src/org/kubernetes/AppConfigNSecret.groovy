@@ -13,7 +13,11 @@ class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 
 	@Override
 	Boolean create(Object k8Param) {
-		_steps.println "__PASS__"
+		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
+			_steps.println "__PASS__"
+		} else {
+			_steps.error "Missing Parameter: ${k8Param}"
+		}
 	}
 
 	@Override
