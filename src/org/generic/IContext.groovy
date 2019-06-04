@@ -8,4 +8,5 @@ interface IContext {
     IMavenRegistry getMavenExecutor()
     IJinjaRegistry getJinjaExecutor()
     IK8NameSpaceRegistry getK8NameSpaceExecutor()
+    IK8CSRegistry getK8ConfigNSecretExecutor()
 }

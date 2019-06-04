@@ -51,4 +51,9 @@ class DefaultContext implements IContext, Serializable {
     IK8NameSpaceRegistry getK8NameSpaceExecutor() {
         return new org.kubernetes.NameSpace(this._steps)
     }
+
+    @Override
+    IAppCSRegistry getK8ConfigNSecretExecutor() {
+        return new org.kubernetes.AppConfigNSecret(this._steps)
+    }
 }

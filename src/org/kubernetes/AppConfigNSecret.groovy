@@ -1,31 +1,50 @@
-AppConfigNSecret
+package org.kubernetes
 
-independent module
+import org.generic.IK8CSRegistry
+import org.generic.IMissingObject
+import org.stepRegistry.ContextRegistry
 
--> takeconfig from github
--> takeconfig from consul
--> takeconfig from nexus
+class AppConfigNSecret implements IK8CSRegistry, Serializable {
+	private _steps
+
+	AppConfigNSecret(_steps) {
+		this._steps = _steps
+	}
+
+	@Override
+	Boolean create(Map k8Param) {
+		_steps.println "__PASS__"
+	}
+
+	@Override
+	Boolean collectConfig() {
+		_steps.println "__PASS__"
+	}
+
+	@Override
+	Boolean healthCheck() {
+		_steps.println "__PASS__"
+	}
+
+    // @Override
+    // String propertyMissing(String name) {
+    //     _steps.error "PROPERTYMISSING NameSpace: Caught missing property: $name"
+    // }
+
+    // @Override
+    // String methodMissing(String name, Object args) {
+    //     _steps.error "METHODMISSING NameSpace: Caught missing method: $name"
+    // }
+}
 
 
-clone config to local UUID path -> clean
-
-Var/ update: false/true/delete -> if config found want to update or delete
-user param: type of config: environment, volume
- 
+// Var/ update: false/true/delete -> if config found want to update or delete
+// user param: type of config: environment, volume
 
 
-Boolean prun()
-Boolean collectConfig()
-Boolean healthCheck()	//After creating, this will check is updated or newly created or not
-
-
-1> clone config
-2> collect exiting configmap name list
-3> labelling 
-4> creating
-5> verifying
-6> prune
-
-
---from-file=
---from-literal=
+// 1> clone config
+// 2> collect exiting configmap name list
+// 3> labelling 
+// 4> creating
+// 5> verifying
+// 6> prune
