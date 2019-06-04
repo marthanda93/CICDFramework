@@ -4,7 +4,7 @@ import org.generic.IK8CSRegistry
 import org.generic.IMissingObject
 import org.stepRegistry.ContextRegistry
 
-class AppConfigNSecret implements IK8CSRegistry, Serializable {
+class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 	private _steps
 
 	AppConfigNSecret(_steps) {
@@ -26,15 +26,15 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 		_steps.println "__PASS__"
 	}
 
-    // @Override
-    // String propertyMissing(String name) {
-    //     _steps.error "PROPERTYMISSING NameSpace: Caught missing property: $name"
-    // }
+    @Override
+    String propertyMissing(String name) {
+        _steps.error "PROPERTYMISSING AppConfigNSecret: Caught missing property: $name"
+    }
 
-    // @Override
-    // String methodMissing(String name, Object args) {
-    //     _steps.error "METHODMISSING NameSpace: Caught missing method: $name"
-    // }
+    @Override
+    String methodMissing(String name, Object args) {
+        _steps.error "METHODMISSING AppConfigNSecret: Caught missing method: $name"
+    }
 }
 
 
