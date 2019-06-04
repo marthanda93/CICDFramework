@@ -12,7 +12,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 	}
 
 	@Override
-	Boolean create(Map k8Param) {
+	Boolean create(Map k8Param = [:]) {
 		_steps.println "__PASS__"
 	}
 
