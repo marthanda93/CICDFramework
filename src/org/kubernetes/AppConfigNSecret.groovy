@@ -15,7 +15,7 @@ class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 	Boolean create(Object k8Param) {
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 
-			List files = this.script.findFiles(glob: "${configPath}")
+			List files = _steps.findFiles(glob: "${configPath}")
 			_steps.println files
 		} else {
 			_steps.error "Missing Parameter: ${k8Param}"
