@@ -25,11 +25,8 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 List itemx = []
 List pathx = k8Param.configPath.split("(/\\{|\\}/)") as String[];
 
-_steps.println "------//1/${pathx}"
-
 pathx.eachWithIndex{ key, index ->
     itemx = key.split(",|\\s")
-_steps.println "---------//2/${itemx}"
     if(itemx.size() > 1) {
         itemx.removeAll(Arrays.asList(null,""));
         pathx[index] = itemx
@@ -44,9 +41,12 @@ Integer i = 0
 Boolean sublist = true
 
 pathx.eachWithIndex { key, index ->
+	_steps.println "------//1/${key}"
     if(key instanceof java.util.List) {
+    	_steps.println "------//2/${key}"
         i = 0
         key.each{
+        	_steps.println "------//3/${it}"
             if(sublist == true) {
                 path << (list + [it])
             } else {
@@ -59,6 +59,7 @@ pathx.eachWithIndex { key, index ->
         }
         sublist = false
     } else {
+    	_steps.println "------//4/${key}"
         if(sublist == false) {
             path.each {
                 it << key
@@ -69,7 +70,7 @@ pathx.eachWithIndex { key, index ->
     }
 }
 
-return path
+_steps.println path
 
 
 
