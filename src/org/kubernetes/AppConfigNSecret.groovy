@@ -27,8 +27,9 @@ Pattern pattern = Pattern.compile(/\/\{.+?\}\//);
 Matcher matcher = pattern.matcher(s);
 if(matcher.find()) {
     List key = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})") as String[];
+    def a = key​.findAll {it.trim().size() > 0}​
 
-	key​.findAll {it.trim().size() > 0}​.each{
+	a.each{
 	  _steps.println it
 	}
 }
