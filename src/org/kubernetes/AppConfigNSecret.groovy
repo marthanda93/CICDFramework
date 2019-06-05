@@ -26,10 +26,12 @@ String s = "scmRepo_20/petclinic/dev/{one, two}/cat.properties";
 Pattern pattern = Pattern.compile(/\/\{.+?\}\//);
 Matcher matcher = pattern.matcher(s);
 if(matcher.find()) {
-    List key = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})") as String[];
-    def a = key​.findAll {it.trim().size() > 0}​
+    def a = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})");
+    _steps.println a
+    _steps.println a.getClass()
+    def b = a.findAll {it.trim().size() > 0}​
 
-	a.each{
+	b.each{
 	  _steps.println it
 	}
 }
