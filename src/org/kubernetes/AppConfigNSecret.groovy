@@ -29,7 +29,9 @@ if(matcher.find()) {
     // def a = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})");
 
 	matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})").each{
-	  _steps.println it
+		if(it.trim().size() > 0) {
+			_steps.println it
+		}
 	}
 }
 
