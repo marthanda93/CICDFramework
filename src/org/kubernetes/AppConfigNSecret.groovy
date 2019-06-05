@@ -18,7 +18,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 	Boolean create(Object k8Param) {
 		List concatenate = []
 
-Closure collectContent = {String file ->
+// Closure collectContent = {String file ->
 	concatenate.addAll(_steps.readFile(file))
 	concatenate.add('')
 
@@ -26,7 +26,7 @@ Closure collectContent = {String file ->
 
 // this.script.writeFile file: "${tempFile}", text: concatenate.join('\n')
 // configFiles.add("${tempFile}")
-}
+// }
 
 _steps.println concatenate
 
