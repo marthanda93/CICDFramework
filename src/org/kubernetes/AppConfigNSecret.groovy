@@ -23,7 +23,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 				// List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 
 				k8Param.configPath.MsubSplit().MsubListjoin().each {
-					files << _steps.findFiles(glob: "${k8Param.scmPath}/${it.join('/')}")
+					files << _steps.findFiles(glob: "${k8Param.scmPath}/petclinic/dev/one/*.properties")
 				}
 
 				_steps.println files
