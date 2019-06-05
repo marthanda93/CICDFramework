@@ -42,8 +42,9 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 		List concatenate = []
 
 		files.each { String file ->
-			concatenate.add("## ${file}")
-			concatenate.addAll(_steps.readFile("${file}"))
+			concatenate.add("${file.MfnameFromPath()}: |")
+			concatenate.add("## ${file}".expand(4))
+			concatenate.addAll(_steps.readFile("${file}".replace('\n', '\n    ')))
 		}
 
 		_steps.println concatenate.join('\n')

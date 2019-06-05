@@ -44,7 +44,7 @@ class MetaCode implements Serializable {
             return delegate.replaceAll("/+", "/");
         }
 
-        String.metaClass.fnameFromPath = {
+        String.metaClass.MfnameFromPath = {
             return delegate.split('/')[-1];
         }
 

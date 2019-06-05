@@ -25,10 +25,10 @@ class JinjaExecutor implements IJinjaRegistry, IMissingObject, Serializable {
 
 		_steps.dir ("${path}") {
 			try {
-				_steps.writeFile file: "${jparam.teamplate.fnameFromPath()}", text: "${_steps.libraryResource jparam.teamplate}"
-				_steps.writeFile file: "${jparam.param.fnameFromPath()}", text: "${_steps.libraryResource jparam.param}"
+				_steps.writeFile file: "${jparam.teamplate.MfnameFromPath()}", text: "${_steps.libraryResource jparam.teamplate}"
+				_steps.writeFile file: "${jparam.param.MfnameFromPath()}", text: "${_steps.libraryResource jparam.param}"
 
-				ContextRegistry.getContext().getShellExecutor().bashShell("j2 -f ${_steps.globalPipelineSetting.jinjaFormat} ${jparam.teamplate.fnameFromPath()} ${jparam.param.fnameFromPath()} -o ${jparam.output}")
+				ContextRegistry.getContext().getShellExecutor().bashShell("j2 -f ${_steps.globalPipelineSetting.jinjaFormat} ${jparam.teamplate.MfnameFromPath()} ${jparam.param.MfnameFromPath()} -o ${jparam.output}")
 			} catch(e) {
 				_steps.error "ERROR:teamplateProcess: Failed with \n${e.getMessage()}"
 			}
