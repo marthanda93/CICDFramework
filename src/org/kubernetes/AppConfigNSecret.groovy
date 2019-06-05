@@ -40,11 +40,16 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 	@Override
 	Boolean collectConfig(List files) {
 		List concatenate = []
+		String content
 
 		files.each { String file ->
 			concatenate.add("${file}".MfnameFromPath()+': |')
 			concatenate.add("    ## ${file}")
-			concatenate.addAll(_steps.readFile("${file}").replace('\n', '\n    '))
+
+			content = _steps.readFile("${file}")
+			content = String.format("%1\$" + (4 + content.length()) + "s", content);
+
+			concatenate.addAll(content.replace('\n', '\n    '))
 		}
 
 		_steps.println concatenate.join('\n')
