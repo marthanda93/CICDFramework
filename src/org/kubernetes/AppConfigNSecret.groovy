@@ -28,7 +28,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 				_steps.println files
 			} else if ('secretPath' in k8Param.keySet().collect()) {
-				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
+				files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
 				_steps.println files
 			} else {
 				_steps.error "Missing Key \n Hint: configPath/secretPath"
