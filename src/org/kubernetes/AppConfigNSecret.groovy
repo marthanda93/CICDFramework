@@ -41,12 +41,9 @@ Integer i = 0
 Boolean sublist = true
 
 pathx.eachWithIndex { key, index ->
-	_steps.println "------//1/${key}"
     if(key instanceof java.util.List) {
-    	_steps.println "------//2/${key}"
         i = 0
         key.each{
-        	_steps.println "------//3/${it}"
             if(sublist == true) {
                 path << (list + [it])
             } else {
@@ -59,7 +56,7 @@ pathx.eachWithIndex { key, index ->
         }
         sublist = false
     } else {
-    	_steps.println "------//4/${key}"
+    	_steps.println "------//1/${key}/${key.getClass()}/-----path//${path}/--------sublist//${sublist}"
         if(sublist == false) {
             path.each {
                 it << key
@@ -70,7 +67,7 @@ pathx.eachWithIndex { key, index ->
     }
 }
 
-_steps.println path
+_steps.println "--------------//10/${path}"
 
 
 
