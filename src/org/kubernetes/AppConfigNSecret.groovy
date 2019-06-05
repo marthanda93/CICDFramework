@@ -46,7 +46,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 			concatenate.addAll(_steps.readFile("${file}"))
 		}
 
-		_steps.println concatenate.join('\n\n')
+		_steps.println concatenate.join('\n')
 	}
 
 	@Override
