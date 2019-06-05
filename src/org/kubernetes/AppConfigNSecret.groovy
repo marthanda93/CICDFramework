@@ -20,75 +20,11 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
-
-
-List itemx = []
-List pathx = k8Param.configPath.split("(/\\{|\\}/)") as String[];
-
-pathx.eachWithIndex{ key, index ->
-    itemx = key.split(",|\\s")
-    if(itemx.size() > 1) {
-        itemx.removeAll(Arrays.asList(null,""));
-        pathx[index] = itemx
-    }
-}
-
-
-
-List list = []
-List path = []
-Integer i = 0
-Boolean sublist = true
-
-pathx.eachWithIndex { key, index ->
-    if(key instanceof java.util.List) {
-        i = 0
-        key.each{
-            if(sublist == true) {
-                path << (list + [it])
-            } else {
-                for(List item in path) {
-                    path[i] << it
-                    i = i + 1
-                    break;
-                }
-            }
-        }
-        sublist = false
-    } else {
-    	_steps.println "------//1/${key}/${key.getClass()}/-----path//${path}/--------sublist//${sublist}"
-        if(sublist == false) {
-            path.each {
-                it << key
-            }
-        } else {
-            list << key
-        }
-    }
-}
-
-_steps.println "--------------//10/${path}"
-_steps.println k8Param.configPath.MsubSplit().MsubListjoin()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				k8Param.configPath.MsubSplit().MsubListjoin().each {
 					_steps.println "---------//4"
-					_steps.println it
+					def x = it.add(k8Param.scmPath).join('/')
+					_steps.println x
+					_steps.println x.getClass()
 					_steps.println "---------//5"
 					files << _steps.findFiles(glob: "${k8Param.scmPath}/petclinic/dev/one/*.properties") as List
 					_steps.println "---------//6"
