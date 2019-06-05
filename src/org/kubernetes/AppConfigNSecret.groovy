@@ -30,17 +30,17 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 
 
-				k8Param.configPath.MsubSplit().MsubListjoin().each { it as List ->
-					_steps.println "---------//4"
-					_steps.println it
-					_steps.println it.getClass()
-					def x = it.add(0, k8Param.scmPath)
-					_steps.println x
-					_steps.println x.getClass()
-					// _steps.println "---------//5"
-					// files << _steps.findFiles(glob: "${k8Param.scmPath}/petclinic/dev/one/*.properties") as List
-					// _steps.println "---------//6"
-				}
+				// k8Param.configPath.MsubSplit().MsubListjoin().each { it as List ->
+				// 	_steps.println "---------//4"
+				// 	_steps.println it
+				// 	_steps.println it.getClass()
+				// 	def x = it.add(0, k8Param.scmPath)
+				// 	_steps.println x
+				// 	_steps.println x.getClass()
+				// 	// _steps.println "---------//5"
+				// 	// files << _steps.findFiles(glob: "${k8Param.scmPath}/petclinic/dev/one/*.properties") as List
+				// 	// _steps.println "---------//6"
+				// }
 _steps.println "---------//7"
 				_steps.println files
 			} else if ('secretPath' in k8Param.keySet().collect()) {
