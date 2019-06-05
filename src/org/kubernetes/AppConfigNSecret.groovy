@@ -7,7 +7,7 @@ import org.stepRegistry.ContextRegistry
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
+class AppConfigNSecret implements IK8CSRegistry, Serializable {
 	private _steps
 
 	AppConfigNSecret(_steps) {
@@ -58,15 +58,15 @@ if(matcher.find()) {
 		_steps.println "__PASS__"
 	}
 
-    @Override
-    String propertyMissing(String name) {
-        _steps.error "PROPERTYMISSING AppConfigNSecret: Caught missing property: $name"
-    }
+    // @Override
+    // String propertyMissing(String name) {
+    //     _steps.error "PROPERTYMISSING AppConfigNSecret: Caught missing property: $name"
+    // }
 
-    @Override
-    String methodMissing(String name, Object args) {
-        _steps.error "METHODMISSING AppConfigNSecret: Caught missing method: $name"
-    }
+    // @Override
+    // String methodMissing(String name, Object args) {
+    //     _steps.error "METHODMISSING AppConfigNSecret: Caught missing method: $name"
+    // }
 }
 
 
