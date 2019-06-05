@@ -75,8 +75,24 @@ class MetaCode implements Serializable {
             return strObj
         }
 
+        String.metaClass.MsubSplit = {
+            List item = []
+            List path = delegate.split("(/\\{|\\}/)") as String[];
+
+            path.eachWithIndex{ key, index ->
+                item = key.split(",|\\s")
+                
+                if(item.size() > 1) {
+                    item.removeAll(Arrays.asList(null,""));
+                    path[index] = item
+                }
+            }
+
+            return path
+        }
+
         //List tmp = ['/path/env', 'anand', ['one','two'], 'app.properties',['three', 'four'], 'kumar']
-        List.metaClass.Mjoin = { ->
+        List.metaClass.MsubListjoin = { ->
             List list = []
             List path = []
             Integer i = 0

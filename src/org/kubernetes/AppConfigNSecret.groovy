@@ -20,25 +20,8 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 			if('configPath' in k8Param.keySet().collect()) {
 				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 
-
-
-
-List item = []
-List path = k8Param.configPath.split("(/\\{|\\}/)") as String[];
-
-path.eachWithIndex{ key, index ->
-    item = key.split(",|\\s")
-    
-    if(item.size() > 1) {
-        item.removeAll(Arrays.asList(null,""));
-        path[index] = item
-    }
-}
-
+List path = k8Param.configPath.MsubSplit().MsubListjoin();
 _steps.println path
-
-
-
 
 			} else if ('secretPath' in k8Param.keySet().collect()) {
 				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
