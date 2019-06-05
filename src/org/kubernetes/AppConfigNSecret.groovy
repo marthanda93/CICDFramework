@@ -16,15 +16,15 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 	@Override
 	Boolean create(Object k8Param) {
-		List files = []
+		ArrayList files = []
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
 
                 for(List item in k8Param.configPath.MsubSplit().MsubListjoin()) {
 					def x = (_steps.findFiles(glob: k8Param.scmPath+'/'+item.join('/')) as List)
-					_steps.println x
-					_steps.println x.getClass()
+					files = files + x
+					_steps.println files
 
                 }
 
