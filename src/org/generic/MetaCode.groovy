@@ -74,5 +74,41 @@ class MetaCode implements Serializable {
             }
             return strObj
         }
+
+        //List tmp = ['/path/env', 'anand', ['one','two'], 'app.properties',['three', 'four'], 'kumar']
+        List.metaClass.Mjoin = { ->
+            List list = []
+            List path = []
+            Integer i = 0
+            Boolean sublist = true
+
+            delegate.eachWithIndex { key, index ->
+                if(key instanceof java.util.List) {
+                    i = 0
+                    key.each{
+                        if(sublist == true) {
+                            path << (list + [it])
+                        } else {
+                            for(List item in path) {
+                                path[i] << it
+                                i = i + 1
+                                break;
+                            }
+                        }
+                    }
+                    sublist = false
+                } else {
+                    if(sublist == false) {
+                        path.each {
+                            it << key
+                        }
+                    } else {
+                        list << key
+                    }
+                }
+            }
+
+            return path
+        }
     }
 }

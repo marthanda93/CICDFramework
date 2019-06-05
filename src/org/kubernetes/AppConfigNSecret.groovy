@@ -20,6 +20,8 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 			if('configPath' in k8Param.keySet().collect()) {
 				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 
+
+
 List tmp = k8Param.configPath.split("(/\\{|\\}/)")
 
 _steps.println tmp
