@@ -20,6 +20,16 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
+
+                for(List item in k8Param.configPath.MsubSplit().MsubListjoin()) {
+					_steps.println "---------//1"
+					_steps.println item
+					_steps.println item.getClass()
+                }
+
+
+
+
 				k8Param.configPath.MsubSplit().MsubListjoin().each { it as List ->
 					_steps.println "---------//4"
 					_steps.println it
