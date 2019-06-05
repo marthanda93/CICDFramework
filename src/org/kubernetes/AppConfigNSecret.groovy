@@ -28,13 +28,13 @@ Matcher matcher = pattern.matcher(s);
 if(matcher.find())
     List key = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})") as String[];
 
-_steps.println key
-_steps.println key.getClass()
+	_steps.println key
+	_steps.println key.getClass()
 
-//println key​.findAll {it != null}​
-key.each{
-  _steps.println it
-}
+	//println key​.findAll {it != null}​
+	key.each{
+	  _steps.println it
+	}
  
 
 
