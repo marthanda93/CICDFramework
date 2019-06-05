@@ -22,13 +22,23 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 
 
-List tmp = k8Param.configPath.split("(/\\{|\\}/)")
 
-_steps.println tmp
+List item = []
+List path = k8Param.configPath.split("(/\\{|\\}/)") as String[];
 
-tmp.each { path ->
-	_steps.println "${tmp[0]}/${path}/${tmp[-1]}";
+path.eachWithIndex{ key, index ->
+    item = key.split(",|\\s")
+    
+    if(item.size() > 1) {
+        item.removeAll(Arrays.asList(null,""));
+        x[index] = item
+    }
 }
+
+println path
+
+
+
 
 			} else if ('secretPath' in k8Param.keySet().collect()) {
 				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
