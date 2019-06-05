@@ -4,6 +4,9 @@ import org.generic.IK8CSRegistry
 import org.generic.IMissingObject
 import org.stepRegistry.ContextRegistry
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 	private _steps
 
@@ -15,6 +18,27 @@ class AppConfigNSecret implements IK8CSRegistry, IMissingObject, Serializable {
 	Boolean create(Object k8Param) {
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
+
+
+
+String s = "scmRepo_20/petclinic/dev/{one, two}/cat.properties";
+
+Pattern pattern = Pattern.compile(/\/\{.+?\}\//);
+Matcher matcher = pattern.matcher(s);
+if(matcher.find())
+    List key = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})") as String[];
+
+_steps.println key
+_steps.println key.getClass()
+
+//println key​.findAll {it != null}​
+key.each{
+  _steps.println it
+}
+ 
+
+
+
 				List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 				_steps.println files
 			} else if ('secretPath' in k8Param.keySet().collect()) {
