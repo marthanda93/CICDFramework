@@ -20,18 +20,13 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
-				// List file = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
+				// List files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.configPath}")
 
 				k8Param.configPath.MsubSplit().MsubListjoin().each {
-					def b = it.join('/')
-					// def a = _steps.findFiles(glob: it.join('/'))
-					def a = _steps.findFiles(glob: "petclinic/dev/one/*.properties")
-					_steps.println a
-					_steps.println a.getClass()
+					files << _steps.findFiles(glob: "${k8Param.scmPath}/${it.join('/')}")
 				}
 
-				_steps.println "=======\n\n"
-				// _steps.println files
+				_steps.println files
 			} else if ('secretPath' in k8Param.keySet().collect()) {
 				files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
 				_steps.println files
