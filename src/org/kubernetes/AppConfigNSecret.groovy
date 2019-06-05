@@ -22,7 +22,7 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 			if('configPath' in k8Param.keySet().collect()) {
 
                 for(List item in k8Param.configPath.MsubSplit().MsubListjoin()) {
-					def x = item.add(0, k8Param.scmPath)
+					def x = k8Param.scmPath+'/'+item.join(' ')
 					_steps.println x
 					_steps.println x.getClass()
                 }
