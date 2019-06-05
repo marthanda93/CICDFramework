@@ -25,7 +25,7 @@ String s = "scmRepo_20/petclinic/dev/{one, two}/cat.properties";
 
 Pattern pattern = Pattern.compile(/\/\{.+?\}\//);
 Matcher matcher = pattern.matcher(s);
-if(matcher.find())
+if(matcher.find()) {
     List key = matcher.group().subSequence(1, matcher.group().length()-1).split("(\\s|\\{|\\,|\\})") as String[];
 
 	_steps.println key
@@ -35,7 +35,7 @@ if(matcher.find())
 	key.each{
 	  _steps.println it
 	}
- 
+}
 
 
 
