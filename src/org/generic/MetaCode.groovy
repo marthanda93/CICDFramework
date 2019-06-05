@@ -124,7 +124,7 @@ class MetaCode implements Serializable {
                 }
             }
 
-            return path
+            return (path.size() > 0) ? path : delegate
         }
     }
 }

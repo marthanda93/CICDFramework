@@ -68,7 +68,7 @@ pathx.eachWithIndex { key, index ->
 }
 
 _steps.println "--------------//10/${path}"
-
+_steps.println k8Param.configPath.MsubSplit().MsubListjoin()
 
 
 
