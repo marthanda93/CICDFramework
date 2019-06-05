@@ -39,11 +39,11 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 	@Override
 	Boolean collectConfig(List files) {
-		_steps.println files
-
 		List concatenate = []
 
 		files.each { file ->
+			_steps.println file
+			_steps.println file.getClass()
 			concatenate.addAll(_steps.readFile(file))
 			concatenate.add('')
 		}
