@@ -16,22 +16,6 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 	@Override
 	Boolean create(Object k8Param) {
-		List concatenate = []
-
-// Closure collectContent = {String file ->
-	concatenate.addAll(_steps.readFile(file))
-	concatenate.add('')
-
-
-
-// this.script.writeFile file: "${tempFile}", text: concatenate.join('\n')
-// configFiles.add("${tempFile}")
-// }
-
-_steps.println concatenate
-
-
-
 		ArrayList files = []
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
@@ -39,6 +23,8 @@ _steps.println concatenate
                 for(List item in k8Param.configPath.MsubSplit().MsubListjoin()) {
 					files = files + (_steps.findFiles(glob: k8Param.scmPath+'/'+item.join('/')) as List)
                 }
+
+                collectConfig(files)
 			} else if ('secretPath' in k8Param.keySet().collect()) {
                 for(List item in k8Param.secretPath.MsubSplit().MsubListjoin()) {
 					files = files + (_steps.findFiles(glob: k8Param.scmPath+'/'+item.join('/')) as List)
@@ -52,8 +38,17 @@ _steps.println concatenate
 	}
 
 	@Override
-	Boolean collectConfig() {
-		_steps.println "__PASS__"
+	Boolean collectConfig(List files) {
+		_steps.println files
+
+		List concatenate = []
+
+		files.each { file ->
+			concatenate.addAll(_steps.readFile(file))
+			concatenate.add('')
+		}
+
+		_steps.println concatenate
 	}
 
 	@Override
