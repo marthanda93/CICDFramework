@@ -50,7 +50,7 @@ pathx.eachWithIndex { key, index ->
             if(sublist == true) {
                 path << (list + [it])
             } else {
-                for(List item in path) {
+                for(item in path) {
                     path[i] << it
                     i = i + 1
                     break;
