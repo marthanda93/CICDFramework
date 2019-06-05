@@ -16,20 +16,33 @@ class AppConfigNSecret implements IK8CSRegistry, Serializable {
 
 	@Override
 	Boolean create(Object k8Param) {
+		List concatenate = []
+
+Closure collectContent = {String file ->
+	concatenate.addAll(_steps.readFile(file))
+	concatenate.add('')
+
+
+
+// this.script.writeFile file: "${tempFile}", text: concatenate.join('\n')
+// configFiles.add("${tempFile}")
+}
+
+_steps.println concatenate
+
+
+
 		ArrayList files = []
 
 		if(org.generic.CommonUtilities.mapValidation(k8Param)) {
 			if('configPath' in k8Param.keySet().collect()) {
-
                 for(List item in k8Param.configPath.MsubSplit().MsubListjoin()) {
 					files = files + (_steps.findFiles(glob: k8Param.scmPath+'/'+item.join('/')) as List)
                 }
-
-
-				_steps.println files
 			} else if ('secretPath' in k8Param.keySet().collect()) {
-				files = _steps.findFiles(glob: "${k8Param.scmPath}/${k8Param.secretPath}")
-				_steps.println files
+                for(List item in k8Param.secretPath.MsubSplit().MsubListjoin()) {
+					files = files + (_steps.findFiles(glob: k8Param.scmPath+'/'+item.join('/')) as List)
+                }
 			} else {
 				_steps.error "Missing Key \n Hint: configPath/secretPath"
 			}
