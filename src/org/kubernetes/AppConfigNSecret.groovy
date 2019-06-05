@@ -31,7 +31,7 @@ if(matcher.find()) {
 	_steps.println key
 	_steps.println key.getClass()
 
-	//println key​.findAll {it != null}​
+	println key​.findAll {it.trim().size() > 0}​
 	key.each{
 	  _steps.println it
 	}
