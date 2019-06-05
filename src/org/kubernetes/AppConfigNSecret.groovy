@@ -35,7 +35,7 @@ path.eachWithIndex{ key, index ->
     }
 }
 
-println path
+_steps.println path
 
 
 
