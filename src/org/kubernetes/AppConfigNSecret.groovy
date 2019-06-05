@@ -31,7 +31,7 @@ path.eachWithIndex{ key, index ->
     
     if(item.size() > 1) {
         item.removeAll(Arrays.asList(null,""));
-        x[index] = item
+        path[index] = item
     }
 }
 
