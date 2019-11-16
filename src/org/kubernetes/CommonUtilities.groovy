@@ -6,7 +6,6 @@ import java.io.File
 
 class CommonUtilities {
     static boolean opsSyncFileBetweenMasterSlavenGenerate(Object _steps, String k8Object, Map k8Param) {
-		_steps.println "----------------------------//0"
 		String opsSlaveParameterPath = "${k8Param.opsRepoPath}/${_steps.globalPipelineSetting.standardization.templateParameter.MStringTemplateEngine(k8Param)}/${k8Object}"
 		String opsMasterParameterPath = "${_steps.env.JENKINS_HOME}/workspace/${_steps.env.JOB_NAME}@libs/${_steps.env.getEnvironment().findAll { it.key =~ /^library.(.+).version$/ }.keySet()[0].split('\\.')[1]}/resources/org/kubernetes"
 
@@ -21,11 +20,9 @@ class CommonUtilities {
 			}
 		}
 
-		_steps.println "----------------------------//1"
 		org.generic.CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
 		""", opsMasterParameterPath)
-		_steps.println "----------------------------//2"
 
 		try {
 			String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
