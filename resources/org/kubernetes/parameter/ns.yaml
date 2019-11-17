@@ -1,0 +1,8 @@
+namespace:
+    name: anand
+    labels:
+        environment: dev
+        app: name
+    annotations:
+        one: one
+        two: two

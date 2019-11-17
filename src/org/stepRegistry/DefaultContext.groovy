@@ -8,6 +8,7 @@ import org.generic.IMavenRegistry
 import org.generic.IJinjaRegistry
 import org.generic.IK8NameSpaceRegistry
 import org.generic.IK8CSRegistry
+import org.generic.IJinTemplate
 
 import org.generic.IContext
 
@@ -56,5 +57,10 @@ class DefaultContext implements IContext, Serializable {
     @Override
     IK8CSRegistry getK8ConfigNSecretExecutor() {
         return new org.kubernetes.AppConfigNSecret(this._steps)
+    }
+
+    @Override
+    IJinTemplate jinTemplate(String template, String parameter, Sting output = '') {
+        return new org.template.Jin(this._steps, template, parameter, output)
     }
 }

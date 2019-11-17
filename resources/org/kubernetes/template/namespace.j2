@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: {{ namespace.name }}
-    {% if namespace.labels is defined %}
-        {%- with labels=namespace.labels %}
-            {%- include "chunks/labels.j2" %}
-        {%- endwith %}
-    {%- endif %}
-    {% if namespace.annotations is defined %}
-        {%- with annotations=namespace.annotations %}
-            {%- include "chunks/annotations.j2" %}
-        {%- endwith %}
-    {%- endif %}
+  name: {{ namespace.name }}
+  {% if namespace.labels is defined %}
+    {%- with labels=namespace.labels %}
+      {%- include "chunks/labels.j2" %}
+    {%- endwith %}
+  {%- endif %}
+  {% if namespace.annotations is defined %}
+      {%- with annotations=namespace.annotations %}
+          {%- include "chunks/annotations.j2" %}
+      {%- endwith %}
+  {%- endif %}

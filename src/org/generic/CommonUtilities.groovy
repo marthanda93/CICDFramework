@@ -1,5 +1,8 @@
 package org.generic
 
+@Grab('org.yaml:snakeyaml:1.17')
+import org.yaml.snakeyaml.Yaml
+import java.io.File
 import hudson.util.RemotingDiagnostics
 import java.time.LocalTime
 
@@ -69,5 +72,13 @@ class CommonUtilities implements Serializable {
         Object channel = slave.getComputer().getChannel()
 
         println RemotingDiagnostics.executeGroovy( "${cmd}.execute().in.text", channel)
+    }
+
+    static boolean yamlProcess(Object _steps, Object data) {
+		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
+    }
+
+    static boolean jsonProcess(Object _steps, Object data) {
+		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(data))
     }
 }

@@ -9,4 +9,5 @@ interface IContext {
     IJinjaRegistry getJinjaExecutor()
     IK8NameSpaceRegistry getK8NameSpaceExecutor()
     IK8CSRegistry getK8ConfigNSecretExecutor()
+    IJinTemplate jinTemplate()
 }
