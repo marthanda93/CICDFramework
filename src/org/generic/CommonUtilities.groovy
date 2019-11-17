@@ -75,10 +75,10 @@ class CommonUtilities implements Serializable {
     }
 
     static boolean yamlProcess(Object _steps, Object data) {
-		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
+		return ''
     }
 
     static boolean jsonProcess(Object _steps, Object data) {
-		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(data))
+		return ''
     }
 }
