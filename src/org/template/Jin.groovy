@@ -9,7 +9,7 @@ import org.stepRegistry.ContextRegistry
 class Jin implements IJinTemplate, IMissingObject, Serializable {
 	private _steps
 
-	Jin(_steps, String template, String parameter, Sting output = '') {
+	Jin(_steps, String template, String parameter, String output = '') {
 		this._steps = _steps
 		this.template = template
 		this.parameter = parameter

@@ -60,7 +60,7 @@ class DefaultContext implements IContext, Serializable {
     }
 
     @Override
-    IJinTemplate jinTemplate(String template, String parameter, Sting output = '') {
+    IJinTemplate jinTemplate(String template, String parameter, String output = '') {
         return new org.template.Jin(this._steps, template, parameter, output)
     }
 }
