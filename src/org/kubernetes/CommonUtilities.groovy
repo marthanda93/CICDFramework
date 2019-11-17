@@ -49,6 +49,7 @@ class CommonUtilities {
 		def words, leftSpace
 
 		data.split('\n').each { line ->
+			line = line.replaceAll("\t", "    ")
 			words = line.split("[^\\w]+")
 			if(words[0].length() == 0) {	//Space Found
 				leftSpace = line.indexOf(words[1])
