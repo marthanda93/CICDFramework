@@ -45,14 +45,13 @@ class CommonUtilities {
     	_steps.println "__PASS__"
     }
 
+	static boolean yamlIndentation(Object _steps, Object data) {
+		_steps.println(data.getClass())
+	}
+
     static boolean yamltoJson(Object _steps, Object data) {
-		_steps.println('------------------------------//1')
-		_steps.println(data)
-		_steps.println('------------------------------//2')
-		_steps.println(new Yaml().load(data))
-		_steps.println('------------------------------//3')
-		_steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
-		_steps.println('------------------------------//5')
+		yamlIndentation(_steps, data)
+
 		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
     }
 }
