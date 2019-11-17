@@ -20,9 +20,11 @@ class CommonUtilities {
 			}
 		}
 
+		print('----------------------------//1')
 		org.generic.CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
 		""", opsMasterParameterPath)
+		print('----------------------------//2')
 
 		try {
 			String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
