@@ -11,6 +11,7 @@ class Jin implements IJinTemplate, IMissingObject, Serializable {
     String template
     String parameter
     String output
+    String type
 
 	Jin(_steps, template, parameter, output = '') {
 		this._steps = _steps
