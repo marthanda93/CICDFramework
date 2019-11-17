@@ -27,17 +27,22 @@ class CommonUtilities {
 		_steps.println('----------------------------//2')
 
 		try {
+			_steps.println('----------------------------//4')
 			String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
 
+			_steps.println('----------------------------//5')
 			if(data.size() > 25) {
 				_steps.writeYaml(file:k8Object, data: data.trim())
 			} else {
+				_steps.println('----------------------------//6')
 				_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: content size is very less"
 			}
 		} catch(e) {
+			_steps.println('----------------------------//7')
 			_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: ${e.getMessage()}"
 		}
 
+		_steps.println('----------------------------//8')
 		return true
     }
 
