@@ -46,7 +46,15 @@ class CommonUtilities {
     }
 
 	static boolean yamlIndentation(Object _steps, Object data) {
-		_steps.println(data.getClass())
+		def words, leftSpace
+
+		data.split('\n').each { line ->
+			words = s.split("[^\\w]+")
+			if(words[0].length() == 0) {	//Space Found
+				leftSpace = line.indexOf(words[1])
+				_steps.println(leftSpace)
+			}
+		}
 	}
 
     static boolean yamltoJson(Object _steps, Object data) {
