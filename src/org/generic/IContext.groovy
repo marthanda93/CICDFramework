@@ -9,5 +9,5 @@ interface IContext {
     IJinjaRegistry getJinjaExecutor()
     IK8NameSpaceRegistry getK8NameSpaceExecutor()
     IK8CSRegistry getK8ConfigNSecretExecutor()
-    IJinTemplate jinTemplate(String template, String parameter, String output = '')
+    IJinTemplate jinTemplate(String template, String parameter, String output)
 }
