@@ -20,29 +20,22 @@ class CommonUtilities {
 			}
 		}
 
-		_steps.println('----------------------------//1')
 		org.generic.CommonUtilities.executeOnMaster("""
 			/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
 		""", opsMasterParameterPath)
-		_steps.println('----------------------------//2')
 
 		try {
-			_steps.println('----------------------------//4')
 			String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
 
-			_steps.println('----------------------------//5')
 			if(data.size() > 25) {
 				_steps.writeYaml(file:k8Object, data: data.trim())
 			} else {
-				_steps.println('----------------------------//6')
 				_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: content size is very less"
 			}
 		} catch(e) {
-			_steps.println('----------------------------//7')
 			_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: ${e.getMessage()}"
 		}
 
-		_steps.println('----------------------------//8')
 		return true
     }
 
@@ -53,7 +46,13 @@ class CommonUtilities {
     }
 
     static boolean yamltoJson(Object _steps, Object data) {
-		_steps.println('----------------------------//3')
+		_steps.println('------------------------------//1')
+		_steps.println(data)
+		_steps.println('------------------------------//2')
+		_steps.println(new Yaml().load(data))
+		_steps.println('------------------------------//3')
+		_steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
+		_steps.println('------------------------------//5')
 		return _steps.readJSON(text:groovy.json.JsonOutput.toJson(new Yaml().load(data)))
     }
 }
