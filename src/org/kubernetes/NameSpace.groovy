@@ -18,11 +18,13 @@ class NameSpace implements IK8NameSpaceRegistry, IMissingObject, Serializable {
 
 		if(CommonUtilities.opsSyncFileBetweenMasterSlavenGenerate(_steps, k8Object, k8Param)) {
 			try {
-				response = ContextRegistry.getContext().getHttpExecutor().httpPost(
-					customHeaders: [Authorization:"Bearer Gtoken"],
-					url: "https://104.197.4.139/api/v1/namespaces",
-					CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
-				)
+				print('----------------------------//1')
+				_steps.println(CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object)))
+				// response = ContextRegistry.getContext().getHttpExecutor().httpPost(
+				// 	customHeaders: [Authorization:"Bearer Gtoken"],
+				// 	url: "https://104.197.4.139/api/v1/namespaces",
+				// 	CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object))
+				// )
 			} catch(e) {
 				_steps.println(CommonUtilities.yamltoJson(_steps, _steps.readYaml(file: k8Object)))
 				_steps.error "HTTP EXECUTION: ${e.getMessage()}"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: anand
+  labels:
+		environment: dev
+		app: name
+  annotations:
+		two: two
+		one: one

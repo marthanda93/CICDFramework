@@ -20,26 +20,21 @@ class CommonUtilities {
 			}
 		}
 
-		_steps.println(k8Object)
-		_steps.println(opsMasterParameterPath)
+		org.generic.CommonUtilities.executeOnMaster("""
+			/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
+		""", opsMasterParameterPath)
 
+		try {
+			String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
 
-
-		// org.generic.CommonUtilities.executeOnMaster("""
-		// 	/usr/bin/j2 -f yaml template/${k8Object.split('\\.')[0].toLowerCase()}.j2 parameter/${k8Object} -o output/${k8Object}
-		// """, opsMasterParameterPath)
-
-		// try {
-		// 	String data = new File("${opsMasterParameterPath}/output/${k8Object}").text
-
-		// 	if(data.size() > 25) {
-		// 		_steps.writeYaml(file:k8Object, data: data.trim())
-		// 	} else {
-		// 		_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: content size is very less"
-		// 	}
-		// } catch(e) {
-		// 	_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: ${e.getMessage()}"
-		// }
+			if(data.size() > 25) {
+				_steps.writeYaml(file:k8Object, data: data.trim())
+			} else {
+				_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: content size is very less"
+			}
+		} catch(e) {
+			_steps.error "${k8Object.split('\\.')[0].toUpperCase()}: ${e.getMessage()}"
+		}
 
 		return true
     }
