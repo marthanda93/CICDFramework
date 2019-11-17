@@ -1,8 +1,5 @@
 package org.generic
 
-@Grab('org.yaml:snakeyaml:1.17')
-import org.yaml.snakeyaml.Yaml
-import java.io.File
 import hudson.util.RemotingDiagnostics
 import java.time.LocalTime
 
