@@ -47,7 +47,7 @@ class CommonUtilities {
 
 	static boolean yamlIndentation(Object _steps, Object data) {
 		def words, leftSpace
-
+_steps.println(data)
 		data.split('\n').each { line ->
 			line = line.replaceAll("\t", "    ")
 			words = line.split("[^\\w]+")
