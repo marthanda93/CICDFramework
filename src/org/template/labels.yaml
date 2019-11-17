@@ -1,4 +1,0 @@
-labels:
-	{%- for key, value in labels.iteritems() %}
-		{{ key }}: {{ value }}
-	{%- endfor %}
