@@ -58,7 +58,7 @@ class CommonUtilities {
 			// preSize = (start == false) ? 
 
 			if(size == 1) {		//String like map or list
-				out << line
+				out << line + "\n"
 				if(words.size() == 2){
 					preSpaceLength = line.indexOf(words[1])
 				} else {
@@ -69,9 +69,9 @@ class CommonUtilities {
 					leftSpace = line.indexOf(words[1])
 
 					if(preSpaceLength < indentation) {
-						out << line.padLeft(indentation + line.length())
+						out << line.padLeft(indentation + line.length()) + "\n"
 					} else if(preSpaceLength < indentation) {
-						out << line.padLeft(2 * indentation + line.length())
+						out << line.padLeft(2 * indentation + line.length()) + "\n"
 					}
 				} else {	//String without left space like 'kind: Namespace'
 					out << line
