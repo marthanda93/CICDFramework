@@ -45,16 +45,21 @@ class CommonUtilities {
     	_steps.println "__PASS__"
     }
 
-	static boolean yamlIndentation(Object _steps, Object data) {
-		def words, leftSpace
-_steps.println(data)
+	static boolean yamlIndentation(Object _steps, Object data, Int indentation = 4) {
+		List words
+		Int leftSpace, size
+		StringBuffer out = new StringBuffer()
+
 		data.split('\n').each { line ->
 			line = line.replaceAll("\t", "    ")
-			words = line.split("[^\\w]+")
-			if(words[0].length() == 0) {	//Space Found
-				leftSpace = line.indexOf(words[1])
-				_steps.println(line)
-				_steps.println(leftSpace)
+			size = line.trim().split(':').size()
+
+			if(size == 1) {
+				out << line
+			} else if(size == 2) {
+					leftSpace = line.indexOf(words[1])
+					_steps.println(line)
+					_steps.println(leftSpace)
 			}
 		}
 	}
