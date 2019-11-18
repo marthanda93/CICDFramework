@@ -59,21 +59,21 @@ class CommonUtilities {
 
 			if(size == 1) {
 				out << line
-				_steps.println('--------------------//1', line)
+				_steps.println('--------------------//1')
 			} else if(size == 2) {
-				_steps.println('--------------------//2', line)
+				_steps.println('--------------------//2')
 				if(words[0].length() == 0) {	//Space Found
-					_steps.println('--------------------//3', line)
+					_steps.println('--------------------//3')
 					leftSpace = line.indexOf(words[1])
 
 					// _steps.println(line)
 					// _steps.println(leftSpace)
 				} else {
-					_steps.println('--------------------//4', line)
+					_steps.println('--------------------//4')
 					out << line
 				}
 			} else {
-				_steps.println('--------------------//5', line)
+				_steps.println('--------------------//5')
 			}
 		}
 	}
