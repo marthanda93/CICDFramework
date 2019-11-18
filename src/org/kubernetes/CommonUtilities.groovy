@@ -68,13 +68,17 @@ class CommonUtilities {
 				if(words[0].length() == 0) {	//Left Space String
 					leftSpace = line.indexOf(words[1])
 
-					_steps.println(line)
-					_steps.println("${preSpaceLength}-------${leftSpace}")
+					if(preSpaceLength < indentation) {
+						out << line.padLeft(indentation + line.length())
+					} else if(preSpaceLength < indentation) {
+						out << line.padLeft(2 * indentation + line.length())
+					}
 				} else {	//String without left space like 'kind: Namespace'
 					out << line
 				}
 			}
 		}
+		_steps.println out.toString()
 	}
 
     static boolean yamltoJson(Object _steps, Object data) {
