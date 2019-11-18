@@ -74,7 +74,7 @@ class CommonUtilities {
 						out << line.padLeft(2 * indentation + line.length()) + "\n"
 					}
 				} else {	//String without left space like 'kind: Namespace'
-					out << line
+					out << line + "\n"
 				}
 			}
 		}
