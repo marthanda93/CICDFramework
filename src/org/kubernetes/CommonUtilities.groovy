@@ -47,7 +47,7 @@ class CommonUtilities {
 
 	static boolean yamlIndentation(Object _steps, Object data, Int indentation = 4) {
 		List words
-		Int leftSpace, size
+		int leftSpace, size
 		StringBuffer out = new StringBuffer()
 
 		data.split('\n').each { line ->
