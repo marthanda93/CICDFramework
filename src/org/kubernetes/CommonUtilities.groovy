@@ -47,22 +47,33 @@ class CommonUtilities {
 
 	static boolean yamlIndentation(Object _steps, Object data, Integer indentation = 4) {
 		List words
-		Integer leftSpace, size
+		Integer leftSpace, size, preSize
 		StringBuffer out = new StringBuffer()
+		Boolean start = false
 
 		data.split('\n').each { line ->
 			line = line.replaceAll("\t", "    ")
 			words = line.split("[^\\w]+")
 			size = line.trim().split(':').size()
+			// preSize = (start == false) ? 
 
 			if(size == 1) {
 				out << line
+				_steps.println('--------------------//1', line)
 			} else if(size == 2) {
+				_steps.println('--------------------//2', line)
 				if(words[0].length() == 0) {	//Space Found
+					_steps.println('--------------------//3', line)
 					leftSpace = line.indexOf(words[1])
-					_steps.println(line)
-					_steps.println(leftSpace)
+
+					// _steps.println(line)
+					// _steps.println(leftSpace)
+				} else {
+					_steps.println('--------------------//4', line)
+					out << line
 				}
+			} else {
+				_steps.println('--------------------//5', line)
 			}
 		}
 	}
