@@ -47,7 +47,7 @@ class CommonUtilities {
 
 	static boolean yamlIndentation(Object _steps, Object data, Integer indentation = 4) {
 		List words
-		Integer leftSpace, size, preSize
+		Integer leftSpace, size, preSpaceLength
 		StringBuffer out = new StringBuffer()
 		Boolean start = false
 
@@ -57,28 +57,22 @@ class CommonUtilities {
 			size = line.trim().split(':').size()
 			// preSize = (start == false) ? 
 
-			if(size == 1) {
+			if(size == 1) {		//String like map or list
 				out << line
-				_steps.println('--------------------//1')
-				_steps.println(line)
+				if(words.size() == 2){
+					preSpaceLength = line.indexOf(words[1])
+				} else {
+					preSpaceLength = line.indexOf(words[0])
+				}
 			} else if(size == 2) {
-				_steps.println('--------------------//2')
-				_steps.println(line)
-				if(words[0].length() == 0) {	//Space Found
-					_steps.println('--------------------//3')
-					_steps.println(line)
+				if(words[0].length() == 0) {	//Left Space String
 					leftSpace = line.indexOf(words[1])
 
-					// _steps.println(line)
-					// _steps.println(leftSpace)
-				} else {
-					_steps.println('--------------------//4')
 					_steps.println(line)
+					_steps.println("${preSpaceLength}-------${leftSpace}")
+				} else {	//String without left space like 'kind: Namespace'
 					out << line
 				}
-			} else {
-				_steps.println('--------------------//5')
-				_steps.println(line)
 			}
 		}
 	}

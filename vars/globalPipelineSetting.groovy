@@ -64,3 +64,8 @@ import groovy.transform.Field
 	configmap: '',
 	secret: ''
 ]
+
+// will use this to come back in indentation
+@groovy.transform.Field indentation = [
+	label: 'metadata'
+]
