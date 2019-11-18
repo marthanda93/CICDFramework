@@ -63,6 +63,7 @@ class CommonUtilities {
 				_steps.println(line)
 			} else if(size == 2) {
 				_steps.println('--------------------//2')
+				_steps.println(line)
 				if(words[0].length() == 0) {	//Space Found
 					_steps.println('--------------------//3')
 					_steps.println(line)
