@@ -52,14 +52,17 @@ class CommonUtilities {
 
 		data.split('\n').each { line ->
 			line = line.replaceAll("\t", "    ")
+			words = line.split("[^\\w]+")
 			size = line.trim().split(':').size()
 
 			if(size == 1) {
 				out << line
 			} else if(size == 2) {
+				if(words[0].length() == 0) {	//Space Found
 					leftSpace = line.indexOf(words[1])
 					_steps.println(line)
 					_steps.println(leftSpace)
+				}
 			}
 		}
 	}
