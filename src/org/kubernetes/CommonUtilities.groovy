@@ -58,11 +58,16 @@ class CommonUtilities {
 			// preSize = (start == false) ? 
 
 			if(size == 1) {		//String like map or list
-				out << line + "\n"
 				if(words.size() == 2){
 					preSpaceLength = line.indexOf(words[1])
 				} else {
 					preSpaceLength = line.indexOf(words[0])
+				}
+
+				if(preSpaceLength < indentation) {
+					out << line.padLeft(indentation + line.length()) + "\n"
+				} else {
+					out << line + "\n"
 				}
 			} else if(size == 2) {
 				if(words[0].length() == 0) {	//Left Space String
