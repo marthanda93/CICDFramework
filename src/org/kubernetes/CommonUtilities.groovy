@@ -45,7 +45,7 @@ class CommonUtilities {
     	_steps.println "__PASS__"
     }
 
-	static boolean yamlIndentation(Object _steps, Object data, Int indentation = 4) {
+	static boolean yamlIndentation(Object _steps, Object data, Integer indentation = 4) {
 		List words
 		Integer leftSpace, size
 		StringBuffer out = new StringBuffer()
